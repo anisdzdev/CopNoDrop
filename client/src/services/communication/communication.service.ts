@@ -14,5 +14,4 @@ export class CommunicationService {
   private readonly BAD_GATEWAY = 502;
   private readonly FORBIDDEN = 403;
   response = new Response();
-
   }
