@@ -1,4 +1,3 @@
-require('./startup/logging')();
 require('./startup/base_config')();
 require('./startup/db')();
 
