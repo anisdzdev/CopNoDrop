@@ -4,7 +4,7 @@ SOEN 341 Project Winter 2022. Develop an E-Commerce website inspired by Amazon.
 
 ## Objective
 The website will have 2 user levels. Buyers and sellers. 
-The buyer is able add multiple products to a cart, navigate through the website, filter the products by category, and checkout with a credit card. In addition, he is able to track his orders and cancel pending orders.
+The buyer is able add multiple products to a cart, navigate through the website, filter the products by category, and checkout with a virtual credit card. In addition, he is able to track his orders and cancel pending orders.
 The seller is able to add a product to the product list identified by a category, name, price and image. He is also able to view the list of placed orders, in addition to changing the status of the order from pending to shipped.
 
 
@@ -21,9 +21,9 @@ The seller is able to add a product to the product list identified by a category
 ## Technologies
 **MEAN Stack**
 - Front-End (Client):
-  - Angular
-  - TypeScript
+  - [Angular](https://angular.io/)
+  - [TypeScript](https://typescriptlang.org/)
 - Back-End (Server):
-  - Express.JS
-  - NodeJS
-  - MongoDB
+  - [Express.JS](https://expressjs.com/)
+  - [NodeJS](https://nodejs.org/en/)
+  - [MongoDB](https://mongodb.com/)
