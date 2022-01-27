@@ -21,9 +21,10 @@ The seller is able to add a product to the product list identified by a category
 ## Technologies
 **MEAN Stack**
 - Front-End (Client):
-  - Angular
-  - TypeScript
+  - [Angular](https://angular.io/)
+  - [TypeScript](https://typescriptlang.org/)
+
 - Back-End (Server):
-  - Express.JS
-  - NodeJS
-  - MongoDB
+  - [Express.JS](https://expressjs.com/)
+  - [NodeJS](https://nodejs.org/en/)
+  - [MongoDB](https://mongodb.com/)
