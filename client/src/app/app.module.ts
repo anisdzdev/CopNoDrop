@@ -10,6 +10,8 @@ import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SellerComponent } from './seller/seller.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SellerComponent } from './seller/seller.component';
     UserComponent,
     HeaderComponent,
     FooterComponent,
-    SellerComponent
+    SellerComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
