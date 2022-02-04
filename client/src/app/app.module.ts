@@ -9,7 +9,6 @@ import { ShopComponent } from './shop/shop.component';
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { SellerComponent } from './seller/seller.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 
@@ -22,7 +21,6 @@ import { SignupComponent } from './auth/signup/signup.component';
     UserComponent,
     HeaderComponent,
     FooterComponent,
-    SellerComponent,
     LoginComponent,
     SignupComponent
   ],
