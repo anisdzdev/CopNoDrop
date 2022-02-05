@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema({
     },
     sale: {
         type: mongoose.Types.Decimal128,
-        required: true
+        default: 0
     },
     images: [{
         type: String,
@@ -33,14 +33,6 @@ const productSchema = new mongoose.Schema({
     creator: {
         type: String,
         required: true
-    },
-    isSeller: {
-        type: Boolean,
-        default:false
-    },
-    token: {
-        value: {type: String},
-        date: {type: Date}
     }
 });
 

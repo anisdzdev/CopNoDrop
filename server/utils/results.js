@@ -1,16 +1,32 @@
 const BadRequest = (message) => {
     return {
-        success: false,
+        status:400,
         data: message
     }
 }
 
-const SuccessRequest = (message) => {
+const NotFound = (message) => {
     return {
-        success: true,
+        status:404,
+        data: message
+    }
+}
+
+const Success = (message) => {
+    return {
+        status: 200,
+        data: message
+    }
+}
+
+const Created = (message) => {
+    return {
+        status: 201,
         data: message
     }
 }
 
 exports.BadRequest = BadRequest;
-exports.SuccessRequest = SuccessRequest;
+exports.NotFound = NotFound;
+exports.Success = Success;
+exports.Created = Created;

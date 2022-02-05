@@ -3,7 +3,7 @@ const {User} = require("./user_model");
 const m2s = require("mongoose-to-swagger");
 
 const options = {
-    props: ['minlength', 'maxlength'],
+    props: ['minlength', 'maxlength','default','unique'],
     omitFields: ['_id'],
 };
 

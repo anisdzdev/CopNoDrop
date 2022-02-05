@@ -23,8 +23,7 @@ const options = {
       schemas: swaggerSchemas,
     }
   },
-  apis: ['./controllers/*.js'], // files containing annotations as above
-
+  apis: ['./controllers/*.js']
 };
 
 const app = express();
@@ -39,7 +38,7 @@ app.use('/products', productsController);
 app.use('/users', usersController);
 
 const swaggerSpec = swaggerJsdoc(options);
-app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
