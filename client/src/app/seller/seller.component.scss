@@ -3,11 +3,11 @@
   margin: auto;
 }
 
-@media(max-width: 550px){
-    .wrapper {
-        width: 100%;
-        margin: auto;
-      }
+@media (max-width: 550px) {
+  .wrapper {
+    width: 100%;
+    margin: auto;
+  }
 }
 
 #welcome-title {
@@ -22,12 +22,11 @@
 .grid.one {
   margin: 0;
   padding: 10px;
- // justify-content: space-evenly;
+  // justify-content: space-evenly;
 }
 
-.grid.two{
-    margin: 0px;
-
+.grid.two {
+  margin: 0px;
 }
 
 .title1 {
@@ -50,8 +49,8 @@ i.one {
   margin-bottom: 20px;
 }
 
-i.two{
-    font-size: 1.95rem;
+i.two {
+  font-size: 1.95rem;
 }
 
 span.points,
@@ -64,19 +63,30 @@ span.price {
   font-weight: 600;
 }
 
-.container-bottom{
-    height: 200px;
-    padding: 30px;
-    border: 1px solid #e7e7e7;
-    border-top: 5px solid #ffed00;
-    text-align: center;
-    margin: 0 10px;
-    margin-bottom: 20px;
+.container-bottom {
+  height: 200px;
+  padding: 30px;
+  border: 1px solid #e7e7e7;
+  border-top: 5px solid #ffed00;
+  text-align: center;
+  margin: 0 10px;
+  margin-bottom: 20px;
 }
 
-
 .title2 {
-    font-size: 18px;
-    margin: 0;
-  }
+  font-size: 18px;
+  margin: 0;
+}
 
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:active {
+  color: grey;
+}
