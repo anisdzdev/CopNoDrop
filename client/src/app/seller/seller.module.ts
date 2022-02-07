@@ -11,6 +11,8 @@ import { SellerComponent } from './seller.component';
 //primeng 
 import {AccordionModule} from 'primeng/accordion';
 import {SliderModule} from 'primeng/slider';
+import { MainPageComponent } from './main-page/main-page.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import {SliderModule} from 'primeng/slider';
     OrdersComponent,
     MyAccountComponent,
     ProductsComponent,
-    SellerComponent
+    SellerComponent,
+    MainPageComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
