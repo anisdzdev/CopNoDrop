@@ -1,0 +1,110 @@
+.carousel-img{
+  width: 100%;
+}
+.text-center{
+  text-align: center;
+}
+.main{
+  padding: 8%;
+  padding-top: 500px;
+  padding-bottom: 0%;
+  margin: auto;
+  .delivery-block{
+    background-color: #ffed00;
+    background-position-y: center;
+    border: 1px solid #D5D5D5;
+    width: 100%;
+    // height: 60px;
+
+    h3{
+      display: inline-block;
+      padding-left: 20px;
+      padding-right: 10px;
+    }
+    span{
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      font-weight: 400;
+      font-size: 18px;
+    }
+  }
+
+  .get-started{
+    .title{
+      border-bottom: 2px solid #a59b9b2b;
+      padding-bottom: 8px;
+    }
+    .container{
+      .icon1{
+        background-image: url("https://www.spinneyslebanon.com/static/version1643620912/frontend/Spinneys/theme/en_US/images/Icon-Account.svg");
+      }
+      .icon2{
+        background-image: url("https://www.spinneyslebanon.com/static/version1643620912/frontend/Spinneys/theme/en_US/images/Icon-Cart.svg");
+      }
+      .icon3{
+        background-image: url("https://www.spinneyslebanon.com/static/version1643620912/frontend/Spinneys/theme/en_US/images/Icon-Slot.svg");
+      }
+      .icon4{
+        background-image: url("https://www.spinneyslebanon.com/static/version1643620912/frontend/Spinneys/theme/en_US/images/Icon-Checkout.svg");
+      }
+      .icon{
+        width: 80px;
+        height: 60px;
+        background-repeat: no-repeat
+      }
+      .box{
+        height: 100%;
+        p{
+          margin: 0;
+          color: gray;
+        }
+      }
+    }
+    button{
+      width: 100%;
+      height: 50px;
+      margin-top: 20px;
+    }
+  }
+}
+
+
+.btn{
+  max-width: 385px;
+  width: 100%;
+  margin: auto;
+}
+
+@media (max-width: 767px) {
+  p-carousel{
+    display: none;
+  }
+}
+.category-wrap{
+  text-align: center;
+  h3{
+    text-align: center;
+  }
+}
+.category-frame{
+  border: 1px solid #e7e7e7;
+  border-radius: 50%;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: all .6s;
+  position: relative;
+  margin: auto;
+}
+
+
+p-carousel{
+  position: absolute;
+  z-index: -1;
+}

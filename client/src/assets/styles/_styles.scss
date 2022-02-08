@@ -1,0 +1,33 @@
+
+.p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+  background-color: #ffed00 !important;
+}
+
+.product-item-content:hover{
+  border: 1px solid yellow !important;
+}
+.product-item-content{
+  border: 1px solid transparent !important;
+  padding: 10px;
+}
+
+.p-inputnumber-buttons-horizontal .p-inputnumber-input {
+  width: 36px !important;
+  text-align: center;
+}
+.p-inputtext:enabled:hover {
+  border-color: #ffed00 !important;
+}
+.p-button:enabled:hover {
+  color: #ffffff;
+  border-color: #ffed00;
+}
+.c-btn{
+  color: #ffffff;
+  background: transparent !important;
+  border: 1px solid #d1d6db;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 3px;
+}

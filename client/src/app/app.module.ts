@@ -1,34 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { SharedModule } from 'primeng/api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { ShopComponent } from './shop/shop.component';
-import { UserComponent } from './user/user.component';
-import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { SellerComponent } from './seller/seller.component';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
-    CheckoutComponent,
-    ShopComponent,
-    UserComponent,
     HeaderComponent,
-    FooterComponent,
-    SellerComponent,
-    LoginComponent,
-    SignupComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    // SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
