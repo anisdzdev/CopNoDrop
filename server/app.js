@@ -7,8 +7,24 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const productsController = require('./controllers/products');
+const usersController = require('./controllers/users');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerSchemas = require('./models/swaggerSchemas')
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'CopNoDrop Api',
+      version: '1.0.0',
+    },
+    components: {
+      schemas: swaggerSchemas,
+    }
+  },
+  apis: ['./controllers/*.js']
+};
 
 const app = express();
 
@@ -18,8 +34,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/products', productsController);
+app.use('/users', usersController);
+
+const swaggerSpec = swaggerJsdoc(options);
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
