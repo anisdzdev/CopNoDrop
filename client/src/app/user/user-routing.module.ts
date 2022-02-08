@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SellerComponent } from './seller.component';
+import { OrdersComponent } from '../user/orders/orders.component';
 
 const routes: Routes = [
   {
-    path: '', component: SellerComponent,
+    path: 'orders', component: OrdersComponent,
     children: []
   },
-  {
-    path: '**',
-    redirectTo: "seller"
-  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SellerRoutingModule { }
+export class UserRoutingModule { }
