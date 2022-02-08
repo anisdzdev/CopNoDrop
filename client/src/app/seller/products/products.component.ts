@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -8,13 +8,9 @@ import { MenuItem } from 'primeng/api';
 })
 export class ProductsComponent implements OnInit {
   products = [];
-  isNavOpen: boolean = false;
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  
+
+  constructor() {}
 
   ngOnInit(): void {}
-
-  onTriggerNav() {
-    this.isNavOpen = !this.isNavOpen;
-    this.changeDetectorRef.detectChanges();
-  }
 }

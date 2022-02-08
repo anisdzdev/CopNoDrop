@@ -16,6 +16,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { PanelModule } from 'primeng/panel';
+import { MenuPanelComponent } from './menu-panel/menu-panel.component';
 
 
 
@@ -28,6 +29,7 @@ import { PanelModule } from 'primeng/panel';
     SellerComponent,
     MainPageComponent,
     SidebarComponent,
+    MenuPanelComponent,
   ],
   imports: [
     CommonModule,

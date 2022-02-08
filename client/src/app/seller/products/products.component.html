@@ -1,24 +1,7 @@
 <div class="wrapper">
   <app-sidebar [page]="'products'"></app-sidebar>
 
-  <div class="menu-panel {{ isNavOpen ? 'open' : 'close' }}">
-    <div class="test">
-      <h3>My Account</h3>
-      <label for="list-item-1"
-        ><i
-          (click)="onTriggerNav()"
-          class="pi {{ isNavOpen ? 'pi-angle-up' : 'pi-angle-down' }}"
-        ></i
-      ></label>
-    </div>
-    <ul class="{{ isNavOpen ? 'animate' : 'hide' }}">
-      <li><span>Personal Details</span></li>
-      <li><span>My Orders</span></li>
-      <li><span>Products</span></li>
-      <li><span>Filler</span></li>
-      <li><span>Filler</span></li>
-    </ul>
-  </div>
+  <app-menu-panel [page] = "'products'"></app-menu-panel>
 
   <div class="products-content">
     <div class="page-title-wrapper">
