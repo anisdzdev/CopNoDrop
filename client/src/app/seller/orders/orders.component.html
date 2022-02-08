@@ -1,9 +1,20 @@
 <div class="wrapper">
-  <app-sidebar [page] = "'orders'"></app-sidebar>
+  <app-sidebar [page]="'orders'"></app-sidebar>
+
+  <app-menu-panel [page] = "'orders'"></app-menu-panel>
 
   <div class="orders-content">
-    <p>orders works!</p>
+    <div class="page-title-wrapper">
+      <h1>My Orders</h1>
+      <p>Manage or edit orders</p>
+    </div>
+
+    <!-- displays in case there are no products -->
+    <div *ngIf="orders.length == 0" class="empty">
+      <span>
+        <i class="pi pi-info-circle"></i>
+        You have no orders.
+      </span>
+    </div>
   </div>
-
-
 </div>

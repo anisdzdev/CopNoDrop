@@ -1,10 +1,20 @@
 <div class="wrapper">
-    <app-sidebar [page] = "'my-account'"></app-sidebar>
-  
-    <div class="my-account-content">
-      <p>my-account works!</p>
+  <app-sidebar [page]="'my-account'"></app-sidebar>
+
+  <app-menu-panel [page] = "'my-account'"></app-menu-panel>
+
+  <div class="my-account-content">
+    <div class="page-title-wrapper">
+      <h1>My Account</h1>
+      <p>Edit personal information</p>
     </div>
-  
-  
+
+    <!-- displays in case there are no products -->
+    <div *ngIf="true" class="empty">
+      <span>
+        <i class="pi pi-info-circle"></i>
+        THERE SHOULD BE INPUT BOXES HERE.
+      </span>
+    </div>
   </div>
-  
+</div>
