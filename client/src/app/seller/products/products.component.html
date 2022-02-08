@@ -1,10 +1,37 @@
 <div class="wrapper">
-    <app-sidebar [page] = "'products'"></app-sidebar>
-  
-    <div class="products-content">
-      <p>products works!</p>
+  <app-sidebar [page]="'products'"></app-sidebar>
+
+  <div class="menu-panel {{ isNavOpen ? 'open' : 'close' }}">
+    <div class="test">
+      <h3>My Account</h3>
+      <label for="list-item-1"
+        ><i
+          (click)="onTriggerNav()"
+          class="pi {{ isNavOpen ? 'pi-angle-up' : 'pi-angle-down' }}"
+        ></i
+      ></label>
     </div>
-  
-  
+    <ul class="{{ isNavOpen ? 'animate' : 'hide' }}">
+      <li><span>Personal Details</span></li>
+      <li><span>My Orders</span></li>
+      <li><span>Products</span></li>
+      <li><span>Filler</span></li>
+      <li><span>Filler</span></li>
+    </ul>
   </div>
-  
+
+  <div class="products-content">
+    <div class="page-title-wrapper">
+      <h1>My Products</h1>
+      <p>Manage or edit products</p>
+    </div>
+
+    <!-- displays in case there are no products -->
+    <div *ngIf="products.length == 0" class="empty">
+      <span>
+        <i class="pi pi-info-circle"></i>
+        You have no products.
+      </span>
+    </div>
+  </div>
+</div>

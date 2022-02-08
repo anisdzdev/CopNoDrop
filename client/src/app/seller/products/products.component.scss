@@ -1,14 +1,150 @@
-.wrapper{
+.wrapper {
+  width: 75%;
+  margin: auto;
+  // background-color: lightblue;
+}
+.menu-panel {
+  display: none;
+}
+
+.products-content {
+  padding-left: 20px;
+  width: calc(100% - 200px);
+  margin-left: 200px;
+  // float: right;
+}
+
+.empty {
+  background-color: #4eb051;
+  padding: 12px 20px 12px 25px;
+  margin: 0 0 10px;
+  margin-top: 20px;
+  color: white;
+  font-size: 14px;
+}
+
+.page-title-wrapper h1 {
+  border-bottom: 1px solid #e7e7e7;
+  line-height: 30px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.page-title-wrapper p {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  font: 14px;
+}
+
+@media (max-width: 1050px) {
+  .wrapper {
     width: 95%;
     margin: auto;
-   // background-color: lightblue;
+  }
 }
 
+@media (max-width: 800px) {
+  app-sidebar {
+    display: none;
+  }
 
-.products-content{
-    padding-left: 20px;
-    width: calc(100% - 200px);
-    margin-left: 200px;
+  .menu-panel {
+    display: block;
+  }
+
+  .products-content {
+    display: block;
+    margin: auto;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+    padding: 0px;
+    margin-bottom: 70px;
+  }
+
+  .page-title-wrapper h1 {
+    font-size: 24px;
+  }
+
+  .page-title-wrapper p {
+    font-size: 15px;
+  }
 }
 
+// menu-panel css
 
+.menu-panel {
+  margin: 10% auto;
+  width: 100%;
+}
+
+.test {
+  height: 50px;
+  display: block;
+  //   cursor: pointer;
+  border: 1px solid #fff;
+  border-bottom: none;
+  background-color: #333;
+  color: white;
+}
+
+.test h3 {
+  margin: 0;
+  padding: 15px 20px;
+  font-size: 16px;
+  width: 95%;
+  display: inline-block;
+}
+
+.test h3 i {
+  float: right;
+}
+
+label {
+  float: right;
+  padding-top: 15px;
+  padding-right: 5px;
+}
+
+label.last {
+  border-bottom: 1px solid #fff;
+}
+
+.menu-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 15px 0px;
+  border: 1px solid #e7e7e7;
+}
+
+.menu-panel li {
+  padding: 5px 15px;
+  font-size: 14px;
+}
+
+.animate {
+  transform: scaleY(1);
+  transition: transform 0.5s ease;
+  transform-origin: top;
+}
+
+.hide {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.26s ease;
+  //display: none;
+}
+
+input[type="checkbox"]:checked + label {
+  border-bottom: 1px solid #fff;
+}
+
+.close{
+  height: 50px;
+  transition-duration: 0.26s;
+}
+.open{
+  height: 200px;
+  transition-duration: 0.5s;
+}

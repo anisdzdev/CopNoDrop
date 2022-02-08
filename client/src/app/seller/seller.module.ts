@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
 import { SellerRoutingModule } from './seller-routing.module';
 import { OrdersComponent } from './orders/orders.component';
 import { MyAccountComponent } from './my-account/my-account.component';
@@ -13,6 +14,10 @@ import {AccordionModule} from 'primeng/accordion';
 import {SliderModule} from 'primeng/slider';
 import { MainPageComponent } from './main-page/main-page.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import {PanelMenuModule} from 'primeng/panelmenu';
+import { PanelModule } from 'primeng/panel';
+
+
 
 
 @NgModule({
@@ -22,13 +27,15 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ProductsComponent,
     SellerComponent,
     MainPageComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   imports: [
     CommonModule,
     SellerRoutingModule,
     AccordionModule,
-    SliderModule
+    SliderModule,
+    PanelMenuModule,
+    PanelModule
   ]
 })
 export class SellerModule { }
