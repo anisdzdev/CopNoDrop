@@ -31,6 +31,14 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default:0
     },
+    addresses: [{
+        firstLine: String,
+        city: String,
+        province: String,
+        country: String,
+        postal_code: String,
+        isDefault: Boolean
+    }],
     token: {
         value: {type: String},
         date: {type: Date}
