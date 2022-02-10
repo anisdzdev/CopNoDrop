@@ -27,6 +27,7 @@
 .image:hover{
   transform: rotateZ(360deg);
  
+ 
 }
 
 *{
@@ -340,6 +341,10 @@
     margin-top: 60px;
     margin-right:1%;
     
+   }
+
+   .cart:hover{
+     background-color: white;
    }
 
    .signup{
