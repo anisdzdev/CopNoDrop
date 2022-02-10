@@ -15,6 +15,7 @@
 
 .image{
     width: 200px;
+    margin-top: 100px;
     
     position: relative;
     margin-left: 20px;
@@ -26,7 +27,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  
   }
   
   nav{
@@ -44,7 +45,7 @@
     height: 70px;
     line-height: 70px;
     margin: auto;
-    margin-left: 20px;
+    margin-left: 200px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -71,7 +72,7 @@
     transition: all 0.3s ease;
   }
   .nav-links li a:hover{
-    background: #d2df1f;
+    background: #ffed00;
   }
   .nav-links .mobile-item{
     display: none;
@@ -294,15 +295,35 @@
     font-weight: 600;
   }
 
+
+
+  .searchiconimg{
+    width: 33px;
+  }
+
+  .searchicon{
+    margin-top: 65px;
+    width: 39px;
+    float: right;
+    
+    height: 33px;
+   }
+
+   .searchicon:hover{
+     background-color: red;
+   }
+
+
   .searchbox{
     float: right;
     padding: 6px;
-    width: 150px;
+    width: 360px;
     border: none;
-    margin-top: 140px;
+    margin-top: 65px;
     margin-right: 30px;
     font-size: 17px;
     text-align: left;
+    background-color: rgb(236, 236, 236);
   }
 
   @media screen and (max-width: 1000px) {
@@ -314,15 +335,25 @@
     }
 
 
+    .mobilesearchitem{
+
+      margin-bottom: 100px;
+    }
+
+    
+    .searchicon{
+       width: 33px;
+       float: right;
+    }
     .searchbox  {
       float: none;
       display: block;
       text-align: center;
       width: 100%;
       margin: 0;
-      padding: 14px;
+      padding: 12px;
     }
     .searchbox {
-      border: 1px solid #ccc;
+      border: 1px solid rgb(235, 235, 235);
     }
   }
