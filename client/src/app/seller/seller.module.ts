@@ -7,7 +7,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ProductsComponent } from './products/products.component';
 import { SellerComponent } from './seller.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 //primeng 
 import {AccordionModule} from 'primeng/accordion';
@@ -17,6 +17,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { PanelModule } from 'primeng/panel';
 import { MenuPanelComponent } from './menu-panel/menu-panel.component';
+
 
 
 
@@ -37,7 +38,8 @@ import { MenuPanelComponent } from './menu-panel/menu-panel.component';
     AccordionModule,
     SliderModule,
     PanelMenuModule,
-    PanelModule
+    PanelModule,
+    ReactiveFormsModule
   ]
 })
 export class SellerModule { }

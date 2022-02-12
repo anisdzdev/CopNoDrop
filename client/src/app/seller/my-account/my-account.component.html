@@ -1,7 +1,7 @@
 <div class="wrapper">
   <app-sidebar [page]="'my-account'"></app-sidebar>
 
-  <app-menu-panel [page] = "'my-account'"></app-menu-panel>
+  <app-menu-panel [page]="'my-account'"></app-menu-panel>
 
   <div class="my-account-content">
     <div class="page-title-wrapper">
@@ -10,11 +10,26 @@
     </div>
 
     <!-- displays in case there are no products -->
-    <div *ngIf="true" class="empty">
-      <span>
-        <i class="pi pi-info-circle"></i>
-        THERE SHOULD BE INPUT BOXES HERE.
-      </span>
+    <!-- name email password address(first line, city,province, country, postal code, is default) -->
+    <div class="grid">
+      <form [formGroup]="form">
+        <div class="col">
+          <label for="name">Name</label><br />
+          <input
+            formControlName="name"
+            id="name"
+            type="text"
+            autoWidth="false"
+            [style]="{ width: '100%' }"
+            pInputText
+          />
+          <small *ngIf="this.form.controls.name.invalid && isSubmitted" class="p-error"
+            >Name is required</small
+          >
+        </div>
+        <div class="col">2</div>
+        <div class="col">3</div>
+      </form>
     </div>
   </div>
 </div>
