@@ -64,7 +64,7 @@
               styleClass="prime-button-override"
             ></p-button>
 
-            <p-dialog header="Change Password" [(visible)]="display" [style]="{height: '30vw'}">
+            <p-dialog header="Change Password" [(visible)]="display" [style]="{height: '30vw', width: '20vw'}">
               <label>Existing Password</label><br />
               <p-password
                 formControlName="password"
@@ -97,18 +97,11 @@
                 [toggleMask]="true"
                 [feedback]="false"
               ></p-password>
+<br>
+              <button class="yellow-btn pass">Save Changes</button>
+
             </p-dialog>
-            <!-- <input
-              formControlName="password"
-              id="password"
-              type="password"
-              pInputText
-            /><br />
-            <small
-              *ngIf="this.form.controls.password.invalid && isSubmitted"
-              class="p-error"
-              >Password is required</small
-            > -->
+            
           </div>
         </div>
 
@@ -172,7 +165,7 @@
         </div>
       </form>
       <div class="save">
-        <button class="yellow-btn">Save</button>
+        <button class="yellow-btn final">Save</button>
       </div>
     </div>
   </div>

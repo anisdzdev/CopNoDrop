@@ -81,7 +81,7 @@
   justify-content: center;
 }
 
-.yellow-btn {
+.yellow-btn.final {
   padding: 5px 10px;
   width: 40%;
 }
@@ -120,6 +120,10 @@ input {
     }
   }
 
+.yellow-btn.pass{
+  margin-top: 10px;
+  margin-left: 30px;
+}
 
 
 }
