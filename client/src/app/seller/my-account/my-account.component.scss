@@ -120,10 +120,12 @@ input {
     }
   }
 
-.yellow-btn.pass{
-  margin-top: 10px;
-  margin-left: 30px;
-}
+  .pass{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
 
 
 }

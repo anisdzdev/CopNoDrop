@@ -64,7 +64,11 @@
               styleClass="prime-button-override"
             ></p-button>
 
-            <p-dialog header="Change Password" [(visible)]="display" [style]="{height: '30vw', width: '20vw'}">
+            <p-dialog
+              header="Change Password"
+              [(visible)]="display"
+              [style]="{ height: '30vw' }"
+            >
               <label>Existing Password</label><br />
               <p-password
                 formControlName="password"
@@ -91,17 +95,17 @@
               </p-password>
               <br />
               <br />
-              <label>Confirm Password</label><br>
+              <label>Confirm Password</label><br />
               <p-password
                 formControlName="password"
                 [toggleMask]="true"
                 [feedback]="false"
               ></p-password>
-<br>
-              <button class="yellow-btn pass">Save Changes</button>
-
+              <br />
+              <div class="pass">
+                <button class="yellow-btn">Save Changes</button>
+              </div>
             </p-dialog>
-            
           </div>
         </div>
 
