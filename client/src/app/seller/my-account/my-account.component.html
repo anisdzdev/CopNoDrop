@@ -67,7 +67,7 @@
         </div>
 
         <!-- for address -->
-        <div class="address-content"> <h4>Address Information</h4></div>
+        <div class="address-content"><h4>Address Information</h4></div>
 
         <div class="grid">
           <div class="col sm:col-6 md:col-4">
@@ -90,7 +90,12 @@
           </div>
           <div class="col sm:col-6 md:col-4">
             <label for="postal_code">Zip Code</label><br />
-            <input formControlName="postal_code" id="postal_code" type="text" pInputText />
+            <input
+              formControlName="postal_code"
+              id="postal_code"
+              type="text"
+              pInputText
+            />
           </div>
           <div class="col sm:col-6 md:col-4">
             <label for="city">City</label><br />
@@ -105,18 +110,24 @@
               optionValue="id"
               [filter]="true"
               filterBy="name"
-              [showClear]="true"
               placeholder="Select a Country"
             ></p-dropdown>
           </div>
 
           <div class="col sm:col-6 md:col-4">
-            <label for="isDefault">Default Address</label><br>
-            <p-toggleButton formControlName="isDefault" onIcon="pi pi-check" offIcon="pi pi-times"></p-toggleButton>
+            <label for="isDefault">Default Address</label><br />
+            <p-toggleButton
+              id="default"
+              formControlName="isDefault"
+              onIcon="pi pi-check"
+              offIcon="pi pi-times"
+            ></p-toggleButton>
           </div>
-
         </div>
       </form>
+      <div class="save">
+        <button class="yellow-btn">Save</button>
+      </div>
     </div>
   </div>
 </div>

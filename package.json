@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@angular/cdk": "^13.2.2",
-    "i18n-iso-countries": "^7.3.0"
-  }
-}

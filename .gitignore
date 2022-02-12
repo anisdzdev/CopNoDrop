@@ -3,3 +3,5 @@
 /client/.angular
 /client/package-lock.json
 /client/karma.conf.js
+/node_modules/
+/package-lock.json/

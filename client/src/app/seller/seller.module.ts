@@ -20,7 +20,7 @@ import { MenuPanelComponent } from './menu-panel/menu-panel.component';
 import {CardModule} from 'primeng/card';
 import {DropdownModule} from 'primeng/dropdown';
 import {ToggleButtonModule} from 'primeng/togglebutton';
-
+import {ButtonModule} from 'primeng/button';
 
 
 @NgModule({
@@ -43,7 +43,8 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
     ReactiveFormsModule,
     CardModule,
     DropdownModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    ButtonModule
   ]
 })
 export class SellerModule { }
