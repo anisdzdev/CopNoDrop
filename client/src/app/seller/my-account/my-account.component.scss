@@ -111,21 +111,20 @@ input {
     border: none;
   }
 
-  ::ng-deep .prime-button-override:hover{
+  ::ng-deep .prime-button-override:hover {
     background-color: black;
     color: white !important;
-    span{
+    span {
       background-color: black;
       color: white !important;
     }
   }
 
-  .pass{
+  .pass {
     display: flex;
     justify-content: center;
     margin-top: 10px;
   }
 
-
-
+ 
 }
