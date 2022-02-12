@@ -1,0 +1,23 @@
+<p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions" [circular]="true">
+  <ng-template let-product pTemplate="item">
+      <div class="product-item">
+          <div class="product-item-content">
+              <div>
+                  <img [src]="product.img" alt="">
+                  <p class="p-title">{{product.name}}</p>
+                  <p class="p-price">
+                    <span class="p-qty">{{product.quantity}} <br></span>
+                    CAD {{product.price}}</p>
+
+                    <p-inputNumber [(ngModel)]="product.qty" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                    decrementButtonClass="c-btn" incrementButtonClass="c-btn" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal" [min]="1" [size]="10"></p-inputNumber>
+                    <div class="btn-wrap">
+                      <button class="black-btn">
+                        <img src="https://www.spinneyslebanon.com/static/version1644224923/frontend/Spinneys/theme/en_US/images/cart-icon-sticky.svg" alt=""> Add
+                      </button>
+                    </div>
+              </div>
+          </div>
+      </div>
+  </ng-template>
+</p-carousel>
