@@ -14,7 +14,10 @@ declare const require;
 export class MyAccountComponent implements OnInit {
   form: FormGroup;
   countries = [];
+  display: boolean = false;
 
+  
+  
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -49,6 +52,11 @@ export class MyAccountComponent implements OnInit {
         }
     });
 }
+
+  showDialog(){
+    this.display = true;
+  }
+
 
 
 }

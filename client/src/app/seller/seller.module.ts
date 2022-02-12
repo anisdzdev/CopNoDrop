@@ -21,7 +21,10 @@ import {CardModule} from 'primeng/card';
 import {DropdownModule} from 'primeng/dropdown';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {ButtonModule} from 'primeng/button';
-
+import {CheckboxModule} from 'primeng/checkbox';
+import {DialogModule} from 'primeng/dialog';
+import {PasswordModule} from 'primeng/password';
+import {DividerModule} from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,11 @@ import {ButtonModule} from 'primeng/button';
     CardModule,
     DropdownModule,
     ToggleButtonModule,
-    ButtonModule
+    ButtonModule,
+    CheckboxModule,
+    DialogModule,
+    PasswordModule,
+    DividerModule
   ]
 })
 export class SellerModule { }

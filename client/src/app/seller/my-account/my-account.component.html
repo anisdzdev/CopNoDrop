@@ -15,7 +15,9 @@
       <form [formGroup]="form">
         <div class="grid">
           <div class="col sm:col-6 md:col-4">
-            <label for="name">Name</label><br />
+            <label for="name">Name</label>
+            <br />
+
             <input
               formControlName="name"
               id="name"
@@ -28,6 +30,7 @@
               >Name is required</small
             >
           </div>
+
           <div class="col sm:col-6 md:col-4">
             <label for="email">Email</label><br />
             <input
@@ -52,7 +55,50 @@
 
           <div class="col sm:col-6 md:col-4">
             <label for="password">Password</label><br />
-            <input
+
+            <p-button
+              type="button"
+              (click)="showDialog()"
+              icon="pi pi-info-circle"
+              label="Change Password"
+              styleClass="prime-button-override"
+            ></p-button>
+
+            <p-dialog header="Change Password" [(visible)]="display" [style]="{height: '30vw'}">
+              <label>Existing Password</label><br />
+              <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+              ></p-password>
+              <br />
+              <br />
+              <label>New Password</label><br />
+              <p-password formControlName="password" [toggleMask]="true">
+                <ng-template pTemplate="header">
+                  <h6>Pick a password</h6>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                  <p-divider></p-divider>
+                  <p class="mt-2">Suggestions</p>
+                  <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                    <li>At least one lowercase</li>
+                    <li>At least one uppercase</li>
+                    <li>At least one numeric</li>
+                    <li>Minimum 8 characters</li>
+                  </ul>
+                </ng-template>
+              </p-password>
+              <br />
+              <br />
+              <label>Confirm Password</label><br>
+              <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+              ></p-password>
+            </p-dialog>
+            <!-- <input
               formControlName="password"
               id="password"
               type="password"
@@ -62,7 +108,7 @@
               *ngIf="this.form.controls.password.invalid && isSubmitted"
               class="p-error"
               >Password is required</small
-            >
+            > -->
           </div>
         </div>
 
