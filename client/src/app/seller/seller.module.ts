@@ -17,8 +17,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { PanelModule } from 'primeng/panel';
 import { MenuPanelComponent } from './menu-panel/menu-panel.component';
-
-
+import {CardModule} from 'primeng/card';
+import {DropdownModule} from 'primeng/dropdown';
+import {ToggleButtonModule} from 'primeng/togglebutton';
 
 
 
@@ -39,7 +40,10 @@ import { MenuPanelComponent } from './menu-panel/menu-panel.component';
     SliderModule,
     PanelMenuModule,
     PanelModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CardModule,
+    DropdownModule,
+    ToggleButtonModule
   ]
 })
 export class SellerModule { }

@@ -11,24 +11,111 @@
 
     <!-- displays in case there are no products -->
     <!-- name email password address(first line, city,province, country, postal code, is default) -->
-    <div class="grid">
+    <div class="content">
       <form [formGroup]="form">
-        <div class="col">
-          <label for="name">Name</label><br />
-          <input
-            formControlName="name"
-            id="name"
-            type="text"
-            autoWidth="false"
-            [style]="{ width: '100%' }"
-            pInputText
-          />
-          <small *ngIf="this.form.controls.name.invalid && isSubmitted" class="p-error"
-            >Name is required</small
-          >
+        <div class="grid">
+          <div class="col sm:col-6 md:col-4">
+            <label for="name">Name</label><br />
+            <input
+              formControlName="name"
+              id="name"
+              type="text"
+              pInputText
+            /><br />
+            <small
+              *ngIf="this.form.controls.name.invalid && isSubmitted"
+              class="p-error"
+              >Name is required</small
+            >
+          </div>
+          <div class="col sm:col-6 md:col-4">
+            <label for="email">Email</label><br />
+            <input
+              formControlName="email"
+              id="email"
+              type="text"
+              pInputText
+            /><br />
+            <small *ngIf="this.form.controls.email.invalid && isSubmitted">
+              <span
+                *ngIf="this.form.controls.email.errors.required"
+                class="p-error"
+                >Email is required</span
+              >
+              <span
+                *ngIf="this.form.controls.email.errors.email"
+                class="p-error"
+                >Email is invalid</span
+              >
+            </small>
+          </div>
+
+          <div class="col sm:col-6 md:col-4">
+            <label for="password">Password</label><br />
+            <input
+              formControlName="password"
+              id="password"
+              type="password"
+              pInputText
+            /><br />
+            <small
+              *ngIf="this.form.controls.password.invalid && isSubmitted"
+              class="p-error"
+              >Password is required</small
+            >
+          </div>
         </div>
-        <div class="col">2</div>
-        <div class="col">3</div>
+
+        <!-- for address -->
+        <div class="address-content"> <h4>Address Information</h4></div>
+
+        <div class="grid">
+          <div class="col sm:col-6 md:col-4">
+            <label for="firstLine">First Line</label><br />
+            <input
+              formControlName="firstLine"
+              id="firstLine"
+              type="text"
+              pInputText
+            />
+          </div>
+          <div class="col sm:col-6 md:col-4">
+            <label for="province">Province</label><br />
+            <input
+              formControlName="province"
+              id="province"
+              type="text"
+              pInputText
+            />
+          </div>
+          <div class="col sm:col-6 md:col-4">
+            <label for="postal_code">Zip Code</label><br />
+            <input formControlName="postal_code" id="postal_code" type="text" pInputText />
+          </div>
+          <div class="col sm:col-6 md:col-4">
+            <label for="city">City</label><br />
+            <input formControlName="city" id="city" type="text" pInputText />
+          </div>
+          <div class="col sm:col-6 md:col-4">
+            <label for="country">Country</label><br />
+            <p-dropdown
+              [options]="countries"
+              formControlName="country"
+              optionLabel="name"
+              optionValue="id"
+              [filter]="true"
+              filterBy="name"
+              [showClear]="true"
+              placeholder="Select a Country"
+            ></p-dropdown>
+          </div>
+
+          <div class="col sm:col-6 md:col-4">
+            <label for="isDefault">Default Address</label><br>
+            <p-toggleButton formControlName="isDefault" onIcon="pi pi-check" offIcon="pi pi-times"></p-toggleButton>
+          </div>
+
+        </div>
       </form>
     </div>
   </div>

@@ -4,7 +4,6 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ProductsComponent } from './products/products.component';
-import { SellerComponent } from './seller.component';
 
 const routes: Routes = [
   {

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as countriesLib from 'i18n-iso-countries';
+
+
+declare const require;
+
 
 @Component({
   selector: 'app-my-account',
@@ -8,11 +13,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class MyAccountComponent implements OnInit {
   form: FormGroup;
+  countries = [];
+
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this._initUserForm();
+    this._getCountries();
   }
 
   private _initUserForm() {
@@ -20,16 +28,27 @@ export class MyAccountComponent implements OnInit {
       name: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-
+      province: ['', Validators.required],
       phone: ['', Validators.required],
-      isAdmin: [false],
-      street: [''],
-      apartment: [''],
-      zip: [''],
+      firstLine: [''],
+      postal_code: [''],
       city: [''],
       country: [''],
+      isDefault: [false]
     });
   }
 
   isSubmitted() {}
+
+  private _getCountries() {
+    countriesLib.registerLocale(require('i18n-iso-countries/langs/en.json'));
+    this.countries = Object.entries(countriesLib.getNames('en', { select: 'official' })).map(entry => {
+        return {
+            id: entry[0],
+            name: entry[1]
+        }
+    });
+}
+
+
 }

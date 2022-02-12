@@ -10,11 +10,25 @@
     </div>
 
     <!-- displays in case there are no products -->
-    <div *ngIf="orders.length == 0" class="empty">
+    <div *ngIf="!orders" class="empty">
       <span>
         <i class="pi pi-info-circle"></i>
         You have no orders.
       </span>
     </div>
+    <p-card class="order" *ngFor="let order of orders">
+      <div class="grid">
+        <div class="col-11 padd-0">
+          <p class="date"> <b>{{order.date}} | {{order.time}}</b></p>
+          <p class="mar-0 light">Order: #{{order.id}}</p>
+        </div>
+        <div class="col-1 i-container">
+          <i class="pi pi-angle-right"></i>
+        </div>
+      </div>
+      <div class="products grid">
+        <img *ngFor="let product of order.products" [src]="product.img" alt="" class="product-img">
+      </div>
+  </p-card>
   </div>
 </div>

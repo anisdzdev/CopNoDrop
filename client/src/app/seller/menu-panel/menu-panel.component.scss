@@ -26,18 +26,25 @@
   margin: 0;
   padding: 15px 20px;
   font-size: 16px;
-  width: 95%;
+  width: fit-content;
   display: inline-block;
+  color: white;
+  padding-right: 0;
 }
 
 .test h3 i {
   float: right;
+  color: white;
 }
 
 label {
   float: right;
   padding-top: 15px;
   padding-right: 5px;
+}
+
+label i{
+  color: white;
 }
 
 label.last {

@@ -34,6 +34,16 @@
     margin-bottom: 20px;
     font: 14px;
   }
+
+  .address-content{
+    background-color: rgb(79, 165, 194);
+    margin: 20px 0px;
+    padding: 10px;
+  }
+
+  .address-content h4{
+    margin: 0;
+  }
   
   @media (max-width: 1050px) {
     .wrapper {
@@ -67,6 +77,5 @@
     }
   }
   
-  // menu-panel css
-  
+
   
