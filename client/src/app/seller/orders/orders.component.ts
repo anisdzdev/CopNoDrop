@@ -16,14 +16,19 @@ export class OrdersComponent implements OnInit {
       time: "20:04",
       total: 150.50,
       products: [
-        {img: "https://d145dj1pf6foch.cloudfront.net/Jif-Home-Page-Banner-1180x400px-.jpg"},
-        {img: "https://d145dj1pf6foch.cloudfront.net/Evergreen-15_-1180X400.jpg"},
-        {img: "https://d145dj1pf6foch.cloudfront.net/Jif-Home-Page-Banner-1180x400px-.jpg"},
-        {img: "https://d145dj1pf6foch.cloudfront.net/Evergreen-15_-1180X400.jpg"},
-        {img: "https://d145dj1pf6foch.cloudfront.net/Jif-Home-Page-Banner-1180x400px-.jpg"},
-        {img: "https://d145dj1pf6foch.cloudfront.net/Evergreen-15_-1180X400.jpg"},
-        {img: "https://d145dj1pf6foch.cloudfront.net/Jif-Home-Page-Banner-1180x400px-.jpg"},
-        {img: "https://d145dj1pf6foch.cloudfront.net/Evergreen-15_-1180X400.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
+        {img: "https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg"},
       ]
     }
 

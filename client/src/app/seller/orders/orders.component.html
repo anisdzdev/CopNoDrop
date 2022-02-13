@@ -27,7 +27,12 @@
         </div>
       </div>
       <div class="products grid">
-        <img *ngFor="let product of order.products" [src]="product.img" alt="" class="product-img">
+        <img *ngFor="let product of order.products.slice(0,7)" [src]="product.img" alt="" class="product-img">
+        <span style="display: block;">and more...</span>
+      </div>
+      <div class="grid text-center">
+        <p class="col-6 mar-0 border-right-1 border-300 pt-3"><b>Products: </b> {{order.products.length}}</p>
+        <p class="col-6 mar-0 pt-3"><b>Total: 8</b> ${{order.total}} </p>
       </div>
   </p-card>
   </div>
