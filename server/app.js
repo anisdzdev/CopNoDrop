@@ -9,6 +9,7 @@ const logger = require('morgan');
 
 const productsController = require('./controllers/products');
 const usersController = require('./controllers/users');
+const ordersController = require('./controllers/orders');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerSchemas = require('./models/swaggerSchemas')
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/products', productsController);
 app.use('/users', usersController);
+app.use('/orders', ordersController);
 
 const swaggerSpec = swaggerJsdoc(options);
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
