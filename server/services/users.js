@@ -1,40 +1,42 @@
 const ObjectId = require('mongoose').Types.ObjectId;
-const {User, validate} =require( "../models/user_model");
-const {BadRequest, Success, NotFound, Created} = require( "../utils/results");
-// const {validateFilters} =require( "../utils/validation");
-
-/* Find products with filter definition */
-/*
- Filters include:
-    category: string | undefined
-    search: string | undefined
-    saleOnly: bool | undefined
- */
-// const findAll = async (filters) => {
-//     if(filters && !validateFilters(filters)) return BadRequest("Invalid Filters");
-//     let f = {}
-//     if(filters.query) f["name"] = { "$regex": filters.query, "$options": "i" };
-//     if(filters.category) f["category"] = filters.category;
-//     if(filters.onSale && (filters.onSale === true || filters.onSale === "true")) f["sale"] = { "$ne": 0 };
-//     let products = await Product.find(f);
-//     return Success(products);
-// }
+const {User, validate, validate_auth} = require("../models/user_model");
+const {BadRequest, Success, NotFound, Created} = require("../utils/results");
+var bcrypt = require('bcrypt');
 
 const findOne = async (id) => {
-    if(id !== new ObjectId(id).toString()) return BadRequest("Invalid User Id");
+    if (id !== new ObjectId(id).toString()) return BadRequest("Invalid User Id");
     let user = await User.findById(id);
-    if(!user) return NotFound("Not found");
+    if (!user) return NotFound("Not found");
     return Success(user);
 }
 
 
 const create = async (user) => {
-    if(!validate(user)) return BadRequest("Invalid User");
-    let p = new User(user);
-    await p.save();
-    return Created(p);
+    if (validate(user).error)
+        return BadRequest("Invalid User");
+    let u = await new User(user);
+    const salt = await bcrypt.genSalt(10);
+    u.password = await bcrypt.hash(user.password, salt);
+    await u.save();
+    const token = u.generateAuthToken();
+    return Created(token);
+}
+
+const login = async (user) => {
+    if (validate_auth(user).error)
+        return BadRequest("Invalid Credentials");
+    let u = await User.findOne({email: user.email})
+    if (!u)
+        return NotFound("User with this email was not found");
+
+    const validPassword = await bcrypt.compare(user.password, u.password);
+    if (!validPassword)
+        return BadRequest("Invalid Credentials");
+
+    const token = u.generateAuthToken();
+    return Success(token);
 }
 
 exports.findOne = findOne;
-// exports.findAll = findAll;
 exports.create = create;
+exports.login = login;
