@@ -112,7 +112,7 @@
   .mega-box{
     position: absolute;
     left: 0;
-    width: 100%;
+    width: 50%;
     padding: 0 30px;
     top: 85px;
     opacity: 0;
@@ -121,13 +121,13 @@
   .mega-box .content{
     background: #242526;
     padding: 25px 20px;
-    display: flex;
+    display: block;
     width: 100%;
     justify-content: space-between;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
   }
   .mega-box .content .row{
-    width: calc(25% - 30px);
+   
     line-height: 45px;
   }
   .content .row img{
@@ -168,7 +168,32 @@
     right: 30px;
     top: 10px;
   }
-  @media screen and (max-width: 800px) {
+  
+  .mobilebuttons{
+    display: none;
+    width: 0px;
+    height: 0px;
+    
+  }
+
+
+  @media screen and (max-width: 1000px) {
+
+
+    .mobilebuttons {
+      display: block;
+  } 
+    .desktopbuttons {
+      display: none;
+  } 
+    
+      
+
+
+    .mobilebuttons{
+      margin-top: 100px;
+    }
+
 
 
     .image{
@@ -186,7 +211,7 @@
       position: fixed;
       height: 100vh;
       width: 100%;
-      max-width: 350px;
+      
       top: 0;
       left: -100%;
       background: #242526;
@@ -232,6 +257,10 @@
     #showMega:checked ~ .mega-box{
       max-height: 100%;
     }
+
+    .hidethis{
+      visibility: hidden;
+    }
     .nav-links .desktop-item{
       
       display: none;
@@ -265,6 +294,7 @@
       max-height: 0px;
       overflow: hidden;
       transition: all 0.3s ease;
+      width: 100%;
     }
     .mega-box .content{
       box-shadow: none;
@@ -272,7 +302,7 @@
       padding: 20px 20px 0 20px;
     }
     .mega-box .content .row{
-      width: 100%;
+      
       margin-bottom: 15px;
       border-top: 1px solid rgba(255,255,255,0.08);
     }
@@ -417,14 +447,14 @@
       float: left;
       width: 40%;
       height: 39px;
-      margin-top: 1%;
+   
      }
   
      .signup{
         float: left;
         width: 40%;
         height: 39px;
-        margin-top: 1%;
+       
        
      }
 

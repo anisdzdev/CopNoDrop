@@ -1,8 +1,10 @@
 <div class="header">
  
-  <a href=""><button class="yellow-btn signup" >Login</button></a>
-  <a href=""><button class="yellow-btn login" >Sign Up</button> </a>
-  <a href=""><button class="yellow-btn cart" ><img class="carticon" src="https://www.svgrepo.com/show/9072/cart.svg" alt="Cart"></button> </a>
+  <a href=""><button class="yellow-btn signup desktopbuttons " *ngIf="!isLogged">Login</button></a>
+  <a href=""><button  class="yellow-btn signup desktopbuttons" *ngIf="isLogged">My Account</button></a>
+  <a href=""><button class="yellow-btn signup desktopbuttons" style="background-color: red !important" *ngIf="isLogged">Logout</button></a>
+  <a href=""><button class="black-btn login desktopbuttons" *ngIf="!isLogged">Sign Up</button> </a>
+  <a href=""><button class="yellow-btn cart desktopbuttons" ><img class="carticon" src="https://www.svgrepo.com/show/9072/cart.svg" alt="Cart"></button> </a>
 <div class="innerheader">
   
   <input class="searchbox" type="text" placeholder="Search..">
@@ -39,43 +41,32 @@
               <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
          
               <li>
-                <a href="#" class="desktop-item"> All Categories</a>
-                <input type="checkbox" id="showMega">
-                <label for="showMega" class="mobile-item">></label>
+                <a  class="desktop-item hidethis"> Categories</a>
+                <input type="checkbox" id="showMega" checked="true">
+                <label for="showMega" class="mobile-item"></label>
                 <div class="mega-box">
                   <div class="content">
                     <div class="row">
-                      <img src="https://www.bpimaging.com/assets/uploads/2015/02/11594_D1_077.jpg" alt="">
+                      
                     </div>
                     <div class="row">
                       
-                      <header>Meats</header>
-                      
                       <ul class="mega-links">
-                        <li><a href="#">Red Meats</a></li>
-                        <li><a href="#">Chicken</a></li>
-                      
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Gaming Accessories</a></li>
+                        <li><a href="#">Clothing</a></li>
+                        <li><a href="#">Sports Gear</a></li>
+                        <li><a href="#">Home Appliances</a></li>
+                        <li><a href="#">Travel Gear</a></li>
+                        <li><a href="#">Beauty & Personal care</a></li>
                       </ul>
+
+                      <a href=""><button class="yellow-btn signup mobilebuttons " *ngIf="!isLogged">Login</button></a>
+                      <a href=""><button  class="yellow-btn signup mobilebuttons" *ngIf="isLogged">My Account</button></a>
+                      <a href=""><button class="yellow-btn signup mobilebuttons" style="background-color: red !important" *ngIf="isLogged">Logout</button></a>
+                      <a href=""><button class="black-btn login mobilebuttons" *ngIf="!isLogged">Sign Up</button> </a>
                     </div>
-                    <div class="row">
-                      <header>Beverages</header>
-                      <ul class="mega-links">
-                        <li><a href="#">Tea</a></li>
-                        <li><a href="#">Coffee</a></li>
-                        <li><a href="#">Soda</a></li>
-                        <li><a href="#">Sparkling Water</a></li>
-                      </ul>
-                    </div>
-                 
-                    <div class="row">
-                      <header>Snacks</header>
-                      <ul class="mega-links">
-                        <li><a href="#">Cookies</a></li>
-                        <li><a href="#">Cereal</a></li>
-                        <li><a href="#">Chips</a></li>
-                      
-                      </ul>
-                    </div>
+                   
 
 
                   </div>
