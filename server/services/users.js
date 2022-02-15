@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt');
 
 const findOne = async (id) => {
     if (id !== new ObjectId(id).toString()) return BadRequest("Invalid User Id");
-    let user = await User.findById(id);
+    let user = await User.findById(id).select('firstName lastName avatar email isSeller addresses');
     if (!user) return NotFound("Not found");
     return Success(user);
 }
