@@ -7,8 +7,9 @@ import { OrdersComponent } from './orders/orders.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ProductsComponent } from './products/products.component';
 import { SellerComponent } from './seller.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
+FormsModule
 //primeng 
 import {AccordionModule} from 'primeng/accordion';
 import {SliderModule} from 'primeng/slider';
@@ -25,6 +26,17 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {DialogModule} from 'primeng/dialog';
 import {PasswordModule} from 'primeng/password';
 import {DividerModule} from 'primeng/divider';
+import {ToastModule} from 'primeng/toast';
+import {ToolbarModule} from 'primeng/toolbar';
+import {FileUploadModule} from 'primeng/fileupload';
+import {HttpClientModule} from '@angular/common/http';
+import {TableModule} from 'primeng/table';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {RippleModule} from 'primeng/ripple';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -51,7 +63,20 @@ import {DividerModule} from 'primeng/divider';
     CheckboxModule,
     DialogModule,
     PasswordModule,
-    DividerModule
-  ]
+    DividerModule,
+    ToastModule,
+    ToolbarModule,
+    FileUploadModule,
+    HttpClientModule,
+    TableModule,
+    ConfirmDialogModule,
+    RippleModule,
+    RadioButtonModule,
+    InputNumberModule,
+    FormsModule,
+    InputTextareaModule,
+    InputTextModule
+  ],
+  providers: [MessageService, ConfirmationService]
 })
 export class SellerModule { }
