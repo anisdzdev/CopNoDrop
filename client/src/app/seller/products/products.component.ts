@@ -12,13 +12,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  
+
   productDialog: boolean;
   products: Product[] = [];
   product: Product;
   selectedProducts: Product[];
   submitted: boolean;
-  form: FormGroup;
+  productForm: FormGroup;
 
   constructor(
     private productService: ProductsService,
@@ -28,18 +28,17 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
+    this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
       price: ['', Validators.required],
       category: ['', Validators.required],
-      quantity: ['', Validators.required],
+      // quantity: ['', Validators.required],
       description: ['', Validators.required],
-      image: ['', Validators.required],
+      images: ['', Validators.required],
+      creator: ['', Validators.required],
     });
 
-    this.productService
-      .getProducts()
-      .subscribe((data) => (this.products = data));
+    this.productService.getProducts().subscribe((data) => (this.products = data));
   }
 
   openNew() {
@@ -109,15 +108,26 @@ export class ProductsComponent implements OnInit {
           life: 3000,
         });
       } else {
-        this.product.id = this.createId();
-        this.product.image = 'product-placeholder.svg';
+        // this.product.id = this.createId();
+        // this.product.image = 'product-placeholder.svg';
+        this.fillProductForm();
         this.products.push(this.product);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Created',
-          life: 3000,
+        this.productService.createProduct(this.productForm.value).subscribe(res =>{
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Product Created',
+            life: 3000,
+          });
+        }, err =>{
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error!',
+            detail: 'An error has occured while adding the product. Try again later',
+            life: 3000,
+          });
         });
+
       }
 
       this.products = [...this.products];
@@ -150,5 +160,14 @@ export class ProductsComponent implements OnInit {
 
   getEventValue($event: any): string {
     return $event.target.value;
+  }
+
+  fillProductForm(){
+    this.productForm.get("name").setValue(this.product.name);
+    this.productForm.get("price").setValue(this.product.price);
+    this.productForm.get("category").setValue(this.product.category);
+    this.productForm.get("description").setValue(this.product.description);
+    this.productForm.get("images").setValue(this.product.images);
+    this.productForm.get("creator").setValue("none");
   }
 }
