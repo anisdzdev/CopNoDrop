@@ -172,7 +172,7 @@
   }
   
   .mobilebuttons{
-    display: none;
+    
     width: 0px;
     height: 0px;
     
@@ -193,7 +193,9 @@
  
     .mobilebuttons {
       visibility: visible;
-      display: block;
+      display: contents;
+      color: white !important;font-weight: 1000;
+      
   } 
     .desktopbuttons {
       display: none;
