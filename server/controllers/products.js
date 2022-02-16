@@ -143,7 +143,7 @@ router.post('/', [auth, upload.array('images', 10)], async (req, res) => {
   try {
     console.log(req.body)
     let product = req.body;
-    product.creator = req.user._id;
+    product.creator = {id: req.user._id, firstName: req.user.firstName, lastName: req.user.lastName};
     const result = await productService.create(product, req.files);
     res.status(result.status).send(result.data);
   } catch (e) {

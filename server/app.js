@@ -7,6 +7,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
 const productsController = require('./controllers/products');
 const usersController = require('./controllers/users');
@@ -31,6 +32,7 @@ const options = {
 const app = express();
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

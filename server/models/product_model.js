@@ -31,8 +31,9 @@ const productSchema = new mongoose.Schema({
         default: 'default.jpg'
     }],
     creator: {
-        type: String,
-        required: true
+        firstName: String,
+        lastName: String,
+        id: String
     }
 });
 
