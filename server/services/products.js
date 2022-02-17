@@ -28,13 +28,35 @@ const findOne = async (id) => {
 }
 
 
-const create = async (product) => {
+const create = async (product, images) => {
   if(!validate(product)) return BadRequest("Invalid Product");
-  let p = new Product(product);
+  if(!images || images.length === 0) return BadRequest("At least 1 product image is expected");
+  images.forEach(image => {
+    if(!product.images) product.images = []
+    product.images.push(image.filename);
+  })
+  let p = await new Product(product);
   await p.save();
+  return Created(p);
+}
+
+const edit = async (id, product) => {
+  if(!validate(product)) return BadRequest("Invalid Product");
+  if(!id) return BadRequest("Product id not found");
+  const p = await Product.findByIdAndUpdate(id, product,  {new: true});
+  if(!p) return NotFound("Error while updating the product");
   return Success(p);
+}
+
+const deleteOne = async (id) => {
+  if(id !== new ObjectId(id).toString()) return BadRequest("Invalid Product Id");
+  let product = await Product.findByIdAndDelete(id);
+  if(!product) return NotFound("Not found");
+  return Success(product);
 }
 
 exports.findOne = findOne;
 exports.findAll = findAll;
 exports.create = create;
+exports.edit = edit;
+exports.delete = deleteOne;

@@ -4,9 +4,14 @@
 .text-center{
   text-align: center;
 }
+.section{
+  padding: 8% !important;
+  margin: auto;
+
+}
 .main{
   padding: 8%;
-  padding-top: 0%;
+  padding-top: 500px;
   padding-bottom: 0%;
   margin: auto;
   .delivery-block{
@@ -101,4 +106,10 @@
   transition: all .6s;
   position: relative;
   margin: auto;
+}
+
+
+p-carousel{
+  position: absolute;
+  z-index: -1;
 }

@@ -1,1 +1,51 @@
-<p>signup works!</p>
+<div id="image">
+  <div id="loginDialogBox">
+    <div id="topSection">
+    </div>
+    <div id="bottomSection">
+
+      <form [formGroup]="signupForm">
+
+        <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+            <input type="text" pInputText formControlName="firstName">
+            <label>First Name</label>
+        </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+            <input type="text" pInputText formControlName="lastName">
+            <label>Last Name</label>
+        </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+            <input type="text" pInputText formControlName="email">
+            <label>Email</label>
+        </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+            <input type="password" pInputText formControlName="password">
+            <label>Password</label>
+        </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+            <input type="password" pInputText formControlName="password2">
+            <label>Retype Password</label>
+        </span>
+        </div>
+
+        <button type="submit" (click)="submit()">Sign Up</button>
+
+      </form>
+
+    </div>
+
+
+  </div></div>

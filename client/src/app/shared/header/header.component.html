@@ -1,1 +1,109 @@
-<p>header works!</p>
+<div class="header">
+
+  <a><button class="yellow-btn signup desktopbuttons " *ngIf="!isLogged" routerLink="auth/login">Login</button></a>
+  <a><button class="yellow-btn signup desktopbuttons" *ngIf="isLogged">My Account</button></a>
+  <a><button class="yellow-btn signup desktopbuttons" style="background-color: red !important" *ngIf="isLogged"
+      (click)="logout()">Logout</button></a>
+  <a><button class="black-btn login desktopbuttons" *ngIf="!isLogged" routerLink="auth/signup">Sign Up</button> </a>
+  <a><button class="yellow-btn cart desktopbuttons"><img class="carticon"
+        src="https://www.svgrepo.com/show/9072/cart.svg" alt="Cart"></button> </a>
+  <div class="innerheader">
+
+    <input class="searchbox" type="text" placeholder="Search..">
+
+    <div>
+
+
+      <a href=""><button class="yellow-btn searchicon"><img class="searchiconimg"
+            src="http://simpleicon.com/wp-content/uploads/active-search-3.svg" alt="">
+        </button></a>
+
+
+
+
+    </div>
+
+
+    <a href=""><img class="image" src="https://i.imgur.com/AZTjOh8.png" alt=""></a>
+
+    <body>
+
+      <nav>
+
+
+
+        <div class="wrapper">
+
+          <input type="radio" name="slider" id="menu-btn">
+          <input type="radio" name="slider" id="close-btn">
+          <ul class="nav-links">
+
+
+
+
+            <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+
+            <li>
+              <a class="desktop-item hidethis"> Categories</a>
+              <input type="checkbox" id="showMega" checked="true">
+              <label for="showMega" class="mobile-item"></label>
+              <div class="mega-box">
+                <div class="content">
+                  <div class="row">
+
+                  </div>
+                  <div class="row">
+
+                    <ul class="mega-links">
+                      <li><a href="#">Electronics</a></li>
+                      <li><a href="#">Gaming Accessories</a></li>
+                      <li><a href="#">Clothing</a></li>
+                      <li><a href="#">Sports Gear</a></li>
+                      <li><a href="#">Home Appliances</a></li>
+                      <li><a href="#">Travel Gear</a></li>
+                      <li><a href="#">Beauty & Personal care</a></li>
+                    </ul>
+
+                    <a class="hidethis2"><button class="yellow-btn signup mobilebuttons  " *ngIf="!isLogged"
+                        routerLink="/auth/login">Login</button></a>
+                    <a class="hidethis2"><button class="yellow-btn signup mobilebuttons " *ngIf="isLogged">My
+                        Account</button></a>
+                    <a class="hidethis2"><button class="yellow-btn signup mobilebuttons "
+                        style="background-color: red !important" *ngIf="isLogged" (click)="logout()">Logout</button></a>
+                    <a class="hidethis2"><button class="black-btn login mobilebuttons " *ngIf="!isLogged"
+                        routerLink="/auth/login">Sign Up</button> </a>
+                    <a class="hidethis2"><button class="yellow-btn login mobilebuttons "
+                        style="margin-top: 0% !important; width: 80% !important;" routerLink="cart">My Cart</button>
+                    </a>
+
+                  </div>
+
+
+
+                </div>
+
+              </div>
+
+            </li>
+
+          </ul>
+          <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+        </div>
+
+      </nav>
+
+
+
+      <div class="body-text">
+
+      </div>
+    </body>
+
+    <div>
+
+
+
+    </div>
+
+  </div>
+</div>
