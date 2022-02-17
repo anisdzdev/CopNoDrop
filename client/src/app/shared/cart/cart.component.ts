@@ -11,20 +11,23 @@ export class CartComponent implements OnInit {
   items: MenuItem[] = [];
   products: any[] = [];
 
-  constructor(private sharedService: SharedService){
+  constructor(private sharedService: SharedService) {
     this.products = this.sharedService.getCartItems();
     console.log(this.products);
-
-
   }
 
   ngOnInit(): void {
     this.items = [
-      {label: 'Cart'},
-      {label: 'Delivery Details'},
-      {label: 'Checkout'}
-  ];
+      { label: 'Cart' },
+      { label: 'Delivery Details' },
+      { label: 'Checkout' },
+    ];
+  }
 
+  remove(index: number){
+    this.products.splice(index, 1);
+    console.log(this.products);
+    this.sharedService.addProductsToCart(this.products);
   }
 }
 

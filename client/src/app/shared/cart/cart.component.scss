@@ -1,5 +1,4 @@
 .title{
-  border-bottom: 2px solid #a59b9b2b;
   padding-bottom: 8px;
 }
 
@@ -18,4 +17,15 @@ p-table{
 
 .steps-container{
   margin-bottom: 20px !important;
+}
+
+.black-btn{
+  background-color: red;
+  height: 25px;
+  width: 100%;
+}
+.black-btn:hover{
+  background-color: black;
+  color: white !important;
+  width: 100%;
 }

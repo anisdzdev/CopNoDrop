@@ -17,6 +17,10 @@ export class SharedService {
     localStorage.setItem("cart-items", JSON.stringify(existingEntries));
   }
 
+  addProductsToCart(products: any[]){
+    localStorage.setItem("cart-items", JSON.stringify(products));
+  }
+
   getCartItems(): any{
     let items = JSON.parse(localStorage.getItem('cart-items') || '{}');
     return items ;
