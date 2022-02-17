@@ -15,14 +15,13 @@ const routes: Routes = [
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   },
   {
-<<<<<<< HEAD
     path: 'shop',
     loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
-=======
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
->>>>>>> origin/main
-  },
+   },
   // {
   //   path: '**',
   //   //Redirect to 404
