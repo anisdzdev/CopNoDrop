@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CartComponent } from './shared/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
   },
   // {
   //   path: '**',
