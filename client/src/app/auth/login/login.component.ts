@@ -1,27 +1,34 @@
-import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { LoginService } from 'src/app/services/login/login.service';
+import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup} from "@angular/forms";
+import {Observable} from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  value3: any;
 
-  @Input() error: string | null;
+  baseURL: string = "http://localhost:3000/";
 
-  constructor(private loginService: LoginService) { }
-
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
+  loginForm: FormGroup = new FormGroup({
+    email: new FormControl(''),
     password: new FormControl(''),
   });
 
-  submit(): void {
-    this.loginService.login(this.form.value.username, this.form.value.password).subscribe(error => {
-      this.error = error;
-    });
+  constructor(private http: HttpClient) { }
+
+
+  submit() {
+    console.log(this.loginForm.value.email + " " + this.loginForm.value.password)
+
+    this.httpLogin(this.loginForm.value.email, this.loginForm.value.password)
+  }
+
+  httpLogin(email: string, password: string): Observable<any> {
+    return this.http
+      .post<any>(this.baseURL + 'users/login', email + '/' + password)
   }
 }

@@ -3,15 +3,43 @@
     <div id="topSection">
     </div>
     <div id="bottomSection">
-      <div id="emailLogin">
-      </div>
-      <div id="apiLogin">
-<!--        <button pButton type="button" class="p-button-raised p-button-rounded">Apple</button>-->
-        <br>
-<!--        <button pButton type="button" class="p-button-raised p-button-rounded">Facebook</button>-->
-        <br>
-<!--        <button pButton type="button" class="p-button-raised p-button-rounded">Google</button>-->
-      </div>
+
+      <form [formGroup]="loginForm">
+
+        <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+            <input type="text" pInputText formControlName="email">
+            <label>Email</label>
+        </span>
+        </div>
+
+
+        <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+            <input type="password" pInputText formControlName="password">
+            <label>Password</label>
+        </span>
+        </div>
+
+        <button type="submit" (click)="submit()">Login</button>
+
+      </form>
+
+    </div>
+
+
     </div>
   </div>
-</div>
+
+
+
+
+<div class="p-fluid grid">
+
+
+
+
+
+
+
+
