@@ -5,10 +5,13 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
 const productsController = require('./controllers/products');
 const usersController = require('./controllers/users');
+const ordersController = require('./controllers/orders');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerSchemas = require('./models/swaggerSchemas')
@@ -36,13 +39,16 @@ app.use((req, res, next) => {
 });
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/products', productsController);
 app.use('/users', usersController);
+app.use('/orders', ordersController);
 
 const swaggerSpec = swaggerJsdoc(options);
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

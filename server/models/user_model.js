@@ -4,10 +4,17 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    name: {
+    firstName: {
         type: String,
         required: true,
-        minlength: 5,
+        minlength: 2,
+        maxlength: 50
+    },
+
+    lastName: {
+        type: String,
+        required: true,
+        minlength: 2,
         maxlength: 50
     },
     avatar: {
@@ -27,9 +34,9 @@ const userSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 1024
     },
-    level: {
-        type: Number,
-        default:0
+    isSeller: {
+        type: Boolean,
+        default:false
     },
     addresses: [{
         firstLine: String,
@@ -46,26 +53,26 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
-    return jwt.sign({_id: this._id, name: this.name, avatar: this.avatar, level: this.level, email: this.email}, config.get('jwtPrivateKey'));
+    return jwt.sign({_id: this._id, firstName: this.firstName, lastName: this.lastName, avatar: this.avatar, isSeller: this.isSeller, email: this.email}, config.get('jwtPrivateKey'));
 }
 
 const User = mongoose.model('User', userSchema);
 
 function validateUser(user) {
     const schema = Joi.object({
-        name: Joi.string().min(5).max(50).required(),
+        firstName: Joi.string().min(2).max(50).required(),
+        lastName: Joi.string().min(2).max(50).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: Joi.string().min(5).max(255).required()
-    });
-
+    }).options({ allowUnknown: true });
     return schema.validate(user);
 }
 
 function validate_auth(req) {
     const schema = Joi.object({
-        email: Joi.string().min(5).max(255).required().email(),
-        password: Joi.string().min(5).max(255).required()
-    });
+        email: Joi.string().min(2).max(255).required().email(),
+        password: Joi.string().min(2).max(255).required()
+    })
     return schema.validate(req);
 }
 
