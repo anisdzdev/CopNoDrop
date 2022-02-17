@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node-version: [12.x, 14.x, 16.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: cd server
-      - run: npm ci
+        working-directory: server
+        run: npm ci
       - run: npm run build --if-present
       - run: npm test
