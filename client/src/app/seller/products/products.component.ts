@@ -3,8 +3,8 @@ import { Product } from 'libs/products/model/products';
 import { MenuItem } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
-import { ProductsService } from 'libs/products/services/products.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SellerService } from '../seller.service';
 
 @Component({
   selector: 'app-products',
@@ -12,16 +12,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-
   productDialog: boolean;
   products: Product[] = [];
   product: Product;
   selectedProducts: Product[];
   submitted: boolean;
   productForm: FormGroup;
+  editmode: boolean = false;
+  firstImage: string;
+  secondImage: string;
 
   constructor(
-    private productService: ProductsService,
+    private sellerService: SellerService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private formBuilder: FormBuilder
@@ -38,7 +40,9 @@ export class ProductsComponent implements OnInit {
       creator: ['', Validators.required],
     });
 
-    this.productService.getProducts().subscribe((data) => (this.products = data));
+    this.sellerService
+      .getProducts()
+      .subscribe((data) => (this.products = data));
   }
 
   openNew() {
@@ -68,8 +72,15 @@ export class ProductsComponent implements OnInit {
   }
 
   editProduct(product: Product) {
+    this.editmode = true;
     this.product = { ...product };
     this.productDialog = true;
+  }
+
+  private _getProducts() {
+    this.sellerService.getProducts().subscribe((products) => {
+      this.products = products;
+    });
   }
 
   deleteProduct(product: Product) {
@@ -78,14 +89,23 @@ export class ProductsComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.products = this.products.filter((val) => val.id !== product.id);
-        this.product = {};
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Deleted',
-          life: 3000,
-        });
+        this.sellerService.deleteProduct(product.id).subscribe(
+          () => {
+            this._getProducts();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Product is deleted!',
+            });
+          },
+          () => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Product is not deleted!',
+            });
+          }
+        );
       },
     });
   }
@@ -97,37 +117,44 @@ export class ProductsComponent implements OnInit {
 
   saveProduct() {
     this.submitted = true;
+    this.product.images.push(this.firstImage);
+    if(this.secondImage) this.product.images.push(this.secondImage);
 
     if (this.product.name.trim()) {
-      if (this.product.id) {
-        this.products[this.findIndexById(this.product.id)] = this.product;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Updated',
-          life: 3000,
-        });
+      if (this.editmode == true) {
+        // this.products[this.findIndexById(this.product.id)] = this.product;
+        this.fillProductForm();
+        this._updateProduct(this.productForm.value);
+        // this.messageService.add({
+        //   severity: 'success',
+        //   summary: 'Successful',
+        //   detail: 'Product Updated',
+        //   life: 3000,
+        // });
       } else {
         // this.product.id = this.createId();
         // this.product.image = 'product-placeholder.svg';
         this.fillProductForm();
         this.products.push(this.product);
-        this.productService.createProduct(this.productForm.value).subscribe(res =>{
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Product Created',
-            life: 3000,
-          });
-        }, err =>{
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error!',
-            detail: 'An error has occured while adding the product. Try again later',
-            life: 3000,
-          });
-        });
-
+        this.sellerService.createProduct(this.productForm.value).subscribe(
+          (res) => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Product Created',
+              life: 3000,
+            });
+          },
+          (err) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error!',
+              detail:
+                'An error has occured while adding the product. Try again later',
+              life: 3000,
+            });
+          }
+        );
       }
 
       this.products = [...this.products];
@@ -162,12 +189,35 @@ export class ProductsComponent implements OnInit {
     return $event.target.value;
   }
 
-  fillProductForm(){
-    this.productForm.get("name").setValue(this.product.name);
-    this.productForm.get("price").setValue(this.product.price);
-    this.productForm.get("category").setValue(this.product.category);
-    this.productForm.get("description").setValue(this.product.description);
-    this.productForm.get("images").setValue(this.product.images);
-    this.productForm.get("creator").setValue("none");
+  fillProductForm() {
+    this.productForm.get('name').setValue(this.product.name);
+    this.productForm.get('price').setValue(this.product.price);
+    this.productForm.get('category').setValue(this.product.category);
+    this.productForm.get('description').setValue(this.product.description);
+    this.productForm.get('images').setValue(this.product.images);
+    this.productForm.get('creator').setValue('none');
   }
+
+  private _updateProduct(productFormData: FormData) {
+    this.sellerService
+      .updateProduct(productFormData, this.product.id)
+      .subscribe(
+        (product: Product) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: `Product ${product.name} is updated!`,
+          });
+        },
+        () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Product is not updated!',
+          });
+        }
+      );
+  }
+
+
 }
