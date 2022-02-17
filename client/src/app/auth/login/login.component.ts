@@ -24,7 +24,7 @@ export class LoginComponent {
   submit() {
     console.log(this.loginForm.value.email + " " + this.loginForm.value.password)
 
-    this.httpLogin(this.loginForm.value.email, this.loginForm.value.password)
+    this.httpLogin(this.loginForm.value.email, this.loginForm.value.password).subscribe(data=>console.log(data))
   }
 
   httpLogin(email: string, password: string): Observable<any> {
