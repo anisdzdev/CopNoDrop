@@ -213,7 +213,7 @@
               <p-radioButton
                 id="category2"
                 name="category"
-                value="Gaming accessories"
+                value="Gaming"
                 [(ngModel)]="product.category"
               ></p-radioButton>
               <label for="category2">Gaming accessories</label>
@@ -231,7 +231,7 @@
               <p-radioButton
                 id="category4"
                 name="category"
-                value="Sports gear"
+                value="Sports"
                 [(ngModel)]="product.category"
               ></p-radioButton>
               <label for="category4">Sports gear</label>
@@ -240,7 +240,7 @@
               <p-radioButton
                 id="category5"
                 name="category"
-                value="Home appliances"
+                value="Home"
                 [(ngModel)]="product.category"
               ></p-radioButton>
               <label for="category5">Home appliances</label>
@@ -249,7 +249,7 @@
               <p-radioButton
                 id="category6"
                 name="category"
-                value="Travel gear"
+                value="Travel"
                 [(ngModel)]="product.category"
               ></p-radioButton>
               <label for="category6">Travel gear</label>
@@ -258,7 +258,7 @@
               <p-radioButton
                 id="category7"
                 name="category"
-                value="Beauty and personal care"
+                value="Beauty"
                 [(ngModel)]="product.category"
               ></p-radioButton>
               <label for="category7">Beauty and personal care</label>
@@ -273,10 +273,10 @@
             pInputText
             id="name"
             [(ngModel)]="firstImage"
-            
+            required
             autofocus
           />
-          <!-- <small *ngIf="productForm.controls.images.invalid && submitted" class="p-error">Image is required</small> -->
+          <small *ngIf="productForm.controls.images.invalid && submitted" class="p-error">Image is required</small>
          <br>
           <label for="image2">secondary Image</label>
           <input

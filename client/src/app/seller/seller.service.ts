@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Product } from 'libs/products/model/products';
@@ -10,9 +10,12 @@ import { Product } from 'libs/products/model/products';
 export class SellerService {
   apiUrlProducts = environment.apiUrL + 'products';
 
+  setHeaders(token: string) {}
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
+  
+
     return this.http.get<Product[]>(this.apiUrlProducts);
   }
 
@@ -20,8 +23,15 @@ export class SellerService {
     return this.http.get<Product>(`${this.apiUrlProducts}/${productId}`);
   }
 
-  createProduct(productData: FormData): Observable<Product> {
-    return this.http.post<Product>(this.apiUrlProducts, productData);
+  createProduct(productData: FormData, token: string): Observable<Product> {
+    let requestOptions: Object = {
+      headers: new HttpHeaders().append(
+        'x-auth-token',
+        token
+      ),
+      responseType: 'text',
+    };
+    return this.http.post<Product>(this.apiUrlProducts, productData, requestOptions);
   }
 
   updateProduct(productData: FormData, productid: string): Observable<Product> {
@@ -31,7 +41,14 @@ export class SellerService {
     );
   }
 
-  deleteProduct(productId: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrlProducts}/${productId}`);
+  deleteProduct(productId: string, token: string): Observable<any> {
+    let requestOptions: Object = {
+      headers: new HttpHeaders().append(
+        'x-auth-token',
+        token
+      ),
+      responseType: 'text',
+    };
+    return this.http.delete<any>(`${this.apiUrlProducts}/${productId}`, requestOptions);
   }
 }

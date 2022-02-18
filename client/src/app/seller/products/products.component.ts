@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from 'libs/products/model/products';
 import { MenuItem } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SellerService } from '../seller.service';
+import { AuthService, User } from 'src/app/auth/auth.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   productDialog: boolean;
   products: Product[] = [];
   product: Product;
@@ -21,28 +25,49 @@ export class ProductsComponent implements OnInit {
   editmode: boolean = false;
   firstImage: string;
   secondImage: string;
+  isLoggedIn: boolean;
+  user: User;
+  subscription: Subscription[] = [];
 
   constructor(
+    private router: Router,
+    private authService: AuthService,
     private sellerService: SellerService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private formBuilder: FormBuilder
   ) {}
 
+  ngOnDestroy(): void {
+    this.subscription.map((sub) => sub.unsubscribe());
+  }
+
   ngOnInit(): void {
+    this.authService.getUserFromStorage();
+    const sub = this.authService.isloginSubject.subscribe(
+      (value) => (this.isLoggedIn = value)
+    );
+    this.subscription.push(sub);
+
+    if (this.isLoggedIn) {
+      this.user = this.authService.getUserFromStorage();
+    } else {
+      this.router.navigateByUrl('');
+    }
+    
+    this._getProducts();
+    // this.products = this.products.filter((data: Product) => {data.creator.id == this.user._id});
+
+
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
       price: ['', Validators.required],
       category: ['', Validators.required],
       // quantity: ['', Validators.required],
       description: ['', Validators.required],
-      images: ['', Validators.required],
+      images: [''],
       creator: ['', Validators.required],
     });
-
-    this.sellerService
-      .getProducts()
-      .subscribe((data) => (this.products = data));
   }
 
   openNew() {
@@ -79,7 +104,7 @@ export class ProductsComponent implements OnInit {
 
   private _getProducts() {
     this.sellerService.getProducts().subscribe((products) => {
-      this.products = products;
+      this.products = products.filter( (data) => data.creator.id == this.user._id);
     });
   }
 
@@ -89,23 +114,25 @@ export class ProductsComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.sellerService.deleteProduct(product.id).subscribe(
-          () => {
-            this._getProducts();
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'Product is deleted!',
-            });
-          },
-          () => {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Product is not deleted!',
-            });
-          }
-        );
+        this.sellerService
+          .deleteProduct(product._id, this.user.token)
+          .subscribe(
+            () => {
+              this._getProducts();
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Product is deleted!',
+              });
+            },
+            () => {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Product is not deleted!',
+              });
+            }
+          );
       },
     });
   }
@@ -116,9 +143,12 @@ export class ProductsComponent implements OnInit {
   }
 
   saveProduct() {
+    this.product.images = [];
+
     this.submitted = true;
     this.product.images.push(this.firstImage);
-    if(this.secondImage) this.product.images.push(this.secondImage);
+
+    if (this.secondImage) this.product.images.push(this.secondImage);
 
     if (this.product.name.trim()) {
       if (this.editmode == true) {
@@ -136,25 +166,27 @@ export class ProductsComponent implements OnInit {
         // this.product.image = 'product-placeholder.svg';
         this.fillProductForm();
         this.products.push(this.product);
-        this.sellerService.createProduct(this.productForm.value).subscribe(
-          (res) => {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Successful',
-              detail: 'Product Created',
-              life: 3000,
-            });
-          },
-          (err) => {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error!',
-              detail:
-                'An error has occured while adding the product. Try again later',
-              life: 3000,
-            });
-          }
-        );
+        this.sellerService
+          .createProduct(this.productForm.value, this.user.token)
+          .subscribe(
+            (res) => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Successful',
+                detail: 'Product Created',
+                life: 3000,
+              });
+            },
+            (err) => {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error!',
+                detail:
+                  'An error has occured while adding the product. Try again later',
+                life: 3000,
+              });
+            }
+          );
       }
 
       this.products = [...this.products];
@@ -166,7 +198,7 @@ export class ProductsComponent implements OnInit {
   findIndexById(id: string): number {
     let index = -1;
     for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].id === id) {
+      if (this.products[i]._id === id) {
         index = i;
         break;
       }
@@ -195,12 +227,11 @@ export class ProductsComponent implements OnInit {
     this.productForm.get('category').setValue(this.product.category);
     this.productForm.get('description').setValue(this.product.description);
     this.productForm.get('images').setValue(this.product.images);
-    this.productForm.get('creator').setValue('none');
   }
 
   private _updateProduct(productFormData: FormData) {
     this.sellerService
-      .updateProduct(productFormData, this.product.id)
+      .updateProduct(productFormData, this.product._id)
       .subscribe(
         (product: Product) => {
           this.messageService.add({
@@ -218,6 +249,4 @@ export class ProductsComponent implements OnInit {
         }
       );
   }
-
-
 }

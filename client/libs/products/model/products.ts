@@ -1,5 +1,7 @@
+import { User } from "src/app/auth/auth.service";
+
 export class Product {
-    id?: string;
+    _id?: string;
     name?: string;
     description?: string;
     category?: string;
@@ -7,7 +9,11 @@ export class Product {
     sale?: number;
     image?: string;
     images?: string[];
-    creator?: string;
+    creator?: {
+        firstName?: string;
+        lastName?: string;
+        id?: string;
+    };
     quantity?: number;
     
 }
