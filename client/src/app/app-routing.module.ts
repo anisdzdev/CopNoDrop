@@ -1,36 +1,43 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CartComponent } from './shared/cart/cart.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'seller',
-    loadChildren: () => import('./seller/seller.module').then(m => m.SellerModule)
+    loadChildren: () =>
+      import('./seller/seller.module').then((m) => m.SellerModule),
   },
   {
     path: 'user',
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
   {
     path: 'shop',
-    loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
+    loadChildren: () => import('./shop/shop.module').then((m) => m.ShopModule),
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+    loadChildren: () =>
+      import('./shared/shared.module').then((m) => m.SharedModule),
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-   },
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
   // {
   //   path: '**',
   //   //Redirect to 404
   // },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
