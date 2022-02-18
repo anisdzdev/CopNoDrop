@@ -43,6 +43,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    
+
     this.authService.getUserFromStorage();
     const sub = this.authService.isloginSubject.subscribe(
       (value) => (this.isLoggedIn = value)
@@ -56,8 +58,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
     
     this._getProducts();
-    // this.products = this.products.filter((data: Product) => {data.creator.id == this.user._id});
-
 
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -71,7 +71,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   openNew() {
-    this.product = {};
+    this.product = {
+      name: '',
+      description: '',
+      category: '',
+      price: {$numberDecimal: 0},
+      sale: 0,
+      images: [],
+      quantity: 0
+      
+    };
     this.submitted = false;
     this.productDialog = true;
   }
@@ -99,6 +108,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   editProduct(product: Product) {
     this.editmode = true;
     this.product = { ...product };
+    console.log(this.product);
     this.productDialog = true;
   }
 
@@ -155,15 +165,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         // this.products[this.findIndexById(this.product.id)] = this.product;
         this.fillProductForm();
         this._updateProduct(this.productForm.value);
-        // this.messageService.add({
-        //   severity: 'success',
-        //   summary: 'Successful',
-        //   detail: 'Product Updated',
-        //   life: 3000,
-        // });
       } else {
-        // this.product.id = this.createId();
-        // this.product.image = 'product-placeholder.svg';
         this.fillProductForm();
         this.products.push(this.product);
         this.sellerService
@@ -223,7 +225,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   fillProductForm() {
     this.productForm.get('name').setValue(this.product.name);
-    this.productForm.get('price').setValue(this.product.price);
+    this.productForm.get('price').setValue(this.product.price.$numberDecimal);
     this.productForm.get('category').setValue(this.product.category);
     this.productForm.get('description').setValue(this.product.description);
     this.productForm.get('images').setValue(this.product.images);
@@ -231,7 +233,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private _updateProduct(productFormData: FormData) {
     this.sellerService
-      .updateProduct(productFormData, this.product._id)
+      .updateProduct(productFormData, this.product._id, this.user.token)
       .subscribe(
         (product: Product) => {
           this.messageService.add({

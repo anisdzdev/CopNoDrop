@@ -5,7 +5,7 @@ export class Product {
     name?: string;
     description?: string;
     category?: string;
-    price?: number;
+    price?: {$numberDecimal: number};
     sale?: number;
     image?: string;
     images?: string[];

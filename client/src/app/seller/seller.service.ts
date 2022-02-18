@@ -34,11 +34,16 @@ export class SellerService {
     return this.http.post<Product>(this.apiUrlProducts, productData, requestOptions);
   }
 
-  updateProduct(productData: FormData, productid: string): Observable<Product> {
-    return this.http.put<Product>(
-      `${this.apiUrlProducts}/${productid}`,
-      productData
-    );
+  updateProduct(productData: FormData, productid: string, token: string): Observable<Product> {
+    let requestOptions: Object = {
+      headers: new HttpHeaders().append(
+        'x-auth-token',
+        token
+      ),
+      responseType: 'text',
+    };
+    
+    return this.http.put<Product>(`${this.apiUrlProducts}/${productid}`, productData, requestOptions);
   }
 
   deleteProduct(productId: string, token: string): Observable<any> {
