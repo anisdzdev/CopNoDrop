@@ -4,7 +4,8 @@
     <div class="steps-container">
       <p-steps [model]="items"></p-steps>
     </div>
-    <p-table [value]="products">
+    <p *ngIf="products.length==0" class="text-center pt-5">Cart is empty</p>
+    <p-table [value]="products" *ngIf="!(products.length==0)">
       <ng-template pTemplate="header">
         <tr>
           <th>Item</th>

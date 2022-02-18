@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SharedService } from 'src/app/shared/shared.service';
 import { ShopService } from '../shop.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class ProductListComponent implements OnInit {
   products:any = [];
   category;
 
-  constructor(private route: ActivatedRoute, private shopService: ShopService) { }
+  constructor(private route: ActivatedRoute, private shopService: ShopService, private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -22,7 +23,14 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(product){
-
+    const prod = {
+      img: product.images[0],
+      name: product.name,
+      quantity: 1,
+      price: product.price.$numberDecimal
+    }
+    this.sharedService.addToCart(prod);
+    this.sharedService.alertMessage("Success!", "Item added to cart!", "success");
   }
 
 }

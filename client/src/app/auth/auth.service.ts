@@ -75,7 +75,6 @@ export class AuthService {
       detail: message,
     });
     }, 100);
-
   }
 }
 

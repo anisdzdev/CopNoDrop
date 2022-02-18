@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   addToCart(product: any){
     let existingEntries: any[] = [];
@@ -24,5 +25,15 @@ export class SharedService {
   getCartItems(): any{
     let items = JSON.parse(localStorage.getItem('cart-items') || '{}');
     return items ;
+  }
+
+  alertMessage(title: string, message: string, type?: "success") {
+    setTimeout(() => {
+    this.messageService.add({
+      severity: type,
+      summary: title,
+      detail: message,
+    });
+    }, 100);
   }
 }
