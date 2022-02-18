@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { User } from '../auth.service';
 import { Router } from '@angular/router';
@@ -14,8 +14,19 @@ export class LoginComponent implements OnInit, OnDestroy {
   baseURL: string = 'http://localhost:3000/';
 
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      Validators.min(5),
+      Validators.max(255)
+    ]),
+    password: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),
+        Validators.max(1024),
+        Validators.min(5)
+    ]),
   });
   subscriptions: Subscription[] = [];
   isLogged: boolean = false;

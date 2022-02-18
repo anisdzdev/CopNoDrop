@@ -6,40 +6,20 @@
 
       <form [formGroup]="signupForm">
 
-        <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="text" pInputText formControlName="firstName">
-            <label>First Name</label>
-        </span>
-        </div>
 
-        <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="text" pInputText formControlName="lastName">
-            <label>Last Name</label>
-        </span>
-        </div>
+        <input type="text" pInputText class="p-inputtext-m" placeholder="First Name" formControlName="firstName">
 
-        <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="text" pInputText formControlName="email">
-            <label>Email</label>
-        </span>
-        </div>
+        <input type="text" pInputText class="p-inputtext-m" placeholder="Last Name" formControlName="lastName">
 
-        <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="password" pInputText formControlName="password">
-            <label>Password</label>
-        </span>
-        </div>
+        <input type="email" pInputText class="p-inputtext-m" placeholder="email" formControlName="email">
 
-        <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="password" pInputText formControlName="password2">
-            <label>Retype Password</label>
-        </span>
-        </div>
+        <h5>Password</h5>
+
+        <p-password formControlName="password" placeholder="Password"></p-password>
+
+        <br>
+
+        <p-password formControlName="password2" [feedback]="false" placeholder="Retype password"  ></p-password>
 
         <button type="submit" (click)="submit()">Sign Up</button>
 

@@ -7,20 +7,10 @@
 
       <form [formGroup]="loginForm">
 
-        <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="text" pInputText formControlName="email">
-            <label>Email</label>
-        </span>
-        </div>
+        <input type="text" pInputText class="p-inputtext-m" placeholder="email" formControlName="email">
 
+        <p-password formControlName="password" placeholder="Password"></p-password>
 
-        <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="password" pInputText formControlName="password">
-            <label>Password</label>
-        </span>
-        </div>
 
         <button type="submit" (click)="submit()">Login</button>
 
@@ -33,14 +23,6 @@
   </div>
 
 
-
-
 <div class="p-fluid grid">
-
-
-
-
-
-
 
 
