@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userService = require("../services/users");
+const auth = require("../middleware/auth");
 
 /**
  * @swagger
@@ -22,12 +23,12 @@ const userService = require("../services/users");
  *               $ref: '#/components/schemas/user'
  */
 router.get('/:id', async (req, res) => {
-  try {
-    const result = await userService.findOne(req.params.id);
-    res.status(result.status).send(result.data);
-  } catch (e) {
-    res.status(500).send(e.message);
-  }
+    try {
+        const result = await userService.findOne(req.params.id);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
 });
 
 /**
@@ -63,13 +64,13 @@ router.get('/:id', async (req, res) => {
  *               type: string
  */
 router.post('/signup', async (req, res) => {
-  try {
-    let user = req.body;
-    const result = await userService.create(user);
-    res.status(result.status).send(result.data);
-  } catch (e) {
-    res.status(500).send(e.message);
-  }
+    try {
+        let user = req.body;
+        const result = await userService.create(user);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
 });
 
 /**
@@ -99,13 +100,58 @@ router.post('/signup', async (req, res) => {
  *               type: string
  */
 router.post('/login', async (req, res) => {
-  try {
-    let user = req.body;
-    const result = await userService.login(user);
-    res.status(result.status).send(result.data);
-  } catch (e) {
-    res.status(500).send(e.message);
-  }
+    try {
+        let user = req.body;
+        const result = await userService.login(user);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
+});
+
+/**
+ * @swagger
+ * /users/{id}:
+ *   put:
+ *     summary: INCOMPLETE - Edit a user
+ *     tags:
+ *       - Users
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        type: string
+ *      - name: x-auth-token
+ *        in: header
+ *        description: an authorization token
+ *        required: true
+ *        type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *              email:
+ *                type: string
+ *              password:
+ *                type: string
+ *     responses:
+ *       200:
+ *         description: The edited user with id.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/user'
+ */
+router.put('/:id', auth, async (req, res) => {
+    try {
+        let user = req.body;
+        const result = await userService.edit(req.params.id, user);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
 });
 
 module.exports = router;
