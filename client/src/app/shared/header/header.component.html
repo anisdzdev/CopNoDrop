@@ -55,13 +55,13 @@
                   <div class="row">
 
                     <ul class="mega-links">
-                      <li><a href="#">Electronics</a></li>
-                      <li><a href="#">Gaming Accessories</a></li>
-                      <li><a href="#">Clothing</a></li>
-                      <li><a href="#">Sports Gear</a></li>
-                      <li><a href="#">Home Appliances</a></li>
-                      <li><a href="#">Travel Gear</a></li>
-                      <li><a href="#">Beauty & Personal care</a></li>
+                      <li><a routerLink="/shop/list" [queryParams]="{cat:'Electronics'}">Electronics</a></li>
+                      <li><a routerLink="/shop/list" [queryParams]="{cat:'Gaming'}">Gaming Accessories</a></li>
+                      <li><a routerLink="/shop/list" [queryParams]="{cat:'Clothing'}">Clothing</a></li>
+                      <li><a routerLink="/shop/list" [queryParams]="{cat:'Sports'}">Sports Gear</a></li>
+                      <li><a routerLink="/shop/list" [queryParams]="{cat:'Home'}">Home Appliances</a></li>
+                      <li><a routerLink="/shop/list" [queryParams]="{cat:'Travel'}">Travel Gear</a></li>
+                      <li><a routerLink="/shop/list" [queryParams]="{cat:'Beauty'}">Beauty & Personal care</a></li>
                     </ul>
 
                     <a class="hidethis2"><button class="yellow-btn signup mobilebuttons  " *ngIf="!isLogged"

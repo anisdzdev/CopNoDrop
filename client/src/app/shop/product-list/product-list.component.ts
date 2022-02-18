@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ShopService } from '../shop.service';
 
 @Component({
   selector: 'app-product-list',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
+  products:any = [];
+  category;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private shopService: ShopService) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+        if(params.cat) this.category = params.cat;
+        this.shopService.getProductsByCategory( this.category).subscribe(res => this.products = res);
+      }
+    );
+  }
+
+  addToCart(product){
+
   }
 
 }

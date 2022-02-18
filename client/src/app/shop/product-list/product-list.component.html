@@ -1,68 +1,20 @@
-
-        <div class="product-item">
-            <div class="product-item-content">
-                <div>
-                    <img class = "img" src = 'https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/4/549521-v001.jpg' alt="">
-                    <p class="p-title">Detergent</p>
-                    <p class="p-price">
-                      <span class="p-qty"> 750ML <br></span>
-                      CAD 40</p>
-  
-                      <div class="btn-wrap">
-                        <button class="black-btn">
-                          <img src="https://www.spinneyslebanon.com/static/version1644224923/frontend/Spinneys/theme/en_US/images/cart-icon-sticky.svg" alt=""> Add
-                        </button>
-                      </div>
-                </div>
-            </div>
-      
-            <div class="product-item-content">
-                <div>
-                    <img class = "img" src = 'https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/2/526580-v001-1.jpg' alt="">
-                    <p class="p-title">Toilet Rolls</p>
-                    <p class="p-price">
-                      <span class="p-qty"> 4 Rolls <br></span>
-                      CAD 40</p>
-  
-                      <div class="btn-wrap">
-                        <button class="black-btn">
-                          <img src="https://www.spinneyslebanon.com/static/version1644224923/frontend/Spinneys/theme/en_US/images/cart-icon-sticky.svg" alt=""> Add
-                        </button>
-                      </div>
-                </div>
-            </div>
-
-            <div class="product-item-content">
-                <div>
-                    <img class = "img" src = 'https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/4/7/479801-v001-1_3.jpg' alt="">
-                    <p class="p-title">Charcoal skincare</p>
-                    <p class="p-price">
-                      <span class="p-qty"> 250ML <br></span>
-                      CAD 40</p>
-  
-                      <div class="btn-wrap">
-                        <button class="black-btn">
-                          <img src="https://www.spinneyslebanon.com/static/version1644224923/frontend/Spinneys/theme/en_US/images/cart-icon-sticky.svg" alt=""> Add
-                        </button>
-                      </div>
-                </div>
-            </div>
-
-            <div class="product-item-content">
-                <div>
-                    <img class = "img" src = 'https://d145dj1pf6foch.cloudfront.net/catalog/product/cache/1c3fb676c17af207704f6c7671f9267d/5/2/524695-v002.jpg' alt="">
-                    <p class="p-title">Green Tea</p>
-                    <p class="p-price">
-                      <span class="p-qty"> 300ML <br></span>
-                      CAD 40</p>
-  
-                      <div class="btn-wrap">
-                        <button class="black-btn">
-                          <img src="https://www.spinneyslebanon.com/static/version1644224923/frontend/Spinneys/theme/en_US/images/cart-icon-sticky.svg" alt=""> Add
-                        </button>
-                      </div>
-                </div>
-            </div>
-
-
+<div class="main">
+  <div class="product-item grid justify-content-center">
+    <div class="product-item-content col-12 md:col-6 lg:col-3" *ngFor="let product of products">
+        <img class="img"
+          [src]="product.images[0] || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png'"
+          alt="">
+        <p class="p-title">{{product.name}}</p>
+        <p class="p-price">
+          <span class="p-qty">CAD {{product.price.$numberDecimal}}</span>
+        </p>
+        <div class="btn-wrap">
+          <button class="black-btn" (click)="addToCart(product)">
+            <img
+              src="https://www.spinneyslebanon.com/static/version1644224923/frontend/Spinneys/theme/en_US/images/cart-icon-sticky.svg"
+              alt=""> Add
+          </button>
         </div>
+    </div>
+  </div>
+</div>
