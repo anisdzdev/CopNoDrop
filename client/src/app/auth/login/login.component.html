@@ -1,46 +1,43 @@
 <p-toast position="top-right"></p-toast>
+
 <div id="image">
+
   <div id="loginDialogBox">
+
     <div id="topSection">
+      <h1>Login</h1>
     </div>
-    <div id="bottomSection">
 
-      <form [formGroup]="loginForm">
+      <div id="bottomSection">
 
-        <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="text" pInputText formControlName="email">
-            <label>Email</label>
-        </span>
+        <div id="form">
+
+          <form [formGroup]="loginForm">
+
+            <input type="text" pInputText class="p-inputtext-m" placeholder="email" formControlName="email">
+
+            <h3></h3>
+
+            <p-password formControlName="password" placeholder="Password"></p-password>
+
+            <h3></h3>
+
+            <div id="submit">
+              <p-button label="Login" (click)="submit()"></p-button>
+            </div>
+
+            <p>new? click <a routerLink="auth/signup"> here </a> to register</p>
+
+          </form>
+
         </div>
 
-
-        <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="password" pInputText formControlName="password">
-            <label>Password</label>
-        </span>
-        </div>
-
-        <button type="submit" (click)="submit()">Login</button>
-
-      </form>
+      </div>
 
     </div>
 
-
-    </div>
   </div>
 
 
-
-
-<div class="p-fluid grid">
-
-
-
-
-
-
-
+<div class="p-fluid grid"></div>
 
