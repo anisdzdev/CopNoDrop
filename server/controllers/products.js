@@ -118,9 +118,6 @@ router.get('/:id', async (req, res) => {
  *             properties:
  *               images:
  *                 type: array
- *                 items:
- *                   type: file
- *                   format: binary
  *               name:
  *                 type: string
  *               description:
