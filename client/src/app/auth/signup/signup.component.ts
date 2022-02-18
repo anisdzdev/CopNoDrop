@@ -14,16 +14,39 @@ export class SignupComponent {
   baseURL: string = "http://localhost:3000/";
 
   signupForm: FormGroup = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.min(2), Validators.max(50)]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    firstName: new FormControl('',
+      [
+        Validators.required,
+        Validators.min(2),
+        Validators.max(50)
+      ]),
+    lastName: new FormControl('',
+      [
+        Validators.required,
+        Validators.min(2),
+        Validators.max(50)
+    ]),
+    email: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        Validators.min(5),
+        Validators.max(255)
+      ]),
     password: new FormControl('',
       [
-      Validators.required,
-      Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
-    ]
-    ),
-    password2: new FormControl('',[Validators.required]),
+        Validators.required,
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),
+        Validators.max(1024),
+        Validators.min(5)
+    ]),
+    password2: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),
+        Validators.max(1024),
+        Validators.min(5)
+    ]),
   });
 
   constructor(private http: HttpClient) { }

@@ -13,7 +13,7 @@
 }
 
 #loginDialogBox {
-  height: 45em;
+  height: 35em;
   width: 70em;
   border: 1px solid lightgrey;
   background-color: white;
@@ -21,11 +21,26 @@
 
 #topSection {
   height: 33.3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #bottomSection {
   height: 66.7%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#form {
+  position: center;
+  text-align: center;
+}
+
+#submit {
+  text-align: center;
+  margin: 0;
 }
 
 #emailLogin {
