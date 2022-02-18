@@ -49,15 +49,20 @@ export class SignupComponent {
     ]),
   });
 
+  isSeller: boolean;
+
   constructor(private http: HttpClient) { }
 
+  handleChange(e) {
+    this.isSeller = e.checked;
+  }
 
   submit() {
     //console.log(this.signupForm.value.firstName + " " + this.signupForm.value.lastName + " " + this.signupForm.value.email + " " + this.signupForm.value.password + " " + this.signupForm.value.password2)
 
     // Verifying if password values match
       if(this.signupForm.value.password==this.signupForm.value.password2) {
-        this.httpSignUp(this.signupForm.value.firstName, this.signupForm.value.lastName, this.signupForm.value.email, this.signupForm.value.password).subscribe(token =>console.log(this.getDecodedAccessToken(token)));
+        this.httpSignUp(this.signupForm.value.firstName, this.signupForm.value.lastName, this.signupForm.value.email, this.signupForm.value.password, this.isSeller).subscribe(token =>console.log(this.getDecodedAccessToken(token)));
       }
       else {
         alert("Passwords do not match");
@@ -72,7 +77,7 @@ export class SignupComponent {
     }
   }
 
-  httpSignUp(firstName: string, lastName: string, email: string, password: string): Observable<any> {
+  httpSignUp(firstName: string, lastName: string, email: string, password: string, isSeller: boolean): Observable<any> {
 
     const requestOptions: Object = {
       headers: new HttpHeaders().append('Authorization', 'Bearer <yourtokenhere>'),
@@ -80,7 +85,7 @@ export class SignupComponent {
     }
 
     return this.http
-      .post(this.baseURL + 'users/signup', {firstName, lastName, email, password}, requestOptions)
+      .post(this.baseURL + 'users/signup', {firstName, lastName, email, password, isSeller}, requestOptions)
   }
 
 }

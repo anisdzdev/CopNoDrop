@@ -32,13 +32,20 @@
 
           <h3></h3>
 
+        </form>
+
+          <p>sign up for a seller's account?</p>
+
+          <p-inputSwitch (onChange)="handleChange($event)" [(ngModel)]="isSeller"></p-inputSwitch>
+
+          <h3></h3>
+
           <div id="submit">
           <p-button label="Sign Up" (click)="submit()"></p-button>
           </div>
 
           <p>have an account? click <a routerLink="auth/login"> here </a> to login</p>
 
-        </form>
 
       </div>
 

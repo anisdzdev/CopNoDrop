@@ -122,7 +122,7 @@
             <td>{{ product.name }}</td>
             <td>
               <img
-                [src]="'assets/showcase/images/demo/product/' + product.image"
+                [src]=" product.images[0]"
                 [alt]="product.name"
                 width="100"
                 class="shadow-4"
@@ -165,12 +165,11 @@
       styleClass="p-fluid"
     >
       <ng-template pTemplate="content">
-        <img
-          [src]="'assets/showcase/images/demo/product/' + product.image"
-          [alt]="product.image"
+        <!-- <img
+          [src]="product.images[0]"
           class="product-image"
-          *ngIf="product.image"
-        />
+     
+        /> -->
         <div class="field">
           <label for="name">Name</label>
           <input
@@ -295,7 +294,7 @@
             <label for="price">Price</label>
             <p-inputNumber
               id="price"
-              [(ngModel)]="product.price"
+              [(ngModel)]="product.price.$numberDecimal"
             ></p-inputNumber>
           </div>
           <div class="field col">
