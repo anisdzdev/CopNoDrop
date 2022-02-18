@@ -30,11 +30,6 @@ const findOne = async (id) => {
 
 const create = async (product, images) => {
   if(!validate(product)) return BadRequest("Invalid Product");
-  if(!images || images.length === 0) return BadRequest("At least 1 product image is expected");
-  images.forEach(image => {
-    if(!product.images) product.images = []
-    product.images.push(image.filename);
-  })
   let p = await new Product(product);
   await p.save();
   return Created(p);
