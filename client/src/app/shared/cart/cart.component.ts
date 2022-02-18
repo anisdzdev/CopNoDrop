@@ -28,10 +28,6 @@ export class CartComponent implements OnInit {
     this.products.splice(index, 1);
     console.log(this.products);
     this.sharedService.addProductsToCart(this.products);
+
   }
 }
-
-// name*	string
-// description*	string
-// category*	string
-// price*	number
