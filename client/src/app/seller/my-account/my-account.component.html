@@ -1,1 +1,176 @@
-<p>my-account works!</p>
+<div class="wrapper">
+  <app-sidebar [page]="'my-account'"></app-sidebar>
+
+  <app-menu-panel [page]="'my-account'"></app-menu-panel>
+
+  <div class="my-account-content">
+    <div class="page-title-wrapper">
+      <h1>My Account</h1>
+      <p>Edit personal information</p>
+    </div>
+
+    <!-- displays in case there are no products -->
+    <!-- name email password address(first line, city,province, country, postal code, is default) -->
+    <div class="content">
+      <form [formGroup]="form">
+        <div class="grid">
+          <div class="col sm:col-6 md:col-4">
+            <label for="name">Name</label>
+            <br />
+
+            <input
+              formControlName="name"
+              id="name"
+              type="text"
+              pInputText
+            /><br />
+            <small
+              *ngIf="this.form.controls.name.invalid && isSubmitted"
+              class="p-error"
+              >Name is required</small
+            >
+          </div>
+
+          <div class="col sm:col-6 md:col-4">
+            <label for="email">Email</label><br />
+            <input
+              formControlName="email"
+              id="email"
+              type="text"
+              pInputText
+            /><br />
+            <small *ngIf="this.form.controls.email.invalid && isSubmitted">
+              <span
+                *ngIf="this.form.controls.email.errors.required"
+                class="p-error"
+                >Email is required</span
+              >
+              <span
+                *ngIf="this.form.controls.email.errors.email"
+                class="p-error"
+                >Email is invalid</span
+              >
+            </small>
+          </div>
+
+          <div class="col sm:col-6 md:col-4">
+            <label for="password">Password</label><br />
+
+            <p-button
+              type="button"
+              (click)="showDialog()"
+              icon="pi pi-info-circle"
+              label="Change Password"
+              styleClass="prime-button-override"
+            ></p-button>
+
+            <p-dialog
+              header="Change Password"
+              [(visible)]="display"
+              [style]="{ height: '30vw' }"
+            >
+              <label>Existing Password</label><br />
+              <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+              ></p-password>
+              <br />
+              <br />
+              <label>New Password</label><br />
+              <p-password formControlName="password" [toggleMask]="true">
+                <ng-template pTemplate="header">
+                  <h6>Pick a password</h6>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                  <p-divider></p-divider>
+                  <p class="mt-2">Suggestions</p>
+                  <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                    <li>At least one lowercase</li>
+                    <li>At least one uppercase</li>
+                    <li>At least one numeric</li>
+                    <li>Minimum 8 characters</li>
+                  </ul>
+                </ng-template>
+              </p-password>
+              <br />
+              <br />
+              <label>Confirm Password</label><br />
+              <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+              ></p-password>
+              <br />
+              <div class="pass">
+                <button class="yellow-btn">Save Changes</button>
+              </div>
+            </p-dialog>
+          </div>
+        </div>
+
+        <!-- for address -->
+        <div class="address-content"><h4>Address Information</h4></div>
+
+        <div class="grid">
+          <div class="col sm:col-6 md:col-4">
+            <label for="firstLine">First Line</label><br />
+            <input
+              formControlName="firstLine"
+              id="firstLine"
+              type="text"
+              pInputText
+            />
+          </div>
+          <div class="col sm:col-6 md:col-4">
+            <label for="province">Province</label><br />
+            <input
+              formControlName="province"
+              id="province"
+              type="text"
+              pInputText
+            />
+          </div>
+          <div class="col sm:col-6 md:col-4">
+            <label for="postal_code">Zip Code</label><br />
+            <input
+              formControlName="postal_code"
+              id="postal_code"
+              type="text"
+              pInputText
+            />
+          </div>
+          <div class="col sm:col-6 md:col-4">
+            <label for="city">City</label><br />
+            <input formControlName="city" id="city" type="text" pInputText />
+          </div>
+          <div class="col sm:col-6 md:col-4">
+            <label for="country">Country</label><br />
+            <p-dropdown
+              [options]="countries"
+              formControlName="country"
+              optionLabel="name"
+              optionValue="id"
+              [filter]="true"
+              filterBy="name"
+              placeholder="Select a Country"
+            ></p-dropdown>
+          </div>
+
+          <div class="col sm:col-6 md:col-4">
+            <label for="isDefault">Default Address</label><br />
+            <p-toggleButton
+              id="default"
+              formControlName="isDefault"
+              onIcon="pi pi-check"
+              offIcon="pi pi-times"
+            ></p-toggleButton>
+          </div>
+        </div>
+      </form>
+      <div class="save">
+        <button class="yellow-btn final">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
