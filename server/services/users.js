@@ -37,16 +37,16 @@ const login = async (user) => {
     return Success(token);
 }
 
-const edit = async (id, user) => { //INCOMPLETE
-    if (validate_auth(user).error)
-        return BadRequest("Invalid Credentials");
-
-    if(!id) return BadRequest("User id not found");
-    const u = await User.findByIdAndUpdate(id, user,  {new: true});
-    if(!u) return NotFound("Error while updating the user");
-    const token = u.generateAuthToken();
-    return Success(token);
-}
+// const edit = async (id, user) => { //INCOMPLETE
+//     if (validate_auth(user).error)
+//         return BadRequest("Invalid Credentials");
+//
+//     if(!id) return BadRequest("User id not found");
+//     const u = await User.findByIdAndUpdate(id, user,  {new: true});
+//     if(!u) return NotFound("Error while updating the user");
+//     const token = u.generateAuthToken();
+//     return Success(token);
+// }
 
 exports.findOne = findOne;
 exports.create = create;
