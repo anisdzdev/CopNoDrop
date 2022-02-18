@@ -32,6 +32,18 @@
   border-radius: 3px;
 }
 
+p-password div {
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+}
+
+p-password input {
+  border: none !important;
+}
+
+.p-card .p-card-content {
+  padding: 0 !important;
+}
 .p-steps .p-steps-item.p-highlight .p-steps-number{
   background-color: #ffed00 !important;
 }
