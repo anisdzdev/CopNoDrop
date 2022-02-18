@@ -16,9 +16,15 @@ const routes: Routes = [
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   },
   {
+
     path: 'cart',
     component: CartComponent,
     loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+
   },
   // {
   //   path: '**',

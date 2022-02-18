@@ -20,6 +20,7 @@ footer .content{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-bottom: 0;
 }
 footer .content p,a{
   color: #fff;
@@ -74,6 +75,7 @@ footer .content .right input[type="submit"]{
   margin-top: 12px;
   border: 2px solid #c99b39;
   transition: all 0.3s ease-in-out;
+
 }
 .content .right input[type="submit"]:hover{
   background: none;
