@@ -7,6 +7,9 @@ const orderSchema = new mongoose.Schema({
         lastName: String,
         id: String
     },
+    seller: {
+        id: String
+    },
     address: {
         firstLine: String,
         city: String,
@@ -20,7 +23,8 @@ const orderSchema = new mongoose.Schema({
     },
     products: [{
         id: String,
-        shipped: Boolean
+        shipped: Boolean,
+        quantity: Number
     }]
 });
 
