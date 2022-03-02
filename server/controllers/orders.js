@@ -61,4 +61,70 @@ router.get('/:id', auth, async (req, res) => {
     }
 });
 
+
+/**
+ * @swagger
+ * /orders:
+ *   post:
+ *     summary: Place a new order
+ *     tags:
+ *       - Orders
+ *     parameters:
+ *       - name: x-auth-token
+ *         in: header
+ *         description: an authorization token
+ *         required: true
+ *         type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               products:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                      id:
+ *                          type: string
+ *                      quantity:
+ *                          type: string
+ *                      seller_id:
+ *                          type: string
+ *               address:
+ *                 type: object
+ *                 properties:
+ *                   firstLine:
+ *                     type: string
+ *                   city:
+ *                     type: string
+ *                   province:
+ *                     type: string
+ *                   country:
+ *                     type: string
+ *                   postal_code:
+ *                     type: string
+ *               total:
+ *                 type: number
+ *     responses:
+ *       201:
+ *         description: A list of orders.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                $ref: '#/components/schemas/order'
+ */
+router.post('/', auth, async (req, res) => {
+    try {
+        const result = await orderService.create(req.body, req.user);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
+});
+
 module.exports = router;

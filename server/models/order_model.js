@@ -21,11 +21,12 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Types.Decimal128,
         default: 0
     },
-    products: [{
+    product: {
         id: String,
-        shipped: Boolean,
         quantity: Number
-    }]
+    },
+    shipped: Boolean,
+    placedOn: Date
 });
 
 const Order = mongoose.model('Order', orderSchema);
