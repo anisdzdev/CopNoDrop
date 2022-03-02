@@ -3,12 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Product } from 'libs/products/model/products';
+import { User } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SellerService {
   apiUrlProducts = environment.apiUrL + 'products';
+  apiUrlUser = environment.apiUrL + 'users';
 
   setHeaders(token: string) {}
   constructor(private http: HttpClient) {}
@@ -56,4 +58,19 @@ export class SellerService {
     };
     return this.http.delete<any>(`${this.apiUrlProducts}/${productId}`, requestOptions);
   }
+
+
+  updateUser(user: User, token: string): Observable<User> {
+    let requestOptions: Object = {
+      headers: new HttpHeaders().append(
+        'x-auth-token',
+        token
+      ),
+      responseType: 'text',
+    };
+   
+    return this.http.put<User>(`${this.apiUrlUser}/${user._id}`, user, requestOptions);
+}
+
+
 }
