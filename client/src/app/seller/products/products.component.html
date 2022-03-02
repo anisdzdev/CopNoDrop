@@ -68,14 +68,15 @@
         [paginator]="true"
         [globalFilterFields]="[
           'name',
-          'country.name',
-          'representative.name',
-          'status'
+          'images',
+          'price',
+          'category',
+          'quantity'
         ]"
         responsiveLayout="scroll"
         [(selection)]="selectedProducts"
         [rowHover]="true"
-        dataKey="id"
+        
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [showCurrentPageReport]="true"
       >
@@ -122,7 +123,7 @@
             <td>{{ product.name }}</td>
             <td>
               <img
-                [src]=" product.images[0]"
+                [src]="product.images[0]"
                 [alt]="product.name"
                 width="100"
                 class="shadow-4"
@@ -275,8 +276,12 @@
             required
             autofocus
           />
-          <small *ngIf="productForm.controls.images.invalid && submitted" class="p-error">Image is required</small>
-         <br>
+          <small
+            *ngIf="productForm.controls.images.invalid && submitted"
+            class="p-error"
+            >Image is required</small
+          >
+          <br />
           <label for="image2">secondary Image</label>
           <input
             type="text"
@@ -285,8 +290,6 @@
             [(ngModel)]="secondImage"
             autofocus
           />
-
-          
         </div>
 
         <div class="formgrid grid">
@@ -329,5 +332,8 @@
 
     <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
     <!-- tabel -->
+
+
+
   </div>
 </div>

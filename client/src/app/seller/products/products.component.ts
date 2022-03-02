@@ -91,9 +91,27 @@ export class ProductsComponent implements OnInit, OnDestroy {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.products = this.products.filter(
-          (val) => !this.selectedProducts.includes(val)
-        );
+
+        this.selectedProducts.forEach(element => {
+            this.sellerService.deleteProduct(element._id, this.user.token)
+            .subscribe(
+              () => {
+                this._getProducts();
+              },
+              () => {
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Error',
+                  detail: 'Product is not deleted!',
+                });
+              }
+            );
+          
+        });
+
+        // this.products = this.products.filter(
+        //   (val) => !this.selectedProducts.includes(val)
+        // );
         this.selectedProducts = null;
         this.messageService.add({
           severity: 'success',
@@ -229,6 +247,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productForm.get('category').setValue(this.product.category);
     this.productForm.get('description').setValue(this.product.description);
     this.productForm.get('images').setValue(this.product.images);
+    this.productForm.get('creator').setValue(this.product.creator);
   }
 
   private _updateProduct(productFormData: FormData) {
@@ -236,6 +255,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       .updateProduct(productFormData, this.product._id, this.user.token)
       .subscribe(
         (product: Product) => {
+          this._getProducts();
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
@@ -250,5 +270,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
           });
         }
       );
+      this.editmode = false;
   }
+
+
+
+
 }
