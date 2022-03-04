@@ -1,13 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import jwt_decode from 'jwt-decode';
 import { MessageService } from 'primeng/api';
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
+  response = new Response();
   url = 'http://localhost:3000/';
   islogin$: Observable<boolean>;
   isloginSubject: BehaviorSubject<boolean>;
@@ -36,7 +39,7 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
-    return this.http.post(`${this.url}users/login`, user, this.requestOptions);
+    return this.http.post(`${this.url}users/login`, user, this.requestOptions).pipe(catchError(this.handleError('httpLogin')));
   }
 
   setUserToStorage(user: User) {
@@ -75,6 +78,13 @@ export class AuthService {
       detail: message,
     });
     }, 100);
+  }
+
+  private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
+    return (error: Error): Observable<T> => {
+      alert('Please check credentials')
+      return throwError('Please check credentials');
+    };
   }
 }
 

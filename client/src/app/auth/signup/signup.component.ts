@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Observable} from "rxjs";
+import { catchError } from 'rxjs/operators';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Observable, throwError } from "rxjs";
 import jwt_decode from 'jwt-decode';
 
 @Component({
@@ -9,8 +10,10 @@ import jwt_decode from 'jwt-decode';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
+
 export class SignupComponent {
 
+  response = new Response();
   baseURL: string = "http://localhost:3000/";
 
   signupForm: FormGroup = new FormGroup({
@@ -86,6 +89,15 @@ export class SignupComponent {
 
     return this.http
       .post(this.baseURL + 'users/signup', {firstName, lastName, email, password, isSeller}, requestOptions)
+      .pipe(catchError(this.handleError('httpSignUp')));
   }
+
+  private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
+      return (error: Error): Observable<T> => {
+      alert('Email already used')
+      return throwError('Email already used');
+    };
+  }
+
 
 }
