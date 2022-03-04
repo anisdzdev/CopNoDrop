@@ -10,6 +10,7 @@ const auth = require("../middleware/auth");
  *     summary: Retrieve a list of orders
  *     tags:
  *       - Orders
+ *     parameters:
  *      - in: query
  *        name: sellerMode
  *        type: string
@@ -126,5 +127,63 @@ router.post('/', auth, async (req, res) => {
         res.status(500).send(e.message);
     }
 });
+
+
+/**
+ * @swagger
+ * /orders/complete/{id}:
+ *   put:
+ *     summary: Complete a specific order
+ *     tags:
+ *       - Orders
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        type: string
+ *     responses:
+ *       200:
+ *         description: The order with id.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/order'
+ */
+router.put('/complete/:id', auth, async (req, res) => {
+    try {
+        const result = await orderService.complete(req.params.id, req.user);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
+})
+
+
+/**
+ * @swagger
+ * /orders/cancel/{id}:
+ *   put:
+ *     summary: Cancel a specific order
+ *     tags:
+ *       - Orders
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        type: string
+ *     responses:
+ *       200:
+ *         description: The order with id.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/order'
+ */
+router.put('/cancel/:id', auth, async (req, res) => {
+    try {
+        const result = await orderService.cancel(req.params.id, req.user);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
+})
 
 module.exports = router;

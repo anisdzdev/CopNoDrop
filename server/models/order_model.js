@@ -25,7 +25,7 @@ const orderSchema = new mongoose.Schema({
         id: String,
         quantity: Number
     },
-    shipped: Boolean,
+    state: String,
     placedOn: Date
 });
 

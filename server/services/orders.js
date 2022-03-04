@@ -14,8 +14,8 @@ const findAll = async (sellerMode, user) => {
 const findOne = async (id, user) => {
     if(id !== new ObjectId(id).toString()) return BadRequest("Invalid Order Id");
     let order = await Order.findById(id);
-    if(order.seller.id !== user._id && order.buyer.id !== user._id) return Unauthorized("You cannot access this order");
     if(!order) return NotFound("Not found");
+    if(order.seller.id !== user._id && order.buyer.id !== user._id) return Unauthorized("You cannot access this order");
     return Success(order);
 }
 
@@ -39,6 +39,32 @@ const create = async (u_order, user) => {
     return Created(created);
 }
 
+const complete = async (id, user) => {
+    if(id !== new ObjectId(id).toString()) return BadRequest("Invalid Order Id");
+    let order = await Order.findById(id);
+    if(!order) return NotFound("Not found");
+    if(order.seller.id !== user._id) return Unauthorized("You cannot complete this order");
+    if(order.state === "Complete") return BadRequest("Order already completed");
+    if(order.state === "Cancelled") return Success("Cannot complete cancelled order");
+    order.state = "Complete";
+    await order.save();
+    return Success(order);
+}
+
+const cancel = async (id, user) => {
+    if(id !== new ObjectId(id).toString()) return BadRequest("Invalid Order Id");
+    let order = await Order.findById(id);
+    if(!order) return NotFound("Not found");
+    if(order.buyer.id !== user._id) return Unauthorized("You cannot cancel this order");
+    if(order.state === "Complete") return BadRequest("Cannot cancel complete order");
+    if(order.state === "Cancelled") return Success("Order already cancelled");
+    order.state = "Cancelled";
+    await order.save();
+    return Success(order);
+}
+
 exports.findAll = findAll;
 exports.findOne = findOne;
 exports.create = create;
+exports.complete = complete;
+exports.cancel = cancel;
