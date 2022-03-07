@@ -29,7 +29,7 @@ const create = async (u_order, user) => {
             seller: {id: or.seller_id},
             address: u_order.address,
             total: u_order.total,
-            products: {id: or.id, quantity: or.quantity},
+            product: {id: or.id, quantity: or.quantity},
             placedOn: Date.now()
         }
         let o = await new Order(scheme);

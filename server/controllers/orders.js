@@ -15,6 +15,11 @@ const auth = require("../middleware/auth");
  *        name: sellerMode
  *        type: string
  *        enum: ["true", "false"]
+ *      - name: x-auth-token
+ *        in: header
+ *        description: an authorization token
+ *        required: true
+ *        type: string
  *     responses:
  *       200:
  *         description: A list of orders.
@@ -41,9 +46,15 @@ router.get('/', auth, async (req, res) => {
  *     summary: Retrieve a specific order
  *     tags:
  *       - Orders
+ *
  *     parameters:
  *      - in: path
  *        name: id
+ *        type: string
+ *      - name: x-auth-token
+ *        in: header
+ *        description: an authorization token
+ *        required: true
  *        type: string
  *     responses:
  *       200:
