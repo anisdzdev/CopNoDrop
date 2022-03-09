@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./checkout/checkout.module').then((m) => m.CheckoutModule),
+  },
   // {
   //   path: '**',
   //   //Redirect to 404
