@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ToastModule } from 'primeng/toast';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 
@@ -18,7 +19,8 @@ import { ToastModule } from 'primeng/toast';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

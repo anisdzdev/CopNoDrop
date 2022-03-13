@@ -72,7 +72,7 @@ router.get('/', async (req, res) => {
  * @swagger
  * /products/{id}:
  *   get:
- *     summary: Retrieve a filtered/unfiltered list of products
+ *     summary: Retrieve a specific product
  *     tags:
  *       - Products
  *     parameters:

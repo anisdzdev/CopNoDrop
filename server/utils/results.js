@@ -12,6 +12,13 @@ const NotFound = (message) => {
     }
 }
 
+const Unauthorized = (message) => {
+    return {
+        status:403,
+        data: message
+    }
+}
+
 const Success = (message) => {
     return {
         status: 200,
@@ -28,5 +35,6 @@ const Created = (message) => {
 
 exports.BadRequest = BadRequest;
 exports.NotFound = NotFound;
+exports.Unauthorized = Unauthorized;
 exports.Success = Success;
 exports.Created = Created;

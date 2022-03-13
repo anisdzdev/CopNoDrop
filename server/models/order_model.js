@@ -7,6 +7,9 @@ const orderSchema = new mongoose.Schema({
         lastName: String,
         id: String
     },
+    seller: {
+        id: String
+    },
     address: {
         firstLine: String,
         city: String,
@@ -18,10 +21,12 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Types.Decimal128,
         default: 0
     },
-    products: [{
+    product: {
         id: String,
-        shipped: Boolean
-    }]
+        quantity: Number
+    },
+    state: String,
+    placedOn: Date
 });
 
 const Order = mongoose.model('Order', orderSchema);
