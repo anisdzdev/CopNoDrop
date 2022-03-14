@@ -43,7 +43,7 @@ const edit = async (id, user) => {
 
     if (!id)
         return BadRequest("Product id not found");
-    const u = await User.findByIdAndUpdate({id}, {user}, {new: true});
+    const u = await User.findByIdAndUpdate(id, user, {new: true});
 
     if (!u)
         return NotFound("Error while updating the user");

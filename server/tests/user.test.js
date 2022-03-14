@@ -106,23 +106,23 @@ describe("POST /users/login", () => {
     });
 });
 
-describe('disconnection', ()=>{
-    afterAll( async (done) =>{
-        done();
-    })
-})
+// describe('disconnection', ()=>{
+//     afterAll( async (done) =>{
+//         done();
+//     })
+// })
 
-// describe("PUT /users/:id", () => {
-//     test("The user id should be found, change information and return success", async () => {
-//         const updatedUser = await request(app).put('/users/6220e5214aa8c162396fe6fc').send(
-//             {
-//                 "firstName": "Updated",
-//                 "lastName": "Boulemkahel",
-//                 "email": "amin@test.com",
-//                 "password": "aminbou12",
-//                 "isSeller": false
-//             }
-//         );
-//         expect(updatedUser.statusCode).toBe(200);
-//     });
-// });
+describe("PUT /users/:id", () => {
+    test("The user id should be found, change information and return success", async () => {
+        const updatedUser = await request(app).put('/users/6220e5214aa8c162396fe6fc').set({'x-auth-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIwZTUyMTRhYThjMTYyMzk2ZmU2ZmMiLCJmaXJzdE5hbWUiOiJBbWluIiwibGFzdE5hbWUiOiJCb3VsZW1rYWhlbCIsImF2YXRhciI6ImRlZmF1bHQuanBnIiwiaXNTZWxsZXIiOmZhbHNlLCJlbWFpbCI6ImFtaW5AdGVzdC5jb20iLCJpYXQiOjE2NDcyOTM0MjR9.7z55iJClrUWe8DYhvhlQhkj3BhzsiwYtjetcDxJ1d2c"}).send(
+            {
+                "firstName": "Updated",
+                "lastName": "Boulemkahel",
+                "email": "amin@test.com",
+                "password": "aminbou12",
+                "isSeller": false
+            }
+        );
+        expect(updatedUser.statusCode).toBe(200);
+    });
+});
