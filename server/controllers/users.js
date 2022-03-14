@@ -23,12 +23,12 @@ const auth = require("../middleware/auth");
  *               $ref: '#/components/schemas/user'
  */
 router.get('/:id', async (req, res) => {
-  try {
-    const result = await userService.findOne(req.params.id);
-    res.status(result.status).send(result.data);
-  } catch (e) {
-    res.status(500).send(e.message);
-  }
+    try {
+        const result = await userService.findOne(req.params.id);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
 });
 
 /**
@@ -64,13 +64,13 @@ router.get('/:id', async (req, res) => {
  *               type: string
  */
 router.post('/signup', async (req, res) => {
-  try {
-    let user = req.body;
-    const result = await userService.create(user);
-    res.status(result.status).send(result.data);
-  } catch (e) {
-    res.status(500).send(e.message);
-  }
+    try {
+        let user = req.body;
+        const result = await userService.create(user);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
 });
 
 /**
@@ -100,13 +100,13 @@ router.post('/signup', async (req, res) => {
  *               type: string
  */
 router.post('/login', async (req, res) => {
-  try {
-    let user = req.body;
-    const result = await userService.login(user);
-    res.status(result.status).send(result.data);
-  } catch (e) {
-    res.status(500).send(e.message);
-  }
+    try {
+        let user = req.body;
+        const result = await userService.login(user);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
 });
 
 /**
@@ -144,14 +144,14 @@ router.post('/login', async (req, res) => {
  *             schema:
  *               $ref: '#/components/schemas/user'
  */
-router.put('/:id',auth, async (req, res) => {
-  try {
-    let user = req.body;
-    const result = await userService.edit(req.params.id, user);
-    res.status(result.status).send(result.data);
-  } catch (e) {
-    res.status(500).send(e.message);
-  }
+router.put('/:id', auth, async (req, res) => {
+    try {
+        let user = req.body;
+        const result = await userService.edit(req.params.id, user);
+        res.status(result.status).send(result.data);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
 });
 
 module.exports = router;
