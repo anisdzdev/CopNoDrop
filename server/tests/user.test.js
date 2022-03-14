@@ -108,8 +108,9 @@ describe("POST /users/login", () => {
 });
 
 describe('disconnection', ()=>{
-    afterAll( async () =>{
+    afterAll( async (done) =>{
         await mongoose.connection.close()
+        done();
     })
 })
 
