@@ -1,4 +1,5 @@
 const request = require("supertest");
+const mongoose = require('mongoose')
 const app = require("../app");
 
 describe("GET /users/:id", () => {
@@ -106,17 +107,23 @@ describe("POST /users/login", () => {
     });
 });
 
-describe("PUT /users/:id", () => {
-    test("The user id should be found, change information and return success", async () => {
-        // const updatedUser = await request(app).put('/users/6220e5214aa8c162396fe6fc').send(
-        //     {
-        //         "firstName": "Updated",
-        //         "lastName": "Boulemkahel",
-        //         "email": "amin@test.com",
-        //         "password": "aminbou12",
-        //         "isSeller": false
-        //     }
-        // );
-        // expect(updatedUser.statusCode).toBe(200);
-    });
-});
+describe('disconnection', ()=>{
+    afterAll( async () =>{
+        await mongoose.connection.close()
+    })
+})
+
+// describe("PUT /users/:id", () => {
+//     test("The user id should be found, change information and return success", async () => {
+//         const updatedUser = await request(app).put('/users/6220e5214aa8c162396fe6fc').send(
+//             {
+//                 "firstName": "Updated",
+//                 "lastName": "Boulemkahel",
+//                 "email": "amin@test.com",
+//                 "password": "aminbou12",
+//                 "isSeller": false
+//             }
+//         );
+//         expect(updatedUser.statusCode).toBe(200);
+//     });
+// });
