@@ -1,5 +1,4 @@
 const request = require("supertest");
-const mongoose = require('mongoose')
 const app = require("../app");
 
 describe("GET /users/:id", () => {
@@ -109,7 +108,6 @@ describe("POST /users/login", () => {
 
 describe('disconnection', ()=>{
     afterAll( async (done) =>{
-        await mongoose.connection.close()
         done();
     })
 })
