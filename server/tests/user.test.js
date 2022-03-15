@@ -68,7 +68,6 @@ describe("POST /users/signup", () => {
             "password": "ab",
             "isSeller": false
         });
-
         expect(newUser.statusCode).toBe(400);
     });
 });
@@ -105,12 +104,6 @@ describe("POST /users/login", () => {
         expect(user.statusCode).toBe(400);
     });
 });
-
-// describe('disconnection', ()=>{
-//     afterAll( async (done) =>{
-//         done();
-//     })
-// })
 
 describe("PUT /users/:id", () => {
     test("The user id should be found, change information and return success", async () => {
