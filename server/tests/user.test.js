@@ -1,5 +1,10 @@
 const request = require("supertest");
 const app = require("../app");
+const mongoose = require('mongoose')
+
+afterAll(async () => {
+    await mongoose.connection.close()
+})
 
 // describe("GET /users/:id", () => {
 //     test("The user id should be found, with the exact information and return success", async () => {
