@@ -1,33 +1,42 @@
 const request = require("supertest");
 const app = require("../app");
 const mongoose = require('mongoose')
+const jwt_decode = require('jwt-decode');
 
 afterAll(async () => {
+    const collections = await mongoose.connection.db.collections();
+    for (let connection of collections) {
+        await connection.deleteMany({});
+    }
     await mongoose.connection.close()
 })
 
-// describe("GET /users/:id", () => {
-//     test("The user id should be found, with the exact information and return success", async () => {
-//         const newUser = await request(app).post('/users/signup').send({
-//             "firstName": "Amin",
-//             "lastName": "Boulemkahel",
-//             "email": "amin@test.com",
-//             "password": "aminbou12",
-//             "isSeller": false
-//         });
-//         const response = await request(app).get(`/users/${newUser.body._id}`);
-//         expect(response.body).toEqual({
-//             "_id": newUser.body._id,
-//             "addresses": [],
-//             "avatar": "default.jpg",
-//             "email": "amin@test.com",
-//             "firstName": "Amin",
-//             "isSeller": true,
-//             "lastName": "Boulemkahel"
-//         });
-//         expect(response.statusCode).toBe(200);
-//     });
-// });
+describe("GET /users/:id", () => {
+    test("The user id should be found, with the exact information and return success", async () => {
+        const newUser = await request(app).post('/users/signup').send({
+            "firstName": "Amin",
+            "lastName": "Boulemkahel",
+            "email": "amin@test.com",
+            "password": "aminbou12",
+            "isSeller": true
+        });
+
+        const token = newUser.text;
+        const decodedId = jwt_decode(token)._id;
+
+        const response = await request(app).get(`/users/${decodedId}`);
+        expect(response.body).toEqual({
+            "_id": decodedId,
+            "addresses": [],
+            "avatar": "default.jpg",
+            "email": "amin@test.com",
+            "firstName": "Amin",
+            "isSeller": true,
+            "lastName": "Boulemkahel"
+        });
+        expect(response.statusCode).toBe(200);
+    });
+});
 
 describe("GET /users/:id", () => {
     test("The user id shouldn't be found and return not found", async () => {
@@ -117,17 +126,28 @@ describe("POST /users/login", () => {
     });
 });
 
-// describe("PUT /users/:id", () => {
-//     test("The user id should be found, change information and return success", async () => {
-//         const updatedUser = await request(app).put('/users/6230048370818f3c854d87a1').set({'x-auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMwMDQ4MzcwODE4ZjNjODU0ZDg3YTEiLCJmaXJzdE5hbWUiOiJBbWluIiwibGFzdE5hbWUiOiJCb3VsZW1rYWhlbCIsImF2YXRhciI6ImRlZmF1bHQuanBnIiwiaXNTZWxsZXIiOnRydWUsImVtYWlsIjoiYW1pbkB0ZXN0LmNvbSIsImlhdCI6MTY0NzMxNDA1MX0.1k8kkotcFRffwLTTwCfqJsz6Ie34CxuCSNjiC-f6tfE"}).send(
-//             {
-//                 "firstName": "Updated",
-//                 "lastName": "Boulemkahel",
-//                 "email": "amin@test.com",
-//                 "password": "aminbou12",
-//                 "isSeller": true
-//             }
-//         );
-//         expect(updatedUser.statusCode).toBe(200);
-//     });
-// });
+describe("PUT /users/:id", () => {
+    test("The user id should be found, change information and return success", async () => {
+        const newUser = await request(app).post('/users/signup').send({
+            "firstName": "Kassem",
+            "lastName": "ElZoghbi",
+            "email": "kassem@test.com",
+            "password": "kassemelzo12",
+            "isSeller": true
+        });
+
+        const token = newUser.text;
+        const decodedId = jwt_decode(token)._id;
+
+        const updatedUser = await request(app).put(`/users/${decodedId}`).set({'x-auth-token': token}).send(
+            {
+                "firstName": "Updated",
+                "lastName": "ElZoghbi",
+                "email": "kassem@test.com",
+                "password": "kassemelzo12",
+                "isSeller": true
+            }
+        );
+        expect(updatedUser.statusCode).toBe(200);
+    });
+});
