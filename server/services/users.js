@@ -42,7 +42,7 @@ const edit = async (id, user) => {
         return BadRequest("Invalid User");
 
     if (!id)
-        return BadRequest("Product id not found");
+        return BadRequest("User id not found");
     const u = await User.findByIdAndUpdate(id, user, {new: true});
 
     if (!u)
