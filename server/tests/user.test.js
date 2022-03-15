@@ -3,14 +3,14 @@ const app = require("../app");
 
 describe("GET /users/:id", () => {
     test("The user id should be found, with the exact information and return success", async () => {
-        const response = await request(app).get(`/users/622ff36674d32ed3752bc5d7`);
+        const response = await request(app).get('/users/6230048370818f3c854d87a1');
         expect(response.body).toEqual({
-            "_id": "622ff36674d32ed3752bc5d7",
+            "_id": "6230048370818f3c854d87a1",
             "addresses": [],
             "avatar": "default.jpg",
             "email": "amin@test.com",
             "firstName": "Amin",
-            "isSeller": false,
+            "isSeller": true,
             "lastName": "Boulemkahel"
         });
         expect(response.statusCode).toBe(200);
@@ -107,13 +107,13 @@ describe("POST /users/login", () => {
 
 describe("PUT /users/:id", () => {
     test("The user id should be found, change information and return success", async () => {
-        const updatedUser = await request(app).put('/users/622ff36674d32ed3752bc5d7').set({'x-auth-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIwZTUyMTRhYThjMTYyMzk2ZmU2ZmMiLCJmaXJzdE5hbWUiOiJBbWluIiwibGFzdE5hbWUiOiJCb3VsZW1rYWhlbCIsImF2YXRhciI6ImRlZmF1bHQuanBnIiwiaXNTZWxsZXIiOmZhbHNlLCJlbWFpbCI6ImFtaW5AdGVzdC5jb20iLCJpYXQiOjE2NDcyOTM0MjR9.7z55iJClrUWe8DYhvhlQhkj3BhzsiwYtjetcDxJ1d2c"}).send(
+        const updatedUser = await request(app).put('/users/6230048370818f3c854d87a1').set({'x-auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMwMDQ4MzcwODE4ZjNjODU0ZDg3YTEiLCJmaXJzdE5hbWUiOiJBbWluIiwibGFzdE5hbWUiOiJCb3VsZW1rYWhlbCIsImF2YXRhciI6ImRlZmF1bHQuanBnIiwiaXNTZWxsZXIiOnRydWUsImVtYWlsIjoiYW1pbkB0ZXN0LmNvbSIsImlhdCI6MTY0NzMxNDA1MX0.1k8kkotcFRffwLTTwCfqJsz6Ie34CxuCSNjiC-f6tfE"}).send(
             {
                 "firstName": "Updated",
                 "lastName": "Boulemkahel",
                 "email": "amin@test.com",
                 "password": "aminbou12",
-                "isSeller": false
+                "isSeller": true
             }
         );
         expect(updatedUser.statusCode).toBe(200);
