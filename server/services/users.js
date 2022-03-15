@@ -38,10 +38,16 @@ const login = async (user) => {
 }
 
 const edit = async (id, user) => {
-    if(!validate(user)) return BadRequest("Invalid User");
-    if(!id) return BadRequest("Product id not found");
-    const u = await User.findByIdAndUpdate(id, user,  {new: true});
-    if(!u) return NotFound("Error while updating the user");
+    if (!validate(user))
+        return BadRequest("Invalid User");
+
+    if (!id)
+        return BadRequest("Product id not found");
+    const u = await User.findByIdAndUpdate(id, user, {new: true});
+
+    if (!u)
+        return NotFound("Error while updating the user");
+
     return Success(u);
 }
 
