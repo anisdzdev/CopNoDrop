@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Address } from './checkout.service';
 
 @Component({
   selector: 'app-checkout',
@@ -6,10 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
+  items: any[];
+  index: number = 1;
+  address: Address;
+  constructor() {
 
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.items = [
+      { label: 'Cart' },
+      { label: 'Delivery Details' },
+      { label: 'Checkout' },
+    ];
+  }
+
+  getAddress(add){
+    this.address = add;
+    this.index=2;
+  }
+
+  print(){
+    console.log(this.address);
+  }
 }

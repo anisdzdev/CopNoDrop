@@ -6,7 +6,7 @@
     </div>
     <p *ngIf="products.length==0" class="text-center pt-5">Cart is empty</p>
     <p-table [value]="products" *ngIf="!(products.length==0)">
-      <ng-template pTemplate="header">
+      <ng-template pTemplate="header" class="t-header">
         <tr>
           <th>Item</th>
           <th>Price</th>
@@ -25,14 +25,32 @@
           <td>
             <p-inputNumber [(ngModel)]="product.quantity" [showButtons]="true" buttonLayout="horizontal"
               spinnerMode="horizontal" decrementButtonClass="c-btn" incrementButtonClass="c-btn"
-              incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal" [min]="1" [size]="10">
+              incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal" [min]="1" [size]="10" (click)="updateTotal()">
             </p-inputNumber>
           </td>
           <td>$ {{product.quantity*product.price}}</td>
-          <td><button class="black-btn" (click)="remove(rowIndex)">Remove</button></td>
+          <td><button class="black-btn red-btn" (click)="remove(rowIndex)">Remove</button></td>
         </tr>
       </ng-template>
     </p-table>
+    <div class="bottom">
+      <div class="grid">
+        <p class="col gray">SUBTOTAL</p>
+        <p class="col gray">{{total}}</p>
+      </div>
+      <div class="grid">
+        <p class="col gray">GST+QST</p>
+        <p class="col gray">{{total*0.1499 | number: '1.0-2'}}</p>
+      </div>
+      <div class="grid border">
+        <p class="col">TOTAL</p>
+        <p class="col">{{total*(1+0.1499) | number: '1.0-2'}}</p>
+      </div>
+      <div class="grid buttons">
+        <button class="col yellow-btn" routerLink="/">continue shopping</button>
+        <button class="col black-btn" (click)="toCheckout()">proceed to checkout</button>
+      </div>
+    </div>
   </div>
 
 </div>

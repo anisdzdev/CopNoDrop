@@ -24,10 +24,12 @@ export class ProductListComponent implements OnInit {
 
   addToCart(product){
     const prod = {
+      id: product._id,
       img: product.images[0],
       name: product.name,
       quantity: 1,
-      price: product.price.$numberDecimal
+      price: product.price.$numberDecimal,
+      seller_id: product.creator.id
     }
     this.sharedService.addToCart(prod);
     this.sharedService.alertMessage("Success!", "Item added to cart!", "success");
