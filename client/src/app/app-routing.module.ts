@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './shared/cart/cart.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
@@ -32,12 +33,12 @@ const routes: Routes = [
   },
   {
     path: 'checkout',
-    loadChildren: () => import('./checkout/checkout.module').then((m) => m.CheckoutModule),
+    loadChildren: () =>
+      import('./checkout/checkout.module').then((m) => m.CheckoutModule),
   },
-  // {
-  //   path: '**',
-  //   //Redirect to 404
-  // },
+
+  { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
+
 ];
 
 @NgModule({

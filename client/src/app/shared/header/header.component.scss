@@ -33,15 +33,16 @@
 }
 
 *{
+ 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  
+    z-index: 9999;
   }
   
   nav{
-    
-    z-index: 99;
+    position: absolute;
+    z-index: 9999;
     width: 100%;
     
     background: white;
