@@ -51,14 +51,14 @@ describe("LAST NAME", () => {
 
 describe("AVATAR", () => {
     test("A well formed avatar should return true", async () => {
-        const avatar = 'defaultpng';
+        const avatar = 'default.png';
         expect(avatar).toMatch(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i);
     });
 });
 
 describe("AVATAR", () => {
     test("A not well formed avatar should not match", async () => {
-        const avatar = 'default.png';
+        const avatar = 'defaultpng';
         expect(avatar).not.toMatch(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i);
     });
 });
