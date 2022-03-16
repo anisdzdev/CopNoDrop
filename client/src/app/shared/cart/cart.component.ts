@@ -36,19 +36,24 @@ export class CartComponent implements OnInit, OnDestroy {
 
   remove(index: number){
     this.products.splice(index, 1);
-    console.log(this.products);
     this.sharedService.addProductsToCart(this.products);
+    console.table(this.products);
 
+    this.updateTotal();
   }
 
   updateTotal(): void{
     let total: number = 0;
-    if(!this.products) return;
-    // this.products.map(product => total = total + +product.price);
-    this.products.forEach(product => total += +product.price*product.quantity);
-    this.total = total;
+    if(this.products.length==0){
+      this.total = 0
+    }else{
+      // this.products.map(product => total = total + +product.price);
+      this.products.forEach(product => total += +product.price*product.quantity);
+      this.total = total;
+      this.sharedService.addProductsToCart(this.products);
+    }
     console.log(total);
-    this.sharedService.addProductsToCart(this.products);
+
   }
 
   toCheckout(): void{

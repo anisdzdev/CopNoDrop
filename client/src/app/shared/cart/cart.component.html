@@ -48,7 +48,7 @@
       </div>
       <div class="grid buttons">
         <button class="col yellow-btn" routerLink="/">continue shopping</button>
-        <button class="col black-btn" (click)="toCheckout()">proceed to checkout</button>
+        <button class="col black-btn" (click)="toCheckout()" *ngIf="products.length!=0">proceed to checkout</button>
       </div>
     </div>
   </div>
