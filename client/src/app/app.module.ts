@@ -11,6 +11,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ToastModule } from 'primeng/toast';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import {GalleriaModule} from 'primeng/galleria';
 
 
 
@@ -29,7 +30,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+    GalleriaModule
 
 
   ],
