@@ -51,7 +51,7 @@ describe("LAST NAME", () => {
 
 describe("AVATAR", () => {
     test("A well formed avatar should return true", async () => {
-        const avatar = 'default.png';
+        const avatar = 'defaultpng';
         expect(avatar).toMatch(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i);
     });
 });
