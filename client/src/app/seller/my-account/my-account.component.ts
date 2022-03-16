@@ -123,13 +123,22 @@ export class MyAccountComponent implements OnInit {
     // if (this.form.invalid) {
     //   return;
     // }
-   
+    let pass: any;
+    
+    if(this.form.controls.password1 == null){
+      pass = this.form.controls.password.value;
+    }else if(this.form.controls.password1 == this.form.controls.password2){
+      pass = this.form.controls.password1.value;
+    }else{
+      return;
+    }
+
     const user: User = {
       _id: this.user._id,
       firstName: this.form.controls.firstName.value,
       lastName: this.form.controls.lastName.value,
       email: this.form.controls.email.value,
-      password: this.form.controls.password.value,
+      password: pass,
       isSeller: this.user.isSeller,
 
       addresses: {

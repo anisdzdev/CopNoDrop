@@ -28,6 +28,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean;
   user: User;
   subscription: Subscription[] = [];
+  imageDisplay: string | ArrayBuffer;
+  
+
 
   constructor(
     private router: Router,
@@ -65,7 +68,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       category: ['', Validators.required],
       // quantity: ['', Validators.required],
       description: ['', Validators.required],
-      images: [''],
+      images: ['', Validators.required],
       creator: ['', Validators.required],
     });
   }
@@ -273,7 +276,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.editmode = false;
   }
 
-
+  onImageUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        this.productForm.patchValue({ image: file });
+        this.productForm.get('images').updateValueAndValidity();
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            this.imageDisplay = fileReader.result;
+        };
+        fileReader.readAsDataURL(file);
+    }
+}
 
 
 }

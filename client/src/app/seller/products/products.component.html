@@ -76,7 +76,6 @@
         responsiveLayout="scroll"
         [(selection)]="selectedProducts"
         [rowHover]="true"
-        
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [showCurrentPageReport]="true"
       >
@@ -164,6 +163,7 @@
       header="Product Details"
       [modal]="true"
       styleClass="p-fluid"
+      class="dialog"
     >
       <ng-template pTemplate="content">
         <!-- <img
@@ -269,12 +269,13 @@
         <div class="images">
           <label for="image1">Main Image</label>
           <input
-            type="text"
-            pInputText
-            id="name"
-            [(ngModel)]="firstImage"
-            required
-            autofocus
+            type="file"
+            class="p-inputtext"
+            accept="image/*"
+            autoWidth="false"
+            [style]="{ width: '100%' }"
+            (change)="onImageUpload($event)"
+            [(ngModel)] = "firstImage"
           />
           <small
             *ngIf="productForm.controls.images.invalid && submitted"
@@ -282,14 +283,18 @@
             >Image is required</small
           >
           <br />
-          <label for="image2">secondary Image</label>
+          <div class="col-2 mt-2 pl-0">
+            <img [src]="imageDisplay" alt="" [style]="{ width: '100%' }" />
+        </div>
+
+          <!-- <label for="image2">secondary Image</label>
           <input
             type="text"
             pInputText
             id="name"
             [(ngModel)]="secondImage"
             autofocus
-          />
+          /> -->
         </div>
 
         <div class="formgrid grid">
@@ -332,8 +337,5 @@
 
     <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
     <!-- tabel -->
-
-
-
   </div>
 </div>
