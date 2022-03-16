@@ -57,7 +57,7 @@ describe("AVATAR", () => {
 });
 
 describe("AVATAR", () => {
-    test("A not well formed avatar should return false", async () => {
+    test("A not well formed avatar should not match", async () => {
         const avatar = 'default.png';
         expect(avatar).not.toMatch(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i);
     });
