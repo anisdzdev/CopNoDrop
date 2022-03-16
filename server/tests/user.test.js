@@ -20,7 +20,7 @@ describe("EMAIL", () => {
 
 describe("EMAIL", () => {
     test("A not well formed email should not match", async () => {
-        const email = 'amintestc.om';
+        const email = 'amintestc.com';
         expect(email).not.toMatch(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     });
 });
