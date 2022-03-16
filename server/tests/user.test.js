@@ -18,6 +18,13 @@ describe("EMAIL", () => {
     });
 });
 
+describe("EMAIL", () => {
+    test("A not well formed email should return false", async () => {
+        const email = 'amintest.com';
+        expect(email).not.toMatch(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    });
+});
+
 describe("PASSWORD", () => {
     test("A well formed password should return true", async () => {
         const password = 'aminbou12';
@@ -46,6 +53,13 @@ describe("AVATAR", () => {
     test("A well formed avatar should return true", async () => {
         const avatar = 'default.png';
         expect(avatar).toMatch(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i);
+    });
+});
+
+describe("AVATAR", () => {
+    test("A not well formed avatar should return false", async () => {
+        const avatar = 'default.png';
+        expect(avatar).not.toMatch(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i);
     });
 });
 
