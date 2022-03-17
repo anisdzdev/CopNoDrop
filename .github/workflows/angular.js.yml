@@ -1,8 +1,9 @@
 name: Angular GitHub CI
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   ci:
@@ -37,12 +38,16 @@ jobs:
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: |
           npm ci
+        working-directory: client
       - name: Build
         run: |
           npm run build -- --prod
+        working-directory: client
       - name: Lint
         run: |
           npm run lint
+        working-directory: client
       - name: Test
         run: |
           npm run test -- --prod
+        working-directory: client
