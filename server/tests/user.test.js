@@ -11,6 +11,58 @@ afterAll(async () => {
     await mongoose.connection.close()
 })
 
+describe("EMAIL", () => {
+    test("A well formed email should return true", async () => {
+        const email = 'amin@test.com';
+        expect(email).toMatch(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    });
+});
+
+describe("EMAIL", () => {
+    test("A not well formed email should not match", async () => {
+        const email = 'amintestc.com';
+        expect(email).not.toMatch(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    });
+});
+
+describe("PASSWORD", () => {
+    test("A well formed password should return true", async () => {
+        const password = 'aminbou12';
+        expect(password.length).toBeGreaterThanOrEqual(5);
+        expect(password.length).toBeLessThanOrEqual(225);
+    });
+});
+
+describe("FIRST NAME", () => {
+    test("A well formed first name should return true", async () => {
+        const firstName = 'Amin';
+        expect(firstName.length).toBeGreaterThanOrEqual(2);
+        expect(firstName.length).toBeLessThanOrEqual(225);
+    });
+});
+
+describe("LAST NAME", () => {
+    test("A well formed last name should return true", async () => {
+        const lastName = 'Boulemkahel';
+        expect(lastName.length).toBeGreaterThanOrEqual(2);
+        expect(lastName.length).toBeLessThanOrEqual(225);
+    });
+});
+
+describe("AVATAR", () => {
+    test("A well formed avatar should return true", async () => {
+        const avatar = 'default.png';
+        expect(avatar).toMatch(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i);
+    });
+});
+
+describe("AVATAR", () => {
+    test("A not well formed avatar should not match", async () => {
+        const avatar = 'defaultpng';
+        expect(avatar).not.toMatch(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i);
+    });
+});
+
 describe("GET /users/:id", () => {
     test("The user id should be found, with the exact information and return success", async () => {
         const newUser = await request(app).post('/users/signup').send({
