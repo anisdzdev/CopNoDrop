@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as countriesLib from 'i18n-iso-countries';
+import { Order } from 'libs/products/model/orders';
 import { Product } from 'libs/products/model/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
@@ -24,6 +25,7 @@ export class MyAccountComponent implements OnInit {
   user: User;
   products: Product[] = [];
   product: Product;
+  
 
   constructor(
     private router: Router,
@@ -161,6 +163,9 @@ export class MyAccountComponent implements OnInit {
       (product.creator.firstName = this.user.firstName),
         (product.creator.lastName = this.user.lastName);
     });
+
+  
+
   }
 
   private _updateUser(user: User) {
@@ -182,4 +187,10 @@ export class MyAccountComponent implements OnInit {
       }
     );
   }
+
+ 
+
+
+
+
 }
