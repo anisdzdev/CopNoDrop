@@ -70,6 +70,14 @@ export class AuthService {
     }
   }
 
+  alertMessageSuccess(title: string, message: string, type?: "success") {
+    setTimeout(() => {
+      this.messageService.add({
+        severity: type,
+        summary: title,
+        detail: message,
+      })}, 100)
+    }
 
   alertMessage(title: string, message: string, type?) {
     setTimeout(() => {
