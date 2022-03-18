@@ -275,7 +275,7 @@
             autoWidth="false"
             [style]="{ width: '100%' }"
             (change)="onImageUpload($event)"
-            [(ngModel)] = "firstImage"
+            multiple
           />
           <small
             *ngIf="productForm.controls.images.invalid && submitted"

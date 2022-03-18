@@ -54,7 +54,7 @@ export class MainPageComponent implements OnInit {
   private _getOrders() {
     this.sellerService.getOrders(this.user.token).subscribe((orders:any) => {
       this.orders = JSON.parse(orders);
-      
+      this.orders = this.orders.filter((order) => {order.state == 'pending'})
     });
   }
 

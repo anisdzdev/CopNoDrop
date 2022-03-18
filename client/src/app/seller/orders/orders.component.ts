@@ -43,6 +43,7 @@ export class OrdersComponent implements OnInit {
     }
 
     this._getOrders();
+
   }
 
   private _getOrders() {
