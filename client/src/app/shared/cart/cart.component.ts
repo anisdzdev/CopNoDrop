@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { SharedService } from '../shared.service';
 
 @Component({
@@ -7,14 +10,21 @@ import { SharedService } from '../shared.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   items: MenuItem[] = [];
   products: any[] = [];
+  total: number = 0;
+  isLogged: boolean;
+  subscriptions: Subscription[] = [];
 
-  constructor(private sharedService: SharedService) {
+  constructor(private sharedService: SharedService, private authService: AuthService, private router: Router) {
     this.products = this.sharedService.getCartItems();
-    console.log(this.products);
+    this.updateTotal();
+    const sub = this.authService.islogin$.subscribe(value => this.isLogged = value);
+    this.subscriptions.push(sub)
+
   }
+
 
   ngOnInit(): void {
     this.items = [
@@ -26,8 +36,39 @@ export class CartComponent implements OnInit {
 
   remove(index: number){
     this.products.splice(index, 1);
-    console.log(this.products);
     this.sharedService.addProductsToCart(this.products);
+    console.table(this.products);
 
+    this.updateTotal();
+  }
+
+  updateTotal(): void{
+    let total: number = 0;
+    if(this.products.length==0){
+      this.total = 0
+    }else{
+      // this.products.map(product => total = total + +product.price);
+      this.products.forEach(product => total += +product.price*product.quantity);
+      this.total = total;
+      this.sharedService.addProductsToCart(this.products);
+    }
+    console.log(total);
+
+  }
+
+  toCheckout(): void{
+    if(this.isLogged) this.router.navigateByUrl("/checkout");
+    else {
+      this.authService.alertMessage(
+        'Warning!',
+        'You Must Login Before Checkout!',
+        'warn'
+      );
+      this.router.navigateByUrl("/auth/login");
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub=>sub.unsubscribe());
   }
 }
