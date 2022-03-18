@@ -10,7 +10,9 @@
   width: calc(100% - 200px);
   margin-left: 200px;
 }
-
+.order-container{
+  margin-bottom: 10px;
+}
 .empty {
   background-color: #4eb051;
   padding: 12px 20px 12px 25px;
@@ -93,6 +95,7 @@
 }
 
 .order{
+  margin-bottom: 10px;
   .date{
     margin-bottom: 5px;
   }
