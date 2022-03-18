@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { buyerRoutingModule } from './buyer-routing.module';
 import { OrdersComponent } from './orders/orders.component';
 import { MyAccountComponent } from './my-account/my-account.component';
-import { ProductsComponent } from './products/products.component';
 import { buyerComponent } from './buyer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -42,7 +41,6 @@ import {InputTextModule} from 'primeng/inputtext';
   declarations: [
     OrdersComponent,
     MyAccountComponent,
-    ProductsComponent,
     buyerComponent,
     MainPageComponent,
     SidebarComponent,
