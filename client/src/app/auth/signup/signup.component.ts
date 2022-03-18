@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Observable, throwError } from "rxjs";
+import { MessageService } from 'primeng/api';
 import jwt_decode from 'jwt-decode';
 
 @Component({
@@ -54,7 +55,7 @@ export class SignupComponent {
 
   isSeller: boolean;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private messageService: MessageService) { }
 
   handleChange(e) {
     this.isSeller = e.checked;
@@ -68,7 +69,7 @@ export class SignupComponent {
         this.httpSignUp(this.signupForm.value.firstName, this.signupForm.value.lastName, this.signupForm.value.email, this.signupForm.value.password, this.isSeller).subscribe(token =>console.log(this.getDecodedAccessToken(token)));
       }
       else {
-        alert("Passwords do not match");
+        this.alertMessage("Error!", "Passwords do not match", "error");
       }
   }
 
@@ -94,10 +95,18 @@ export class SignupComponent {
 
   private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
       return (error: Error): Observable<T> => {
-      alert('Email already used')
-      return throwError('Email already used');
+        this.alertMessage("Error!", "Email already used", "error");
+        return throwError('Email already used');
     };
   }
 
-
+  alertMessage(title: string, message: string, type?: "error") {
+    setTimeout(() => {
+      this.messageService.add({
+        severity: type,
+        summary: title,
+        detail: message,
+      });
+    }, 100);
+  }
 }

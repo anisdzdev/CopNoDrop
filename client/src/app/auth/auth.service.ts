@@ -58,7 +58,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('user');
-    this.alertMessage("Success!", "You have been logged out", "success");
+    this.alertMessageSuccess("Success!", "You have been logged out", "success");
     this.isloginSubject.next(false);
   }
 
@@ -70,7 +70,7 @@ export class AuthService {
     }
   }
 
-  alertMessage(title: string, message: string, type?: "success") {
+  alertMessageSuccess(title: string, message: string, type?: "success") {
     setTimeout(() => {
     this.messageService.add({
       severity: type,
@@ -80,9 +80,19 @@ export class AuthService {
     }, 100);
   }
 
+  alertMessageError(title: string, message: string, type?: "error") {
+    setTimeout(() => {
+      this.messageService.add({
+        severity: type,
+        summary: title,
+        detail: message,
+      });
+    }, 100);
+  }
+
   private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
     return (error: Error): Observable<T> => {
-      alert('Please check credentials')
+      this.alertMessageError("Error!", "Please check credentials", "error")
       return throwError('Please check credentials');
     };
   }
