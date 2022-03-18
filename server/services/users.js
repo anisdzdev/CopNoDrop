@@ -37,6 +37,21 @@ const login = async (user) => {
     return Success(token);
 }
 
+const edit = async (id, user) => {
+    if (!validate(user))
+        return BadRequest("Invalid User");
+
+    if (!id)
+        return BadRequest("User id not found");
+    const u = await User.findByIdAndUpdate(id, user, {new: true});
+
+    if (!u)
+        return NotFound("Error while updating the user");
+
+    return Success(u);
+}
+
 exports.findOne = findOne;
 exports.create = create;
 exports.login = login;
+exports.edit = edit;

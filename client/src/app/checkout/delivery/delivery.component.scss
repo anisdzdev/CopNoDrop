@@ -1,0 +1,92 @@
+.title {
+  padding-bottom: 8px;
+}
+
+.main {
+  padding: 8%;
+  padding-top: 0;
+}
+
+.product-img {
+  width: 50px;
+}
+
+p-table {
+  margin-top: 20px;
+}
+
+.steps-container {
+  margin-bottom: 20px !important;
+}
+
+.red-btn {
+  background-color: red;
+  height: 25px;
+  width: 100%;
+}
+.red-btn:hover {
+  background-color: black;
+  color: white !important;
+  width: 100%;
+}
+
+.bottom {
+  margin-top: 30px;
+  width: 50%;
+  font-weight: 700;
+  p {
+    margin: 2px;
+  }
+  .gray {
+    color: #726e6e !important;
+  }
+  .border {
+    margin-top: 5px;
+    border-top: 1px solid #8080804d;
+    border-bottom: 1px solid #8080804d;
+    p {
+      padding: 4px !important;
+    }
+  }
+  .buttons {
+    margin-top: 5px;
+    button {
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+  }
+}
+
+  .inner-container {
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    .top {
+      h3 {
+        margin-top: 0px;
+      }
+    }
+    .body{
+      padding: 10px;
+      input{
+        height: 50px;
+        border: 1px solid #e7e7e7;
+        width: 100%;
+      }
+    }
+  }
+
+
+.btn-grp{
+  margin: 5px;
+  .next{
+    height: 40px;
+    width: 100%;
+    margin: 5px;
+  }
+}
+
+.error{
+  color: red;
+  padding: 3px;
+  margin-top: 2px;
+}
