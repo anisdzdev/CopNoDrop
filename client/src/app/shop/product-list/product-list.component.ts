@@ -38,8 +38,8 @@ export class ProductListComponent implements OnInit {
       seller_id: product.creator.id
     };
 
-      
-    }
+
+
 
     this.sharedService.addToCart(prod);
     this.sharedService.alertMessage(
@@ -48,5 +48,4 @@ export class ProductListComponent implements OnInit {
       'success'
     );
   }
-
 }
