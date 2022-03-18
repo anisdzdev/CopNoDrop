@@ -67,10 +67,10 @@ export class AuthService {
     }
   }
 
-  alertMessage(title: string, message: string, type?: "success") {
+  alertMessage(title: string, message: string, type?) {
     setTimeout(() => {
     this.messageService.add({
-      severity: type,
+      severity: type || "success",
       summary: title,
       detail: message,
     });
