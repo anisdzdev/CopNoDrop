@@ -58,7 +58,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('user');
-    this.alertMessage("Success!", "You have been logged out", "success");
+    this.alertMessageSuccess("Success!", "You have been logged out", "success");
     this.isloginSubject.next(false);
   }
 
@@ -69,6 +69,15 @@ export class AuthService {
       return null;
     }
   }
+
+  alertMessageSuccess(title: string, message: string, type?: "success") {
+    setTimeout(() => {
+      this.messageService.add({
+        severity: type,
+        summary: title,
+        detail: message,
+      })}, 100)
+    }
 
   alertMessage(title: string, message: string, type?) {
     setTimeout(() => {
