@@ -1,19 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './shared/cart/cart.component';
-import { PagenotfoundComponent } from 
-    './pagenotfound/pagenotfound.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
+  
+  {
+    path: 'buyer',
+    loadChildren: () =>
+      import('./buyer/buyer.module').then((m) => m.buyerModule),
+  },
+
   {
     path: 'seller',
     loadChildren: () =>
       import('./seller/seller.module').then((m) => m.SellerModule),
   },
+
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
@@ -32,12 +39,14 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
-  { path: '**', pathMatch: 'full', 
-        component: PagenotfoundComponent },
-  // {
-  //   path: '**',
-  //   //Redirect to 404
-  // },
+  {
+    path: 'checkout',
+    loadChildren: () =>
+      import('./checkout/checkout.module').then((m) => m.CheckoutModule),
+  },
+
+  { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
+
 ];
 
 @NgModule({

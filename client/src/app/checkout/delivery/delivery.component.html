@@ -1,0 +1,65 @@
+<div class="inner-container">
+  <div class="top text-center">
+    <img
+      src="https://www.spinneyslebanon.com/static/version1646992467/frontend/Spinneys/theme/en_US/images/delivery.svg">
+    <h3 class="text-center">Delivering To</h3>
+  </div>
+  <div class="body">
+    <form [formGroup]="deliveryForm">
+      <div class="grid">
+        <div class="col sm-12">
+          <p>First Name<sup>*</sup></p>
+          <input type="text" [value]="user.firstName" disabled>
+        </div>
+        <div class="col sm-12">
+          <p>Last Name<sup>*</sup></p>
+          <input type="text" [value]="user.lastName" disabled>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="col sm-12">
+          <p>Address Line<sup>*</sup></p>
+          <input type="text" formControlName="firstLine">
+          <span class="error" *ngIf="deliveryForm.controls.firstLine.invalid &&
+            (deliveryForm.controls.firstLine.dirty || deliveryForm.controls.firstLine.touched || nextClicked )">Address
+            Line is Required</span>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="col sm-12">
+          <p>Country<sup>*</sup></p>
+          <input type="text" formControlName="country">
+          <span class="error" *ngIf="deliveryForm.controls.country.invalid &&
+          (deliveryForm.controls.country.dirty || deliveryForm.controls.country.touched || nextClicked)">Country is
+            Required</span>
+        </div>
+        <div class="col sm-12">
+          <p>Province<sup>*</sup></p>
+          <input type="text" formControlName="province">
+          <span class="error" *ngIf="deliveryForm.controls.province.invalid &&
+          (deliveryForm.controls.province.dirty || deliveryForm.controls.province.touched || nextClicked)">Province is
+            Required</span>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="col sm-12">
+          <p>City<sup>*</sup></p>
+          <input type="text" formControlName="city">
+          <span class="error" *ngIf="deliveryForm.controls.city.invalid &&
+          (deliveryForm.controls.city.dirty || deliveryForm.controls.city.touched ||nextClicked)">City is Required</span>
+        </div>
+        <div class="col sm-12">
+          <p>Postal Code<sup>*</sup></p>
+          <input type="text" formControlName="postal_code">
+          <span class="error" *ngIf="deliveryForm.controls.postal_code.invalid &&
+          (deliveryForm.controls.postal_code.dirty || deliveryForm.controls.postal_code.touched || nextClicked)">Postal Code is
+            Required</span>
+        </div>
+      </div>
+      <div class="grid btn-grp">
+        <button class="yellow-btn next col sm-12" routerLink="/cart">Back</button>
+        <button class="black-btn next col sm-12" (click)="verifyForm(this.deliveryForm.value)">Next</button>
+      </div>
+    </form>
+  </div>
+</div>

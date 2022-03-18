@@ -1,8 +1,8 @@
 <div class="main">
   <h1 class="text-center">{{category}}</h1>
   <div class="product-item grid justify-content-center">
-    <div class="product-item-content col-12 md:col-6 lg:col-3" *ngFor="let product of products">
-        <img class="img"
+    <div class="product-item-content col-12 md:col-6 lg:col-3" *ngFor="let product of products"  [routerLink]="['/shop/description']" [queryParams]="{id: product._id}">
+        <img class="img product-img"
           [src]="product.images[0] || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png'"
           alt="">
         <p class="p-title">{{product.name}}</p>

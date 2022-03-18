@@ -1,0 +1,72 @@
+.admin-sidebar {
+  width: 200px;
+  //background-color: rgb(255, 255, 255);
+  height: 80%;
+  top: 0;
+  display: block;
+  border: 1px solid;
+  float: left;
+}
+
+.admin-sidebar li {
+  list-style: none;
+  margin: 10px 15px;
+}
+
+.admin-sidebar li a {
+  text-decoration: none;
+}
+
+.admin-sidebar ul {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+#logout {
+  color: rgb(255, 0, 0);
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.logout {
+  //background-color: rgb(153, 153, 153);
+  margin-bottom: 0px;
+  padding-top: 7.55px;
+  margin-left: 0px;
+  padding-bottom: 7.5px;
+  padding-left: 15px;
+  border-top: 1px solid;
+  text-decoration: none;
+}
+
+.logout a {
+  padding-left: 0px;
+}
+
+.admin-sidebar h3 {
+  padding-left: 15px;
+  background-color: #333;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  overflow: auto;
+  margin-top: 0px;
+  color: white;
+  text-decoration: none;
+}
+
+.admin-sidebar span {
+  color: #333;
+}
+
+.current{
+    font-weight: bold;
+}
+
+a:visited{
+  all: unset;
+  text-decoration: none;
+}
+

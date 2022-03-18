@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { User } from '../auth.service';
 import { Router } from '@angular/router';
+import {Observable, throwError} from "rxjs";
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,7 +12,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  baseURL: string = 'http://localhost:3000/';
+
+  response = new Response();
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [
@@ -52,7 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       user.token = res;
       this.authService.setUserToStorage(user);
       this.authService.isloginSubject.next(true);
-      this.authService.alertMessage(
+      this.authService.alertMessageSuccess(
         'Success!',
         'You are now logged in',
         'success'

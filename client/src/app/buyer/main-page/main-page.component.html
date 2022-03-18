@@ -1,0 +1,35 @@
+<div class="wrapper">
+    <h2 id="welcome-title">Welcome To Your Account {{ user.firstName +" "+user.lastName }}</h2>
+    <p id="welcome-message">
+      All you need to know about your Orders and Account
+    </p>
+
+    <div class="grid one" style="width: 100%">
+
+    </div>
+
+    <div class="grid two">
+      <div class="col flex-auto container-bottom">
+        <img
+          width="40px"
+          height="40px"
+          src="https://d145dj1pf6foch.cloudfront.net/dashboardicons/myOrders.svg"
+        />
+        <a routerLink="orders" ><h3 class="title2">My Orders</h3></a>
+        <span>Manage your orders</span>
+      </div>
+      <div class="col flex-auto container-bottom">
+        <img
+          width="40px"
+          height="40px"
+          src="https://d145dj1pf6foch.cloudfront.net/dashboardicons/personalDetails.svg"
+        />
+       <a routerLink="my-account"><h3 class="title2">Personal Info</h3></a>
+        <span>Manage your account information</span>
+      </div>
+
+    </div>
+  </div>
+
+
+
