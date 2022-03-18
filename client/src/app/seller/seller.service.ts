@@ -35,6 +35,7 @@ export class SellerService {
       ),
       responseType: 'text',
     };
+  
     return this.http.post<Product>(this.apiUrlProducts, productData, requestOptions);
   }
 

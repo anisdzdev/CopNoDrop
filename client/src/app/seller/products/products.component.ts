@@ -190,7 +190,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
         this.fillProductForm();
         this.products.push(this.product);
-        console.log(this.productForm.get('images').value);
+        // console.log(this.productForm.get('images').value);
         console.log(this.productForm.value);
         this.sellerService
           .createProduct(this.productForm.value, this.user.token)
@@ -284,20 +284,46 @@ export class ProductsComponent implements OnInit, OnDestroy {
   //   const reader = new FileReader();
   //   reader.readAsDataURL(file);
   //   reader.onload = () => {
-  //       this.images.push(reader.result);
-  //       this.productForm.controls['images'].setValue(this.images);
+  //       this.productForm.controls['images'].setValue(reader.result);
   //     };
   // }
 
-  myFiles:string [] = [];
-  onImageUpload(event) {
-      for (var i = 0; i < event.target.files.length; i++) { 
-          this.myFiles.push(event.target.files[i]);
-          
-        }
-      this.productForm.get('images').setValue(this.myFiles);
-    }    
 
+onImageUpload(event){
+  const file = event.dataTransfer ? event.dataTransfer.files[0] : event.target.files[0];
+    const reader = new FileReader();
+
+    const fileDto: Partial<any> = {
+        // your other data here
+        title: 'what ever here',
+        fileAsBase64: null
+    };
+
+    reader.onload = (ev: ProgressEvent) => {
+        this.productForm.controls['images'].setValue(reader.result);
+    };
+    
+    
+}
+
+
+
+
+
+  // myFiles:string [] = [];
+  // onImageUpload(event) {
+  //     for (var i = 0; i < event.target.files.length; i++) { 
+  //         this.myFiles.push(event.target.files[i]);
+          
+  //       }
+  //     this.productForm.get('images').setValue(this.myFiles);
+  //   }    
+
+  // onImageUpload(event) {
+  //   const file = event.target.files[0];
+  //   this.productForm.get('images').setValue(file);
+    
+  // }   
 
 
 
