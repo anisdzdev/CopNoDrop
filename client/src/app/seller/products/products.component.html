@@ -169,7 +169,7 @@
         <!-- <img
           [src]="product.images[0]"
           class="product-image"
-     
+
         /> -->
         <div class="field">
           <label for="name">Name</label>
@@ -277,11 +277,7 @@
             (change)="onImageUpload($event)"
             multiple
           />
-          <small
-            *ngIf="productForm.controls.images.invalid && submitted"
-            class="p-error"
-            >Image is required</small
-          >
+
           <br />
           <div class="col-2 mt-2 pl-0">
             <img [src]="imageDisplay" alt="" [style]="{ width: '100%' }" />
