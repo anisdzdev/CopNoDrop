@@ -1,0 +1,21 @@
+<div class="inner-container">
+  <div class="top text-center">
+    <img
+      src="https://www.spinneyslebanon.com/static/version1646992467/frontend/Spinneys/theme/en_US/images/delivery.svg">
+    <h3 class="text-center" *ngIf="!orderComplete">Confirm Order</h3>
+    <h3 class="text-center" *ngIf="orderComplete">Order Confirmation</h3>
+  </div>
+  <div class="body" *ngIf="!orderComplete">
+    <app-payment #childComponent></app-payment>
+    <div class="checkout-btn">
+      <button class="black-btn " (click)="checkout()">Checkout</button>
+    </div>
+  </div>
+  <div class="body" *ngIf="orderComplete">
+    <h3 class="text-center">Thank you {{user.firstName+ " "+ user.lastName}}</h3>
+    <p class="text-center">Your order is complete and is split in {{orderIDs.length}} order</p>
+    <h3>Here are your order numbers to track their progress:</h3>
+    <p *ngFor="let id of orderIDs" class="text-center">#{{id}}</p>
+    <a routerLink="/" class="text-center">Back to Home</a>
+  </div>
+</div>

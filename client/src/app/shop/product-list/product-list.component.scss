@@ -1,3 +1,9 @@
+
+.main {
+  position: relative;
+  min-height: 70vh;
+}
+
 .p-price {
   font-size: 18px;
   font-weight: 700;
@@ -7,6 +13,9 @@
     color: #999;
     line-height: 14px;
   }
+}
+.product-img{
+  width: 100% !important;
 }
 .btn-wrap {
   width: 100%;
