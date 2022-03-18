@@ -112,23 +112,20 @@ router.get('/:id', async (req, res) => {
  *     requestBody:
  *       required: true
  *       content:
- *         multipart/form-data:
+ *         application/json:
  *           schema:
  *             type: object
  *             properties:
  *               images:
  *                 type: array
  *                 items:
- *                   type: file
- *                   format: binary
+ *                   type: string
  *               name:
  *                 type: string
  *               description:
  *                 type: string
  *               category:
  *                 type: string
- *               supply:
- *                 type: number
  *               price:
  *                 type: number
  *               sale:
@@ -141,16 +138,13 @@ router.get('/:id', async (req, res) => {
  *             schema:
  *               $ref: '#/components/schemas/product'
  */
-router.post('/', [auth, upload.array('images', 10)], async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     let product = req.body;
     product.creator = {id: req.user._id, firstName: req.user.firstName, lastName: req.user.lastName};
-    const result = await productService.create(product, req.files);
+    const result = await productService.create(product);
     res.status(result.status).send(result.data);
   } catch (e) {
-    await Promise.all(req.files?.map(async f => {
-      await unlinkAsync(f.path);
-    }));
     res.status(500).send(e.message);
   }
 });

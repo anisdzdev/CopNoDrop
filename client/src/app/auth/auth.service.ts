@@ -115,14 +115,7 @@ export interface User {
   email?: string;
   password?: string;
   isSeller?: boolean;
-  addresses?: {
-    firstLine: string;
-    city: string;
-    province: string;
-    country: string;
-    postal_code: string;
-    isDefault: boolean;
-  };
+  addresses?: object;
   token?: string;
   iat?: number;
 }

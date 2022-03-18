@@ -1,7 +1,7 @@
 <div class="wrapper">
   <app-sidebar [page]="'orders'"></app-sidebar>
 
-  <app-menu-panel [page]="'orders'"></app-menu-panel>
+  <app-menu-panel [page] = "'orders'"></app-menu-panel>
 
   <div class="orders-content">
     <div class="page-title-wrapper">
@@ -16,48 +16,24 @@
         You have no orders.
       </span>
     </div>
-    <div class="order-container" *ngFor="let order of orders">
-      <p-card class="order" >
-        <div class="grid">
-          <div class="col-11 padd-0">
-            <p class="date">
-              <b>{{ order.placedOn | date: "medium" }}</b>
-            </p>
-            <p class="mar-0 light">Order: #{{ order._id }}</p>
-          </div>
+    <p-card class="order" *ngFor="let order of orders">
+      <div class="grid">
+        <div class="col-11 padd-0">
+          <p class="date"> <b>{{order.date}} | {{order.time}}</b></p>
+          <p class="mar-0 light">Order: #{{order.id}}</p>
         </div>
-        <div class="products grid">
-          <p class="col-6" style="padding-left: 0">
-            Product Name: {{ order.product.name }}
-          </p>
-          <img
-            class="col-6 col-offset-2"
-            [src]="order.product.img"
-            style="width: 95px"
-          />
-          <!-- <img *ngFor="let product of order.product.slice(0,7)" [src]="product.img" alt="" class="product-img"> -->
+        <div class="col-1 i-container">
+          <i class="pi pi-angle-right"></i>
         </div>
-        <div class="grid text-center">
-          <p class="col-4 mar-0 border-right-1 border-300 pt-3">
-            <b>Products: </b> {{ order.product.quantity }}
-          </p>
-          <p class="col-4 mar-0 pt-3 border-right-1 border-300">
-            <b>Total: </b> ${{ order.total.$numberDecimal }}
-          </p>
-          <button
-            *ngIf="!order.state || order.state != 'Complete'"
-            class="col-4 m-auto pt-3 yellow-btn"
-            style="width: 190px"
-            (click)="sendOrder(order)"
-          >
-            Send Order
-          </button>
-
-          <p class="col-4 mar-0 pt-3" *ngIf="order.state == 'Complete'">
-            Order Sent!
-          </p>
-        </div>
-      </p-card>
-    </div>
+      </div>
+      <div class="products grid">
+        <img *ngFor="let product of order.products.slice(0,7)" [src]="product.img" alt="" class="product-img">
+        <span style="display: block;">and more...</span>
+      </div>
+      <div class="grid text-center">
+        <p class="col-6 mar-0 border-right-1 border-300 pt-3"><b>Products: </b> {{order.products.length}}</p>
+        <p class="col-6 mar-0 pt-3"><b>Total: 8</b> ${{order.total}} </p>
+      </div>
+  </p-card>
   </div>
 </div>

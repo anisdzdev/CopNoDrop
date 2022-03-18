@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <h2 id="welcome-title">Welcome {{ user.firstName + " " + user.lastName | titlecase }}</h2>
+    <h2 id="welcome-title">Welcome {{ user.name }}</h2>
     <p id="welcome-message">
       Here's where you'll find all your account details, favorites &amp; lists,
       saved recipes and My Wallet.
@@ -19,7 +19,7 @@
       <div class="col-12 sm:col-12 md:col-3 lg:col-3 flex-auto container-top ">
         <i class="pi pi-book one"></i><br />
         <a><h3 class="title1">pending orders</h3></a>
-        <span class="price">{{ orders.length }}</span>
+        <span class="price">{{ numberOfOrders }}</span>
       </div>
     </div>
   
