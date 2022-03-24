@@ -25,8 +25,6 @@ jobs:
         working-directory: client
       - run: npm run build --if-present
         working-directory: client
-      - run: apt-get update
-        working-directory: client
       - run: apt-get install -y libgbm-dev
         working-directory: client
       - run: npm test
