@@ -25,11 +25,7 @@ jobs:
         working-directory: client
       - run: npm run build --if-present
         working-directory: client
-      - run: sudo apt-get update
-        working-directory: client
-      - run: sudo apt-get install -y libgbm-dev
-        working-directory: client
-      - run: npm test
+      - run: npm test -- --watch=false --browsers=ChromeHeadless
         working-directory: client
         env:
           CI: true
