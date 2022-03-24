@@ -12,7 +12,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { ToastModule } from 'primeng/toast';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import {GalleriaModule} from 'primeng/galleria';
-
+import { RouterModule } from '@angular/router';
 
 
 
@@ -24,6 +24,7 @@ import {GalleriaModule} from 'primeng/galleria';
     PagenotfoundComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
