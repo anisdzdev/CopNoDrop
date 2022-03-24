@@ -28,9 +28,19 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage/client'),
       subdir: '.',
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
+        {type: 'html'},
+        {type: 'text-summary'}
       ]
+    },
+    customLaunchers: {
+      ChromeBrowser: {
+        base: "ChromeHeadless",
+        flags: [
+          "--no-sandbox",
+          `--remote-debugging-port=${config.chromePort}`,
+          "--disable-dev-shm-usage",
+        ]
+      }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
