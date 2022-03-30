@@ -56,6 +56,10 @@ export class MyAccountComponent implements OnInit {
       this.router.navigateByUrl('');
     }
 
+
+    if(this.user.isSeller == false)
+    this.router.navigate(['error']);
+
     this._fillForm();
     // the _getProducts is if the name changed it should also change in the creator of the products
     this._getProducts();
