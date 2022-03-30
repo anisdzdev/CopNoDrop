@@ -252,7 +252,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productForm.get('category').setValue(this.product.category);
     this.productForm.get('description').setValue(this.product.description);
     this.productForm.get('creator').setValue({firstName: this.user.firstName, lastName: this.user.lastName});
-    this.productForm.get('supply').setValue(this.product.quantity);
+    this.productForm.get('supply').setValue(this.product.supply);
 
     const form = new FormData();
     for (const [key, control] of Object.entries(this.productForm.controls)) {
