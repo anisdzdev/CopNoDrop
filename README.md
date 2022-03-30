@@ -28,5 +28,3 @@ The seller is able to add a product to the product list identified by a category
   - [Express.JS](https://expressjs.com/)
   - [NodeJS](https://nodejs.org/en/)
   - [MongoDB](https://mongodb.com/)
-  - [Swagger](https://mongodb.io/)
-  - [Jest](https://jestjs.io/)
