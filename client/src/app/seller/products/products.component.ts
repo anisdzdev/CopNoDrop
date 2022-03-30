@@ -8,6 +8,7 @@ import { AuthService, User } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -37,14 +38,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private confirmationService: ConfirmationService,
     private formBuilder: FormBuilder
   ) {
+
     this.productForm = this.formBuilder.group({
-      name: new FormControl( '', [ Validators.required]),
+      name: new FormControl( '', [ Validators.required, Validators.minLength(5)]),
       price: new FormControl( '', [ Validators.required]),
       category: new FormControl( '', [ Validators.required]),
-      description: new FormControl( '', [ Validators.required]),
+      description: new FormControl( '', [ Validators.required, Validators.minLength(5)]),
       creator: new FormControl( '', [ Validators.required]),
       images: new FormControl( ''),
-      supply: new FormControl(1)
+      supply: new FormControl('', Validators.required)
     });
   }
 
@@ -75,10 +77,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
       name: '',
       description: '',
       category: '',
-      price: { $numberDecimal: 0 },
+      //price: { $numberDecimal: 0 },
+      price: { $numberDecimal: null },
       sale: 0,
       images: [] = [],
-      quantity: 0,
+      
     };
     this.submitted = false;
     this.productDialog = true;
@@ -173,6 +176,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.submitted = true;
 
 
+    this.fillProductForm();
+    if(this.productForm.invalid){
+      console.log(this.productForm);
+      return;
+    }
+    
+    
+
     if (this.product.name.trim()) {
       const form = this.fillProductForm();
       if (this.editmode == true) {
@@ -180,7 +191,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this._updateProduct(form);
       } else {
         this.products.push(this.product);
-        // console.log(this.productForm.get('images').value);
         this.sellerService.createProduct(form, this.user.token).subscribe((res) => {
           if(this.product.images) this.product.images.push(res.images[0]);
           console.log(res.images[0]);
@@ -241,7 +251,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productForm.get('price').setValue(this.product.price.$numberDecimal);
     this.productForm.get('category').setValue(this.product.category);
     this.productForm.get('description').setValue(this.product.description);
-    this.productForm.get('creator').setValue(this.product.creator);
+    this.productForm.get('creator').setValue({firstName: this.user.firstName, lastName: this.user.lastName});
+    this.productForm.get('supply').setValue(this.product.quantity);
 
     const form = new FormData();
     for (const [key, control] of Object.entries(this.productForm.controls)) {
@@ -283,4 +294,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const file = event.target.files[0];
     this.productForm.controls['images'].setValue(file);
   }
+
+
+  get name() {
+    return this.productForm.get('name');
+} 
+
+get description() {
+  return this.productForm.get('description');
+} 
+
 }
