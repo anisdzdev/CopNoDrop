@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       user.token = res;
       this.authService.setUserToStorage(user);
       this.authService.isloginSubject.next(true);
-      this.authService.alertMessage(
+      this.authService.alertMessageSuccess(
         'Success!',
         'You are now logged in',
         'success'
