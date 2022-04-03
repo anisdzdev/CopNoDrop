@@ -5,6 +5,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Observable, throwError } from "rxjs";
 import { MessageService } from 'primeng/api';
 import jwt_decode from 'jwt-decode';
+import {AuthService, User} from "../auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -55,7 +57,7 @@ export class SignupComponent {
 
   isSeller: boolean;
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+  constructor(private http: HttpClient, private messageService: MessageService, private authService: AuthService, private router: Router) { }
 
   handleChange(e) {
     this.isSeller = e.checked;
@@ -66,9 +68,10 @@ export class SignupComponent {
 
     // Verifying if password values match
       if(this.signupForm.value.password==this.signupForm.value.password2) {
-        this.httpSignUp(this.signupForm.value.firstName, this.signupForm.value.lastName, this.signupForm.value.email, this.signupForm.value.password, this.isSeller).subscribe(token =>console.log(this.getDecodedAccessToken(token)));
+        this.httpSignUp(this.signupForm.value.firstName, this.signupForm.value.lastName, this.signupForm.value.email, this.signupForm.value.password, this.isSeller).subscribe(token =>this.saveToken(token));
       }
       else {
+        console.log(this.signupForm.value.password, this.signupForm.value.password2)
         this.alertMessage("Error!", "Passwords do not match", "error");
       }
   }
@@ -108,5 +111,18 @@ export class SignupComponent {
         detail: message,
       });
     }, 100);
+  }
+
+  private saveToken(token: any) {
+    const user: User = this.authService.getDecodedAccessToken(token);
+    user.token = token;
+    this.authService.setUserToStorage(user);
+    this.authService.isloginSubject.next(true);
+    this.authService.alertMessageSuccess(
+      'Success!',
+      'Account created, you are now logged in!',
+      'success'
+    );
+    this.router.navigateByUrl('');
   }
 }
