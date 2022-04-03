@@ -2,7 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from 'libs/products/model/products';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { SellerService } from '../seller.service';
 import { AuthService, User } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
@@ -38,13 +43,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder
   ) {
     this.productForm = this.formBuilder.group({
-      name: new FormControl( '', [ Validators.required]),
-      price: new FormControl( '', [ Validators.required]),
-      category: new FormControl( '', [ Validators.required]),
-      description: new FormControl( '', [ Validators.required]),
-      creator: new FormControl( '', [ Validators.required]),
-      images: new FormControl( ''),
-      supply: new FormControl(1)
+      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      price: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required]),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+      ]),
+      creator: new FormControl('', [Validators.required]),
+      images: new FormControl(''),
+      supply: new FormControl('', Validators.required),
     });
   }
 
@@ -65,9 +73,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl('');
     }
 
+    if (this.user.isSeller == false) 
+      this.router.navigate(['error']);
+
     this._getProducts();
-
-
   }
 
   openNew() {
@@ -75,10 +84,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
       name: '',
       description: '',
       category: '',
-      price: { $numberDecimal: 0 },
+      //price: { $numberDecimal: 0 },
+      price: { $numberDecimal: null },
       sale: 0,
-      images: [] = [],
-      quantity: 0,
+      images: ([] = []),
     };
     this.submitted = false;
     this.productDialog = true;
@@ -172,6 +181,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
   saveProduct() {
     this.submitted = true;
 
+    this.fillProductForm();
+    if (this.productForm.invalid) {
+      console.log(this.productForm);
+      return;
+    }
 
     if (this.product.name.trim()) {
       const form = this.fillProductForm();
@@ -180,10 +194,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this._updateProduct(form);
       } else {
         this.products.push(this.product);
-        // console.log(this.productForm.get('images').value);
-        this.sellerService.createProduct(form, this.user.token).subscribe((res) => {
-          if(this.product.images) this.product.images.push(res.images[0]);
-          console.log(res.images[0]);
+        this.sellerService.createProduct(form, this.user.token).subscribe(
+          (res) => {
+            if (this.product.images) this.product.images.push(res.images[0]);
+            console.log(res.images[0]);
 
             this.messageService.add({
               severity: 'success',
@@ -241,7 +255,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productForm.get('price').setValue(this.product.price.$numberDecimal);
     this.productForm.get('category').setValue(this.product.category);
     this.productForm.get('description').setValue(this.product.description);
-    this.productForm.get('creator').setValue(this.product.creator);
+    this.productForm
+      .get('creator')
+      .setValue({
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+      });
+    this.productForm.get('supply').setValue(this.product.supply);
 
     const form = new FormData();
     for (const [key, control] of Object.entries(this.productForm.controls)) {
@@ -251,7 +271,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   private _updateProduct(productFormData: FormData) {
-    this.sellerService.updateProduct(productFormData, this.product._id, this.user.token).subscribe((product: Product) => {
+    this.sellerService
+      .updateProduct(productFormData, this.product._id, this.user.token)
+      .subscribe(
+        (product: Product) => {
           this._getProducts();
           this.messageService.add({
             severity: 'success',
@@ -282,5 +305,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
   onImageUpload(event) {
     const file = event.target.files[0];
     this.productForm.controls['images'].setValue(file);
+  }
+
+  get name() {
+    return this.productForm.get('name');
+  }
+
+  get description() {
+    return this.productForm.get('description');
   }
 }

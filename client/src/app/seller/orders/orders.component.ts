@@ -42,6 +42,9 @@ export class OrdersComponent implements OnInit {
       this.router.navigateByUrl('');
     }
 
+    if(this.user.isSeller == false)
+    this.router.navigate(['error']);
+
     this._getOrders();
 
   }
@@ -55,7 +58,7 @@ export class OrdersComponent implements OnInit {
 
 
   sendOrder(order: Order){
-    order.state = 'delivered';
+    order.state = 'Complete';
     this.sellerService.completeOrder(order, this.user.token).subscribe();
   }
 

@@ -47,6 +47,10 @@ export class MainPageComponent implements OnInit {
     } else {
       this.router.navigateByUrl('');
     }
+
+    if(this.user.isSeller == false)
+      this.router.navigate(['error']);
+
     this._getOrders();
   }
 
