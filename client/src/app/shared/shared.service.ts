@@ -1,39 +1,46 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
+  url = environment.apiUrL;
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private http: HttpClient) { }
 
-  addToCart(product: any){
+  addToCart(product: any) {
     let existingEntries: any[] = [];
-    if(localStorage.getItem("cart-items")){
+    if (localStorage.getItem("cart-items")) {
       existingEntries = JSON.parse(localStorage.getItem('cart-items') || '{}');
     }
-    if(existingEntries == null) existingEntries = [];
+    if (existingEntries == null) existingEntries = [];
     existingEntries.push(product);
     localStorage.setItem("cart-items", JSON.stringify(existingEntries));
   }
 
-  addProductsToCart(products: any[]){
+  addProductsToCart(products: any[]) {
     localStorage.setItem("cart-items", JSON.stringify(products));
   }
 
-  getCartItems(): any{
+  getCartItems(): any {
     let items = JSON.parse(localStorage.getItem('cart-items') || '{}');
-    return items ;
+    return items;
   }
 
   alertMessage(title: string, message: string, type?) {
     setTimeout(() => {
-    this.messageService.add({
-      severity: type || 'success',
-      summary: title,
-      detail: message,
-    });
+      this.messageService.add({
+        severity: type || 'success',
+        summary: title,
+        detail: message,
+      });
     }, 100);
+  }
+
+  searchProduct(name){
+    return this.http.get(this.url+"products/?query="+name);
   }
 }
