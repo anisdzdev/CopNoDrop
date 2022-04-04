@@ -97,7 +97,7 @@ export class SellerService {
       responseType: 'text',
     };
    
-    return this.http.put<User>(`${this.apiUrlOrders}/complete/${order._id}`, requestOptions);
+    return this.http.put<any>(`${this.apiUrlOrders}/complete/${order._id}`, order ,requestOptions);
 }
 
 }

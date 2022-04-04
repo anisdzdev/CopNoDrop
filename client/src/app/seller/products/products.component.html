@@ -313,8 +313,10 @@
             <label for="quantity">Quantity</label>
             <p-inputNumber
               id="quantity"
+              [ariaRequired] = "true"
               [(ngModel)]="product.supply"
             ></p-inputNumber>
+            <small class="p-error" *ngIf="submitted && product.supply == null">Quantity is required.</small>
           </div>
         </div>
       </ng-template>

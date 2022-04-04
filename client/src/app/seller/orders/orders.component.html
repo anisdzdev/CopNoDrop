@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="wrapper">
   <app-sidebar [page]="'orders'"></app-sidebar>
 
@@ -55,6 +56,9 @@
 
           <p class="col-4 mar-0 pt-3" *ngIf="order.state == 'Complete'">
             Order Sent!
+          </p>
+          <p class="col-4 mar-0 pt-3" *ngIf="order.state == 'Cancelled'">
+            Order Cancelled
           </p>
         </div>
       </p-card>

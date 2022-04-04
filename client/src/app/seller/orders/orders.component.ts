@@ -58,8 +58,24 @@ export class OrdersComponent implements OnInit {
 
 
   sendOrder(order: Order){
-    order.state = 'Complete';
-    this.sellerService.completeOrder(order, this.user.token).subscribe();
+    const id = order._id;
+    this.sellerService.completeOrder(order, this.user.token).subscribe(
+      (order: Order) => {
+        this._getOrders();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: `Order is delivered!`,
+        });
+      },
+      () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Order is not delivered!',
+        });
+      }
+    );
   }
 
 

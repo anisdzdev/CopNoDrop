@@ -53,6 +53,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       creator: new FormControl('', [Validators.required]),
       images: new FormControl(''),
       supply: new FormControl('', Validators.required),
+      sale: new FormControl(''),
     });
   }
 
@@ -189,6 +190,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     if (this.product.name.trim()) {
       const form = this.fillProductForm();
+      
       if (this.editmode == true) {
         // this.products[this.findIndexById(this.product.id)] = this.product;
         this._updateProduct(form);
@@ -221,7 +223,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.productDialog = false;
       this.product = {};
     }
-    location.reload();
+   // location.reload();
   }
 
   findIndexById(id: string): number {
@@ -262,6 +264,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         lastName: this.user.lastName,
       });
     this.productForm.get('supply').setValue(this.product.supply);
+    this.productForm.get('sale').setValue(0);
 
     const form = new FormData();
     for (const [key, control] of Object.entries(this.productForm.controls)) {
@@ -271,6 +274,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   private _updateProduct(productFormData: FormData) {
+    const name = this.product.name;
     this.sellerService
       .updateProduct(productFormData, this.product._id, this.user.token)
       .subscribe(
@@ -279,7 +283,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
-            detail: `Product ${product.name} is updated!`,
+            detail: `Product ${name} is updated!`,
           });
         },
         () => {
