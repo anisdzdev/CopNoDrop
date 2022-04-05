@@ -12,4 +12,8 @@ export class ShopService {
   public getProductsByCategory(cat){
     return this.http.get(`${this.url}/products/?category=${cat}`, {});
   }
+
+  public getProductDescription(id){
+    return this.http.get(`${this.url}/products/${id}`, {});
+  }
 }

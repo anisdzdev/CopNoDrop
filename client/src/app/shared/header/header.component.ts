@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -9,10 +10,11 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isLogged: boolean = false;
+  user;
   private subscriptions: Subscription[] = [];
 
-  constructor(private authService: AuthService) {
-    this.authService.getUserFromStorage();
+  constructor(private authService: AuthService, private router: Router) {
+    this.user = this.authService.getUserFromStorage();
     const sub = this.authService.islogin$.subscribe(value => this.isLogged = value);
     this.subscriptions.push(sub)
   }
@@ -26,5 +28,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((sb) => sb.unsubscribe());
+  }
+  reMyAccount(){
+    if(this.user.isSeller) this.router.navigateByUrl("/seller");
+    else this.router.navigateByUrl("/buyer");
   }
 }

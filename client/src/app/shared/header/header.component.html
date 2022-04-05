@@ -1,7 +1,7 @@
 <div class="header">
 
   <a><button class="yellow-btn signup desktopbuttons " *ngIf="!isLogged" routerLink="auth/login">Login</button></a>
-  <a><button class="yellow-btn signup desktopbuttons" *ngIf="isLogged" routerLink="seller/products">My Account</button></a>
+  <a><button class="yellow-btn signup desktopbuttons" *ngIf="isLogged" (click)="reMyAccount()">My Account</button></a>
   <a><button class="yellow-btn signup desktopbuttons" style="background-color: red !important" *ngIf="isLogged"
       (click)="logout()">Logout</button></a>
   <a><button class="black-btn login desktopbuttons" *ngIf="!isLogged" routerLink="auth/signup">Sign Up</button> </a>

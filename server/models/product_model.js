@@ -26,6 +26,10 @@ const productSchema = new mongoose.Schema({
         type: mongoose.Types.Decimal128,
         default: 0
     },
+    supply: {
+        type: Number,
+        required: true
+    },
     images: [{
         type: String,
         default: 'default.jpg'
