@@ -44,10 +44,10 @@ const create = async (product, images) => {
 const edit = async (id, product, images) => {
   if(!validate(product)) return BadRequest("Invalid Product");
   if(!id) return BadRequest("Product id not found");
+  console.log(product);
   if(images.length != 0){
     if(!product.images) product.images = []
     images.forEach(image => {
-    console.log(image);
     product.images.push("http://localhost:3000/products/" + image.filename);
     })
   }

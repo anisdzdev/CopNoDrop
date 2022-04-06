@@ -183,7 +183,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (this.productForm.invalid) {
       return;
     }
-    
+
     if (this.product.name.trim()) {
       const form:FormData = this.fillProductForm();
 
@@ -270,7 +270,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private _updateProduct(productFormData: FormData) {
     const name = this.product.name;
-
+    if(!productFormData.get("images")) productFormData.delete("images");
     this.sellerService
       .updateProduct(productFormData, this.product._id, this.user.token)
       .subscribe(
