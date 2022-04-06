@@ -28,6 +28,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   subscription: Subscription[] = [];
   imageDisplay: string | ArrayBuffer;
   images = [];
+  imageAvailable:boolean;
+
 
   constructor(
     private router: Router,
@@ -181,28 +183,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (this.productForm.invalid) {
       return;
     }
-
+    
     if (this.product.name.trim()) {
       const form:FormData = this.fillProductForm();
 
-      form.forEach((value,key) => {
-        console.log(key+" "+value)
-      });
-
       if (this.editmode == true) {
-        // this.products[this.findIndexById(this.product.id)] = this.product;
         this._updateProduct(form);
       }
       else if(!form.get("images")){
-        alert("missing image");
+        this.imageAvailable = false;
         return;
       }
       else {
-        this.products.push(this.product);
         this.sellerService.createProduct(form, this.user.token).subscribe(
           (res) => {
             if (this.product.images) this.product.images.push(res.images[0]);
-
+            this._getProducts();
             this.messageService.add({
               severity: 'success',
               summary: 'Successful',
@@ -225,7 +221,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.productDialog = false;
       this.product = {};
     }
-   // location.reload();
   }
 
   findIndexById(id: string): number {
@@ -259,9 +254,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productForm.get('price').setValue(this.product.price.$numberDecimal);
     this.productForm.get('category').setValue(this.product.category);
     this.productForm.get('description').setValue(this.product.description);
-    this.productForm
-      .get('creator')
-      .setValue({
+    this.productForm.get('creator').setValue({
         firstName: this.user.firstName,
         lastName: this.user.lastName,
       });
@@ -312,6 +305,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   onImageUpload(event) {
     const file = event.target.files[0];
     this.productForm.controls['images'].setValue(file);
+    this.imageAvailable = true;
   }
 
   get name() {

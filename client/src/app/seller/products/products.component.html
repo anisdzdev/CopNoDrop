@@ -284,7 +284,7 @@
             multiple
           />
           <br />
-
+          <small class="p-error" *ngIf="submitted && !imageAvailable">Image is required.</small>
           <div class="col-2 mt-2 pl-0">
             <img [src]="imageDisplay" alt="" [style]="{ width: '100%' }" />
         </div>
