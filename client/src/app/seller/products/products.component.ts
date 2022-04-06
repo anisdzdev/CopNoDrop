@@ -69,7 +69,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl('');
     }
 
-    if (this.user.isSeller == false) 
+    if (this.user.isSeller == false)
       this.router.navigate(['error']);
 
     this._getProducts();
@@ -184,20 +184,25 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     if (this.product.name.trim()) {
       const form:FormData = this.fillProductForm();
-    
+
       form.forEach((value,key) => {
         console.log(key+" "+value)
       });
-    
+
       if (this.editmode == true) {
         // this.products[this.findIndexById(this.product.id)] = this.product;
         this._updateProduct(form);
-      } else {
+      }
+      else if(!form.get("images")){
+        alert("missing image");
+        return;
+      }
+      else {
         this.products.push(this.product);
         this.sellerService.createProduct(form, this.user.token).subscribe(
           (res) => {
             if (this.product.images) this.product.images.push(res.images[0]);
-        
+
             this.messageService.add({
               severity: 'success',
               summary: 'Successful',
@@ -272,7 +277,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private _updateProduct(productFormData: FormData) {
     const name = this.product.name;
-    
+
     this.sellerService
       .updateProduct(productFormData, this.product._id, this.user.token)
       .subscribe(

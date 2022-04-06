@@ -197,10 +197,11 @@ router.post('/', [auth, upload.array('images', 10)], async (req, res) => {
  *             schema:
  *               $ref: '#/components/schemas/product'
  */
-router.put('/:id',auth, async (req, res) => {
+router.put('/:id', [auth, upload.array('images', 10)], async (req, res) => {
   try {
     let product = req.body;
-    const result = await productService.edit(req.params.id, product);
+    product.creator = {id: req.user._id, firstName: req.user.firstName, lastName: req.user.lastName};
+    const result = await productService.edit(req.params.id, product, req.files);
     res.status(result.status).send(result.data);
   } catch (e) {
     res.status(500).send(e.message);
