@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   isLogged: boolean = false;
   user;
+  items: MenuItem[];
   private subscriptions: Subscription[] = [];
 
   constructor(private authService: AuthService, private router: Router) {
