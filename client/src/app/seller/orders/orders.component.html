@@ -46,7 +46,7 @@
             <b>Total: </b> ${{ order.total.$numberDecimal }}
           </p>
           <button
-            *ngIf="!order.state || order.state != 'Complete'"
+            *ngIf="!order.state || order.state !== 'Complete'"
             class="col-4 m-auto pt-3 yellow-btn"
             style="width: 190px"
             (click)="sendOrder(order)"
@@ -54,10 +54,10 @@
             Send Order
           </button>
 
-          <p class="col-4 mar-0 pt-3" *ngIf="order.state == 'Complete'">
+          <p class="col-4 mar-0 pt-3" *ngIf="order.state === 'Complete'">
             Order Sent!
           </p>
-          <p class="col-4 mar-0 pt-3" *ngIf="order.state == 'Cancelled'">
+          <p class="col-4 mar-0 pt-3" *ngIf="order.state === 'Cancelled'">
             Order Cancelled
           </p>
         </div>

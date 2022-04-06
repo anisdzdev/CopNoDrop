@@ -58,7 +58,6 @@ export class OrdersComponent implements OnInit {
 
 
   sendOrder(order: Order){
-    const id = order._id;
     this.sellerService.completeOrder(order, this.user.token).subscribe(
       (order: Order) => {
         this._getOrders();

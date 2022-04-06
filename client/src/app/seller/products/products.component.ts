@@ -2,12 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from 'libs/products/model/products';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { SellerService } from '../seller.service';
 import { AuthService, User } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
@@ -184,13 +179,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     this.fillProductForm();
     if (this.productForm.invalid) {
-      console.log(this.productForm);
       return;
     }
 
     if (this.product.name.trim()) {
-      const form = this.fillProductForm();
-      
+      const form:FormData = this.fillProductForm();
+    
+      form.forEach((value,key) => {
+        console.log(key+" "+value)
+      });
+    
       if (this.editmode == true) {
         // this.products[this.findIndexById(this.product.id)] = this.product;
         this._updateProduct(form);
@@ -199,8 +197,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.sellerService.createProduct(form, this.user.token).subscribe(
           (res) => {
             if (this.product.images) this.product.images.push(res.images[0]);
-            console.log(res.images[0]);
-
+        
             this.messageService.add({
               severity: 'success',
               summary: 'Successful',
@@ -266,7 +263,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productForm.get('supply').setValue(this.product.supply);
     this.productForm.get('sale').setValue(0);
 
-    const form = new FormData();
+    const form:FormData = new FormData();
     for (const [key, control] of Object.entries(this.productForm.controls)) {
       form.set(key, control.value);
     }
@@ -275,6 +272,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private _updateProduct(productFormData: FormData) {
     const name = this.product.name;
+    
     this.sellerService
       .updateProduct(productFormData, this.product._id, this.user.token)
       .subscribe(

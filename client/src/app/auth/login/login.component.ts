@@ -3,7 +3,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { User } from '../auth.service';
 import { Router } from '@angular/router';
-import {Observable, throwError} from "rxjs";
 import { Subscription } from 'rxjs';
 
 @Component({
