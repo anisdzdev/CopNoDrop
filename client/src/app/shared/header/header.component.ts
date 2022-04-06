@@ -58,6 +58,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
           },
           {
             label: 'Logout',
+            icon: "pi pi-fw pi-sign-out",
+            style:"text-decoration: underline",
             command: (e) => this.logout()
           }
         ]
