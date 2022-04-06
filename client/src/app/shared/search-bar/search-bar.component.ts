@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class SearchBarComponent implements OnInit {
   text: string = "";
   results = []
 
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService, private router: Router, private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }
@@ -19,5 +20,12 @@ export class SearchBarComponent implements OnInit {
     this.sharedService.searchProduct(e.query).subscribe((res:any[])=>{
       this.results = res;
     })
+  }
+  route(item){
+    this.router.navigate(
+      ['/shop/description'],
+      { queryParams: { id: item._id } }
+    );
+    this.changeDetector.detectChanges();
   }
 }

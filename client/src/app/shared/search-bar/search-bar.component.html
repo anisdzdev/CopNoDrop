@@ -1,6 +1,6 @@
 <p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)" placeholder="Search Products" [autoHighlight]="true" [showEmptyMessage]="true">
   <ng-template let-brand pTemplate="item">
     <img src="{{brand.images[0]}}" style="width:32px;display:inline-block;margin:5px 0 2px 5px"/>
-    <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{brand.name}}</div>
+    <div style="font-size:18px;float:right;margin:10px 10px 0 0" (click)="route(brand)">{{brand.name}}</div>
 </ng-template>
 </p-autoComplete>
