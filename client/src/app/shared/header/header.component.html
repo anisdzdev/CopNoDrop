@@ -1,0 +1,10 @@
+<header>
+  <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+      <img src="\assets\logo.png" height="40" class="mr-2" routerLink="/">
+    </ng-template>
+    <ng-template pTemplate="end">
+      <app-search-bar></app-search-bar>
+    </ng-template>
+  </p-menubar>
+</header>

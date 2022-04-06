@@ -14,7 +14,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import {GalleriaModule} from 'primeng/galleria';
 import { SearchBarComponent } from './shared/search-bar/search-bar.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-
+import {MenubarModule} from 'primeng/menubar';
 
 
 
@@ -36,7 +36,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     HttpClientModule,
     ToastModule,
     GalleriaModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    MenubarModule
 
 
   ],
