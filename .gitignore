@@ -1,5 +1,9 @@
 /.idea/
 /server/node_modules/
+/server/package-lock.json/
 /client/.angular
 /client/package-lock.json
 /client/karma.conf.js
+client/package-lock.json
+./package-lock.json
+
