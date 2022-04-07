@@ -59,7 +59,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
           {
             label: 'Logout',
             icon: "pi pi-fw pi-sign-out",
-            style:"text-decoration: underline",
             command: (e) => this.logout()
           }
         ]
@@ -83,6 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((sb) => sb.unsubscribe());
   }
   reMyAccount() {
+    this.user = this.authService.getUserFromStorage();
     if (this.user.isSeller) this.router.navigateByUrl("/seller");
     else this.router.navigateByUrl("/buyer");
   }
