@@ -30,3 +30,6 @@ The seller is able to add a product to the product list identified by a category
   - [MongoDB](https://mongodb.com/)
   - [Swagger](https://mongodb.io/)
   - [Jest](https://jestjs.io/)
+
+## Coding Style
+The coding style followed is that of Java, provided by Oracle: https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html. (more details available in the wiki page of the repository)
