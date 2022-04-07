@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService, User } from 'src/app/auth/auth.service';
+import { ShopService } from 'src/app/shop/shop.service';
 import { buyerService } from '../buyer.service';
 
 @Component({
@@ -17,8 +18,9 @@ export class OrdersComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private buyerService: buyerService
-  ) {}
+    private buyerService: buyerService,
+    private shopService: ShopService
+  ) { }
 
   ngOnDestroy(): void {
     this.subscription.map((sub) => sub.unsubscribe());
@@ -43,11 +45,22 @@ export class OrdersComponent implements OnInit {
   private _getOrders() {
     this.buyerService.getOrders(this.user.token).subscribe((orders: any) => {
       this.orders = JSON.parse(orders);
+      this.orders.forEach(order => {
+        this.shopService.getProductDescription(order.product.id).subscribe((res: any) => {
+          order.productName = res.name;
+          order.image = res.images[0];
+          order.total = res.price.$numberDecimal*(1.1499);
+        })
+      })
     });
+
+
   }
 
   cancelOrder(order) {
-    order.state = 'delivered';
-    this.buyerService.cancelOrder(order, this.user.token).subscribe();
+    this.buyerService.cancelOrder(order, this.user.token).subscribe((res) => {
+      order.state = "Cancelled";
+    });
+
   }
 }

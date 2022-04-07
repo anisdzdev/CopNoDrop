@@ -34,8 +34,7 @@ export class buyerService {
       ),
       responseType: 'text',
     };
-
-    return this.http.put(this.apiUrl + "orders/cancel/" + order._id, requestOptions);
+    return this.http.put(this.apiUrl + "orders/cancel/" + order._id,order,  requestOptions);
   }
 
 }
