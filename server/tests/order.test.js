@@ -39,7 +39,7 @@ describe("GET /orders", () => {
             }
         );
 
-        const productId = newProduct.body.creator.id;
+        const productId = newProduct.body._id;
 
         await request(app).post(`/orders/`).set({'x-auth-token': userToken}).send(
             {
@@ -107,7 +107,7 @@ describe("GET /order", () => {
             }
         );
 
-        const productId = newProduct.body.creator.id;
+        const productId = newProduct.body._id;
 
         const newOrder = await request(app).post(`/orders/`).set({'x-auth-token': userToken}).send(
             {
@@ -179,7 +179,7 @@ describe("PUT /orders/complete/:id", () => {
             }
         );
 
-        const productId = newProduct.body.creator.id;
+        const productId = newProduct.body._id;
 
         const newOrder = await request(app).post(`/orders/`).set({'x-auth-token': userToken}).send(
             {
@@ -235,7 +235,7 @@ describe("PUT /orders/cancel/:id", () => {
             }
         );
 
-        const productId = newProduct.body.creator.id;
+        const productId = newProduct.body._id;
 
         const newOrder = await request(app).post(`/orders/`).set({'x-auth-token': userToken}).send(
             {

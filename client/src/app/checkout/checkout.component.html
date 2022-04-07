@@ -4,7 +4,7 @@
     <div class="steps-container">
       <p-steps [model]="items" [activeIndex]="index"></p-steps>
     </div>
-    <app-delivery class="{{(index==1)? '' : 'hide'}}" (address)="getAddress($event)" ></app-delivery>
-    <app-billing *ngIf="address" class="{{(index==2)? '' : 'hide'}}" [address]="address"></app-billing>
+    <app-delivery class="{{(index===1)? '' : 'hide'}}" (address)="getAddress($event)" ></app-delivery>
+    <app-billing *ngIf="address" class="{{(index===2)? '' : 'hide'}}" [address]="address"></app-billing>
   </div>
 </div>

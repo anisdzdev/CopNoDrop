@@ -35,10 +35,10 @@
         <div class="grid text-center">
           <p class="col-4 mar-0 border-right-1 border-300 pt-3"><b>Products: </b> {{order.product.quantity}}</p>
           <p class="col-4 mar-0 pt-3 border-right-1 border-300"><b>Total: </b> ${{order.total.$numberDecimal}} </p>
-          <button *ngIf="!order.state || order.state != 'Complete'" class="col-4 m-auto pt-3 yellow-btn"
+          <button *ngIf="!order.state || order.state !== 'Complete'" class="col-4 m-auto pt-3 yellow-btn"
             style="width: 190px;" (click)="cancelOrder(order)">Cancel Order</button>
 
-          <p class="col-4 mar-0 pt-3" *ngIf="order.state == 'Complete' ">Order Sent!</p>
+          <p class="col-4 mar-0 pt-3" *ngIf="order.state === 'Complete' ">Order Sent!</p>
         </div>
       </p-card>
     </div>

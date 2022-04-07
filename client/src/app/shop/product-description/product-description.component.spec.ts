@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductDescriptionComponent } from './product-description.component';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {RouterTestingModule} from "@angular/router/testing";
 
 describe('ProductDescriptionComponent', () => {
   let component: ProductDescriptionComponent;
@@ -10,10 +8,6 @@ describe('ProductDescriptionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule
-      ],
       declarations: [ ProductDescriptionComponent ]
     })
     .compileComponents();
@@ -29,5 +23,5 @@ describe('ProductDescriptionComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
+  
 });
