@@ -17,9 +17,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService, private router: Router) {
     this.user = this.authService.getUserFromStorage();
-    const sub = this.authService.islogin$.subscribe(value =>{
+    const sub = this.authService.islogin$.subscribe(value => {
       this.isLogged = value
-      if(!this.isLogged){
+      if (!this.isLogged) {
         this.items = [
           {
             label: 'Categories',
@@ -33,12 +33,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
               { label: 'Beauty & Personal care', routerLink: '/shop/list', queryParams: { cat: 'Beauty' } },
             ]
           },
+          { label: 'Cart', icon: 'pi pi-fw pi-shopping-cart', routerLink: '/cart' },
           {
             label: 'Log in',
             routerLink: '/auth/login'
-          }
+          },
         ]
-      }else{
+      } else {
         this.items = [
           {
             label: 'Categories',
@@ -52,6 +53,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
               { label: 'Beauty & Personal care', routerLink: '/shop/list', queryParams: { cat: 'Beauty' } },
             ]
           },
+          { label: 'Cart', icon: 'pi pi-fw pi-shopping-cart', routerLink: '/cart' },
           {
             label: 'My Account',
             command: (e) => this.reMyAccount()
