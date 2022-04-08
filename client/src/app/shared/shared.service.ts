@@ -30,7 +30,7 @@ export class SharedService {
     return items;
   }
 
-  clearCartItem(){
+  clearCartItem() {
     localStorage.setItem("cart-items", JSON.stringify([]));
   }
   alertMessage(title: string, message: string, type?) {
@@ -43,7 +43,7 @@ export class SharedService {
     }, 100);
   }
 
-  searchProduct(name){
-    return this.http.get(this.url+"products/?query="+name);
+  searchProduct(name) {
+    return this.http.get(this.url + "products/?query=" + name);
   }
 }

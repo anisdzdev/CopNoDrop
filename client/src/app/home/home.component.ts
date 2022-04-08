@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
     {"cate" : "Travel Gear",img: '/assets/luggage.png', link: 'Travel'},
     {"cate" : "Personal Care",img: '/assets/shampoo.png', link: 'Beauty'}
   ];
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {}
 }

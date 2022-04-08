@@ -78,6 +78,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
+    this.isLogged = false;
+    this.items = [
+      {
+        label: 'Categories',
+        items: [
+          { label: 'Electronics', routerLink: '/shop/list', queryParams: { cat: 'Electronics' } },
+          { label: 'Gaming Accessories', routerLink: '/shop/list', queryParams: { cat: 'Gaming' } },
+          { label: 'Clothing', routerLink: '/shop/list', queryParams: { cat: 'Clothing' } },
+          { label: 'Sports', routerLink: '/shop/list', queryParams: { cat: 'Sports' } },
+          { label: 'Home', routerLink: '/shop/list', queryParams: { cat: 'Home Appliances' } },
+          { label: 'Travel Gear', routerLink: '/shop/list', queryParams: { cat: 'Travel' } },
+          { label: 'Beauty & Personal care', routerLink: '/shop/list', queryParams: { cat: 'Beauty' } },
+        ]
+      },
+      { label: 'Cart', icon: 'pi pi-fw pi-shopping-cart', routerLink: '/cart' },
+      {
+        label: 'Log in',
+        routerLink: '/auth/login'
+      },
+    ]
   }
 
   ngOnDestroy(): void {
