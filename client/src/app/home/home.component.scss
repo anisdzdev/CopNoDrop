@@ -1,6 +1,14 @@
 .carousel-img{
   width: 100%;
 }
+.cat-img{
+max-width: 70px;
+max-height: 70px;
+margin-top: 30%;
+
+//test
+
+}
 .text-center{
   text-align: center;
 }
@@ -109,3 +117,7 @@
 }
 
 
+p-carousel{
+  position: absolute;
+  z-index: -1;
+}

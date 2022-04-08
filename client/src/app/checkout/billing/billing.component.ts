@@ -44,6 +44,7 @@ export class BillingComponent implements OnInit {
         'Your order is complete.',
         'success'
       );
+      this.sharedService.clearCartItem();
       },
       (err) => {
         this.sharedService.alertMessage(

@@ -7,14 +7,14 @@
       <a routerLink="my-account">
         <img width="20px" height="20px"
           src="https://d145dj1pf6foch.cloudfront.net/dashboardicons/personalDetails.svg" />
-        <span [ngClass]="{'current' : page == 'my-account' }"><a routerLink="/buyer/my-account">Personal Details
+        <span [ngClass]="{'current' : page === 'my-account' }"><a routerLink="/buyer/my-account">Personal Details
           </a></span>
       </a>
     </li>
     <li>
       <a routerLink="orders"><img width="20px" height="20px"
           src="https://d145dj1pf6foch.cloudfront.net/dashboardicons/myOrders.svg" />
-        <span [ngClass]="{'current' : page == 'orders' }"><a routerLink="/buyer/orders">My Orders</a></span>
+        <span [ngClass]="{'current' : page === 'orders' }"><a routerLink="/buyer/orders">My Orders</a></span>
       </a>
     </li>
   </ul>
