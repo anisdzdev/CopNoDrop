@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService, User } from 'src/app/auth/auth.service';
+import { SharedService } from 'src/app/shared/shared.service';
 import { ShopService } from 'src/app/shop/shop.service';
 import { buyerService } from '../buyer.service';
 
@@ -19,7 +20,8 @@ export class OrdersComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private buyerService: buyerService,
-    private shopService: ShopService
+    private shopService: ShopService,
+    private sharedService: SharedService
   ) { }
 
   ngOnDestroy(): void {
@@ -60,6 +62,7 @@ export class OrdersComponent implements OnInit {
   cancelOrder(order) {
     this.buyerService.cancelOrder(order, this.user.token).subscribe((res) => {
       order.state = "Cancelled";
+      this.sharedService.alertMessage("Success", "Order Canceled Successfully");
     });
 
   }
