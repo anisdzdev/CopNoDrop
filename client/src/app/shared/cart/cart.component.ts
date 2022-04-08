@@ -37,8 +37,6 @@ export class CartComponent implements OnInit, OnDestroy {
   remove(index: number){
     this.products.splice(index, 1);
     this.sharedService.addProductsToCart(this.products);
-    console.table(this.products);
-
     this.updateTotal();
   }
 

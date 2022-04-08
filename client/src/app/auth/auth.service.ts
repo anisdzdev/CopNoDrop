@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import jwt_decode from 'jwt-decode';
 import { MessageService } from 'primeng/api';
 import {catchError} from "rxjs/operators";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,8 @@ export class AuthService {
   }
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {
     this.isloginSubject = new BehaviorSubject<boolean>(false);
     this.islogin$ = this.isloginSubject.asObservable();
@@ -60,6 +62,7 @@ export class AuthService {
     localStorage.removeItem('user');
     this.alertMessage("Success!", "You have been logged out", "success");
     this.isloginSubject.next(false);
+    this.router.navigateByUrl('/');
   }
 
   getDecodedAccessToken(token: string): any {

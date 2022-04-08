@@ -4,7 +4,9 @@ import { Order } from 'libs/products/model/orders';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { AuthService, User } from 'src/app/auth/auth.service';
+import { ShopService } from 'src/app/shop/shop.service';
 import { SellerService } from '../seller.service';
+
 
 @Component({
   selector: 'app-orders',
@@ -12,7 +14,7 @@ import { SellerService } from '../seller.service';
   styleUrls: ['./orders.component.scss'],
 })
 export class OrdersComponent implements OnInit {
-  orders:Order[] = [];
+  orders:any[] = [];
   user: User;
   subscription: Subscription[] = [];
   isLoggedIn: boolean;
@@ -22,7 +24,8 @@ export class OrdersComponent implements OnInit {
     private authService: AuthService,
     private sellerService: SellerService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private shopService:ShopService
   ) {}
 
   ngOnDestroy(): void {
@@ -50,10 +53,18 @@ export class OrdersComponent implements OnInit {
   }
 
   private _getOrders() {
-    this.sellerService.getOrders(this.user.token).subscribe((orders:any) => {
+    this.sellerService.getOrders(this.user.token).subscribe((orders: any) => {
       this.orders = JSON.parse(orders);
-      
+      this.orders.forEach(order => {
+        this.shopService.getProductDescription(order.product._id).subscribe((res: any) => {
+          order.name = res.name;
+          order.img = res.images[0];
+          order.total = res.price.$numberDecimal*(1.1499);
+        })
+      })
+    console.log(this.orders);
     });
+
   }
 
 

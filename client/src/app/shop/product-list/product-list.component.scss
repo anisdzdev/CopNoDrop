@@ -1,7 +1,6 @@
 
 .main {
-  min-height: 70vh;
-  position: relative;
+  min-height: 100vh;
 }
 
 .p-price {
@@ -41,5 +40,9 @@
   float: left;
   border-radius: 2%;
   margin: 1%;
+  text-align: center;
+  img{
+    max-width: 200px;
+  }
 }
 

@@ -18,7 +18,7 @@ export class SellerService {
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-  
+
 
     return this.http.get<Product[]>(this.apiUrlProducts);
   }
@@ -35,7 +35,7 @@ export class SellerService {
       ),
       responseType: 'text',
     };
-  
+
     return this.http.post<Product>(this.apiUrlProducts, productData, requestOptions);
   }
 
@@ -47,7 +47,7 @@ export class SellerService {
       ),
       responseType: 'text',
     };
-    
+
     return this.http.put<Product>(`${this.apiUrlProducts}/${productid}`, productData, requestOptions);
   }
 
@@ -71,7 +71,7 @@ export class SellerService {
       ),
       responseType: 'text',
     };
-   
+
     return this.http.put<User>(`${this.apiUrlUser}/${user._id}`, user, requestOptions);
 }
 
@@ -83,7 +83,7 @@ export class SellerService {
       ),
       responseType: 'text',
     };
-    
+
 
     return this.http.get<Order[]>(`${this.apiUrlOrders}?sellerMode=true`, requestOptions);
   }
@@ -96,7 +96,7 @@ export class SellerService {
       ),
       responseType: 'text',
     };
-   
+
     return this.http.put<any>(`${this.apiUrlOrders}/complete/${order._id}`, order ,requestOptions);
 }
 

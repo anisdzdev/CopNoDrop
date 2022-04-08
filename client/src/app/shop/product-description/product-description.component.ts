@@ -26,6 +26,9 @@ export class ProductDescriptionComponent implements OnInit {
   }
 
   addToCart() {
+    // console.log(this.product.creator);
+    console.log(JSON.stringify(this.product.creator));
+
     this.product.quantity = 1;
     this.sharedService.addToCart(this.product);
     this.sharedService.alertMessage("Success!", "Item added to cart successfully!", "success");

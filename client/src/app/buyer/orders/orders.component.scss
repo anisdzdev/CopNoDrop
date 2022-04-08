@@ -2,7 +2,8 @@
   width: 75%;
   margin: auto;
   // background-color: lightblue;
-  margin-top: 20px;
+  margin-top: 30px;
+  padding-bottom: 60px;
 }
 
 .orders-content {
@@ -12,7 +13,7 @@
   min-height: 400px;
 }
 .order-container{
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .empty {
   background-color: #4eb051;
@@ -41,6 +42,7 @@
   .wrapper {
     width: 95%;
     margin: auto;
+    margin-top: 25px;
   }
 }
 
@@ -113,4 +115,23 @@
 }
 .mar-0{
   margin: 0% !important;
+}
+.Cancelled{
+  background-color: red;
+}
+.Cancelled:hover{
+  background-color: red;
+  color: white !important;
+}
+
+.delivered{
+  background-color: green;
+}
+.delivered:hover{
+  background-color: green;
+  color: white !important;
+}
+
+button{
+  width: 155px !important;
 }

@@ -30,6 +30,7 @@ export class BillingComponent implements OnInit {
 
   checkout() {
     if (!this.childComponent.verifyForm()) return;
+
     let data = {
       products: this.sharedService.getCartItems(),
       address: this.address,
