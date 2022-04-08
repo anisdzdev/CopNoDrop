@@ -28,6 +28,5 @@ export class CheckoutComponent implements OnInit {
   }
 
   print(){
-    console.log(this.address);
   }
 }

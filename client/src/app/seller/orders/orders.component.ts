@@ -56,10 +56,11 @@ export class OrdersComponent implements OnInit {
     this.sellerService.getOrders(this.user.token).subscribe((orders: any) => {
       this.orders = JSON.parse(orders);
       this.orders.forEach(order => {
-        this.shopService.getProductDescription(order.product._id).subscribe((res: any) => {
+        this.shopService.getProductDescription(order.product.id).subscribe((res: any) => {
           order.name = res.name;
           order.img = res.images[0];
-          order.total = res.price.$numberDecimal*(1.1499);
+          order.total = res.price.$numberDecimal*(1.1499)*order.product.quantity;
+          order.cat = res.category;
         })
       })
     console.log(this.orders);

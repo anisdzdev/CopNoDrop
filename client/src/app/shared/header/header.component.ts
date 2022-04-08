@@ -18,7 +18,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private router: Router) {
     this.user = this.authService.getUserFromStorage();
     const sub = this.authService.islogin$.subscribe(value => {
-      this.isLogged = value
+      console.log(value);
+
+      this.isLogged = value;
       if (!this.isLogged) {
         this.items = [
           {
@@ -77,8 +79,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout() {
+
     this.authService.logout();
-    this.isLogged = false;
+    const sub = this.authService.islogin$.subscribe(value => {
+      this.isLogged = false;
+    })
+    this.subscriptions.push(sub)
     this.items = [
       {
         label: 'Categories',

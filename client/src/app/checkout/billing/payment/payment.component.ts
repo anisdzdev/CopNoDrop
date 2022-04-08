@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class PaymentComponent implements OnInit {
   name = "";
   card_number ="";
+  expiration = "";
   billingForm: FormGroup;
   checkoutClicked :boolean ;
 

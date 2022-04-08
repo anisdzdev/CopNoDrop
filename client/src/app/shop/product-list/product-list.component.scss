@@ -1,6 +1,6 @@
 
 .main {
-  min-height: 100vh;
+  min-height: 140vh;
 }
 
 .p-price {
@@ -41,8 +41,9 @@
   border-radius: 2%;
   margin: 1%;
   text-align: center;
-  img{
+  .product-img{
     max-width: 200px;
+    height: 200px;
   }
 }
 

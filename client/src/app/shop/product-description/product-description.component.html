@@ -8,7 +8,7 @@
             <article class="gallery-wrap">
               <div class="card img-big-wrap">
                 <img
-                [src]="product.images[0] || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png'">
+                  [src]="product.images[0] || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png'">
               </div> <!-- card img-big-wrap.// -->
             </article> <!-- gallery-wrap .end// -->
           </aside>
@@ -17,20 +17,20 @@
               <a class="text-primary btn-link">{{product.category}}</a>
               <h3 class="title">{{product.name}}</h3>
               <hr>
-              <div class="mb-3">
+              <div>
                 <var class="price h1">${{product.price.$numberDecimal}}</var> <br>
               </div>
               <!-- price-detail-wrap .// -->
-
-              <div class="mb-4">
-                <button class="yellow-btn" (click)="addToCart()">Add to Cart</button>
-              </div>
               <div class="mb-3">
                 <h5>About this item</h5>
                 <ul class="list-dots mb-0">
                   <li>{{product.description}}</li>
                 </ul>
               </div>
+              <div class="mb-4">
+                <button class="yellow-btn" (click)="addToCart()">Add to Cart</button>
+              </div>
+
 
 
 

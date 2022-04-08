@@ -60,8 +60,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('user');
-    this.alertMessage("Success!", "You have been logged out", "success");
     this.isloginSubject.next(false);
+    this.alertMessage("Success!", "You have been logged out", "success");
     this.router.navigateByUrl('/');
   }
 

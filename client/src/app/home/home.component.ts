@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     {"cate" : "Personal Care",img: '/assets/shampoo.png', link: 'Beauty'}
   ];
   constructor() {
+    if (!localStorage.getItem("cart-items")) localStorage.setItem("cart-items", JSON.stringify([]));
   }
 
   ngOnInit(): void {}

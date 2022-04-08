@@ -4,7 +4,7 @@
 
   <app-menu-panel [page]="'orders'"></app-menu-panel>
 
-  <div class="orders-content">
+  <div class="orders-content" style="margin-top: 20px;">
     <div class="page-title-wrapper">
       <h1>My Orders</h1>
       <p>Manage or edit orders</p>
@@ -29,11 +29,14 @@
         </div>
         <div class="products grid">
           <p class="col-6" style="padding-left: 0">
-            Product Name: {{ order.product.name }}
+            Product Name: <b>{{ order.name }}</b> <br> <br>
+
+            Category: <b>{{ order.cat }}</b>
+
           </p>
           <img
             class="col-6 col-offset-2"
-            [src]="order.product.img"
+            [src]="order.img"
             style="width: 95px"
           />
           <!-- <img *ngFor="let product of order.product.slice(0,7)" [src]="product.img" alt="" class="product-img"> -->
@@ -43,7 +46,7 @@
             <b>Products: </b> {{ order.product.quantity }}
           </p>
           <p class="col-4 mar-0 pt-3 border-right-1 border-300">
-            <b>Total: </b> ${{ order.total.$numberDecimal }}
+            <b>Total: </b> ${{ order.total | number: '1.0-2'}}
           </p>
           <button
             *ngIf="!order.state || order.state !== 'Complete' && order.state !== 'Cancelled'  "

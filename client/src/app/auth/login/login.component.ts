@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     const sub = this.authService.islogin$.subscribe(
       (value) => (this.isLogged = value)
     );
-    console.log(this.isLogged);
 
     if (this.isLogged) router.navigateByUrl('');
     this.subscriptions.push(sub);

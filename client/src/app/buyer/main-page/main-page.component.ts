@@ -10,7 +10,6 @@ export class MainPageComponent implements OnInit {
 user;
   constructor(private auth: AuthService) {
     this.user = this.auth.getUserFromStorage();
-    console.log(this.user);
 
   }
 

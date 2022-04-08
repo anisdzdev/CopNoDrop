@@ -26,21 +26,26 @@
 
         </div>
         <div class="products grid">
-          <p class="col-6" style="padding-left: 0;">Product Name: {{order.productName}}</p>
+          <p class="col-6" style="padding-left: 0;">Product Name: <b>{{order.productName}}</b> <br><br>Category:  <b>{{order.cat}}</b></p>
           <img class="col-6 col-offset-2 "
             [src]="order.image || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png'"
             style="width:95px">
           <!-- <img *ngFor="let product of order.product.slice(0,7)" [src]="product.img" alt="" class="product-img"> -->
         </div>
         <div class="grid text-center">
-          <p class="md:col-4 col-12 sm:col-12 mar-0 border-right-1 border-300 pt-3"><b>Products: </b> {{order.product.quantity}}</p>
-          <p class="md:col-4 col-12 sm:col-12 mar-0 pt-3 border-right-1 border-300"><b>Total: </b> ${{order.total | number: '1.0-2'}} </p>
-          <button *ngIf="!order.state && (order.state !== 'Cancelled'|| order.state !== 'complete')" class="md:col-12 col-12 sm:col-12 m-auto pt-3 yellow-btn"
-            style="width: 190px;" (click)="cancelOrder(order)">Cancel Order</button>
-          <button *ngIf="order.state && order.state === 'Cancelled'" class="md:col-4 col-12 sm:col-12 m-auto pt-3 black-btn Cancelled"
-            style="width: 190px;"  disabled>Cancelled</button>
-          <button *ngIf="order.state && order.state === 'complete'" class="md:col-12 col-12 sm:col-12 m-auto pt-3 black-btn delivered"
-            style="width: 190px;"  disabled>Delivered</button>
+          <p class="md:col-4 col-12 sm:col-12 mar-0 border-right-1 border-300 pt-3"><b>Products: </b>
+            {{order.product.quantity}}</p>
+          <p class="md:col-4 col-12 sm:col-12 mar-0 pt-3 border-right-1 border-300"><b>Total: </b> ${{order.total |
+            number: '1.0-2'}} </p>
+          <button *ngIf="!order.state && (order.state !== 'Cancelled'|| order.state !== 'complete')"
+            class="md:col-12 col-12 sm:col-12 m-auto pt-3 yellow-btn" style="width: 190px;"
+            (click)="cancelOrder(order)">Cancel Order</button>
+          <button *ngIf="order.state && order.state === 'Cancelled'"
+            class="md:col-4 col-12 sm:col-12 m-auto pt-3 black-btn Cancelled" style="width: 190px;"
+            disabled>Cancelled</button>
+          <button *ngIf="order.state && order.state === 'Complete'"
+            class="md:col-12 col-12 sm:col-12 m-auto pt-3 black-btn delivered" style="width: 190px;"
+            disabled>Delivered</button>
         </div>
       </p-card>
     </div>

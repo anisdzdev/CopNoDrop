@@ -26,16 +26,18 @@ export class BillingComponent implements OnInit {
     this.user = this.authService.getUserFromStorage();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   checkout() {
     if (!this.childComponent.verifyForm()) return;
 
     let data = {
-      products: this.sharedService.getCartItems(),
+      products: this.parseCartData(),
       address: this.address,
       total: 10,
     };
+
     this.checkoutService.placeOrder(data, this.user.token).subscribe((res:any) => {
       this.orders = JSON.parse(res);
       this.orders.forEach(order => this.orderIDs.push(order._id));
@@ -56,5 +58,19 @@ export class BillingComponent implements OnInit {
       }
     );
 
+  }
+
+  parseCartData(){
+    let cartItems = this.sharedService.getCartItems();
+    let products = [];
+    cartItems.forEach(product =>{
+      let item = {
+        id: product._id,
+        quantity: product.quantity,
+        seller_id: product.creator.id
+      }
+      products.push(item);
+    });
+    return products;
   }
 }
