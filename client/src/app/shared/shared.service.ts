@@ -30,6 +30,9 @@ export class SharedService {
     return items;
   }
 
+  clearCartItem(){
+    localStorage.setItem("cart-items", JSON.stringify([]));
+  }
   alertMessage(title: string, message: string, type?) {
     setTimeout(() => {
       this.messageService.add({

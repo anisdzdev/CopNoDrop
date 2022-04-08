@@ -49,7 +49,7 @@ export class CartComponent implements OnInit, OnDestroy {
       this.total = 0
     }else{
       // this.products.map(product => total = total + +product.price);
-      this.products.forEach(product => total += +product.price*product.quantity);
+      this.products.forEach(product => total += +product.price.$numberDecimal*product.quantity);
       this.total = total;
       this.sharedService.addProductsToCart(this.products);
     }

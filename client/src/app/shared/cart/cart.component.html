@@ -18,17 +18,17 @@
       <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
         <tr>
           <td class="grid">
-            <img [src]="product.img" class="product-img">
+            <img [src]="product.images[0]" class="product-img">
             <p class="col">{{product.name}}</p>
           </td>
-          <td>$ {{product.price}}</td>
+          <td>$ {{product.price.$numberDecimal}}</td>
           <td>
             <p-inputNumber [(ngModel)]="product.quantity" [showButtons]="true" buttonLayout="horizontal"
               spinnerMode="horizontal" decrementButtonClass="c-btn" incrementButtonClass="c-btn"
               incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal" [min]="1" [size]="10" (click)="updateTotal()">
             </p-inputNumber>
           </td>
-          <td>$ {{product.quantity*product.price}}</td>
+          <td>$ {{product.quantity*product.price.$numberDecimal}}</td>
           <td><button class="black-btn red-btn" (click)="remove(rowIndex)">Remove</button></td>
         </tr>
       </ng-template>
