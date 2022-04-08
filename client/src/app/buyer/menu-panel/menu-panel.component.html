@@ -10,7 +10,7 @@
   </div>
   <ul class="{{ isNavOpen ? 'animate' : 'hide' }}">
     <li>
-      <span [ngClass]="{ current: page == 'my-account' }"
+      <span [ngClass]="{ current: page === 'my-account' }"
         ><a routerLink="/buyer/my-account">Personal Details</a></span
       >
     </li>

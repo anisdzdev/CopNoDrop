@@ -9,6 +9,7 @@
   padding-left: 20px;
   width: calc(100% - 200px);
   margin-left: 200px;
+  min-height: 400px;
 }
 
 .empty {
@@ -109,4 +110,8 @@
 }
 .mar-0{
   margin: 0% !important;
+}
+
+.order-container{
+  margin-bottom: 10px;
 }

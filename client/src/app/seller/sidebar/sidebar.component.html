@@ -2,51 +2,24 @@
   <a routerLink="/seller"><h3>My Account</h3></a>
   <ul>
     <li>
-      <a routerLink="my-account">
         <img
           width="20px"
           height="20px"
           src="https://d145dj1pf6foch.cloudfront.net/dashboardicons/personalDetails.svg"
         />
-        <span [ngClass]="{'current' : page == 'my-account' }"><a routerLink="/seller/my-account">Personal Details </a></span>
-      </a>
+        <span [ngClass]="{'current' : page === 'my-account' }"><a routerLink="/seller/my-account">Personal Details </a></span>
     </li>
     <li>
-      <a routerLink="orders"
-        ><img
+      <img
           width="20px"
           height="20px"
           src="https://d145dj1pf6foch.cloudfront.net/dashboardicons/myOrders.svg"
         />
-        <span [ngClass]="{'current' : page == 'orders' }"><a routerLink="/seller/orders">My Orders</a></span>
-      </a>
+        <span [ngClass]="{'current' : page === 'orders' }"><a routerLink="/seller/orders">My Orders</a></span>
     </li>
     <li>
-      <a routerLink="/categories">
         <i class="pi pi-briefcase two"></i>
-        <span [ngClass]="{'current' : page == 'products' }"><a routerLink="/seller/products">Products</a></span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/orders"
-        ><i class="pi pi-shopping-cart"></i>
-        <span > filler</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/users"
-        ><i class="pi pi-users"></i>
-        <span> filler </span>
-      </a>
+        <span [ngClass]="{'current' : page === 'products' }"><a routerLink="/seller/products">Products</a></span>
     </li>
   </ul>
-
-  <p class="logout">
-    <a class=""
-      ><i class="pi pi-sign-out"></i>
-      <span id="logout"> Logout </span>
-    </a>
-  </p>
-
-
 </div>
