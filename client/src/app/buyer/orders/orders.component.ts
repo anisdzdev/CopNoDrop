@@ -52,9 +52,9 @@ export class OrdersComponent implements OnInit {
           order.total = res.price.$numberDecimal*(1.1499);
         })
       })
+      console.log(this.orders);
+
     });
-
-
   }
 
   cancelOrder(order) {

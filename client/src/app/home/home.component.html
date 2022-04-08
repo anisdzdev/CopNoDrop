@@ -1,5 +1,4 @@
 
-  <p-toast position="top-right"></p-toast>
   <p-carousel [value]="images" [autoplayInterval]="3000" [circular]="true">
     <ng-template let-item pTemplate="item">
       <img class="carousel-img" [src]="item.src" alt="">
@@ -56,13 +55,13 @@
       <h1 class="title">Shop By Category</h1>
       <div class="grid">
         <div routerLink="/shop/list" [queryParams]={cat:cat.link}  class="category-wrap col-6 md:col-3 lg:col-2" *ngFor="let cat of categories">
-          
+
           <div  class="category-frame" >
             <img class="cat-img" [src]="cat.img" alt="">
           </div>
-           
+
           <h3>{{cat.cate}} </h3>
-          
+
         </div>
       </div>
     </div>
