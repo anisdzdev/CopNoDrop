@@ -30,14 +30,27 @@ const findOne = async (id) => {
 
 const create = async (product, images) => {
   if(!validate(product)) return BadRequest("Invalid Product");
+  if(!images || images.length === 0) return BadRequest("At least 1 product image is expected");
+  images.forEach(image => {
+    if(!product.images) product.images = []
+    console.log(image)
+    product.images.push("http://localhost:3000/products/" + image.filename);
+  })
   let p = await new Product(product);
   await p.save();
   return Created(p);
 }
 
-const edit = async (id, product) => {
+const edit = async (id, product, images) => {
   if(!validate(product)) return BadRequest("Invalid Product");
   if(!id) return BadRequest("Product id not found");
+  console.log(product);
+  if(images.length != 0){
+    if(!product.images) product.images = []
+    images.forEach(image => {
+    product.images.push("http://localhost:3000/products/" + image.filename);
+    })
+  }
   const p = await Product.findByIdAndUpdate(id, product,  {new: true});
   if(!p) return NotFound("Error while updating the product");
   return Success(p);

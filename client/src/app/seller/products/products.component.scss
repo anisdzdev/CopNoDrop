@@ -3,6 +3,7 @@
   margin: auto;
   // background-color: lightblue;
   margin-top: 20px;
+
 }
 
 
@@ -68,4 +69,8 @@
   }
 }
 
+
 // menu-panel css
+.dialog{
+  z-index: 10000000 !important;
+}

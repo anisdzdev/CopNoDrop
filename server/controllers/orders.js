@@ -151,6 +151,11 @@ router.post('/', auth, async (req, res) => {
  *      - in: path
  *        name: id
  *        type: string
+ *      - name: x-auth-token
+ *        in: header
+ *        description: an authorization token
+ *        required: true
+ *        type: string
  *     responses:
  *       200:
  *         description: The order with id.

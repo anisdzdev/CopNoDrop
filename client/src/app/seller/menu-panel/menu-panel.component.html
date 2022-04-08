@@ -10,13 +10,11 @@
   </div>
   <ul class="{{ isNavOpen ? 'animate' : 'hide' }}">
     <li>
-      <span [ngClass]="{ current: page == 'my-account' }"
+      <span [ngClass]="{ current: page === 'my-account' }"
         ><a routerLink="/seller/my-account">Personal Details</a></span
       >
     </li>
-    <li><span [ngClass]="{ current: page == 'orders' }"> <a routerLink="/seller/orders">My Orders</a></span></li>
-    <li><span [ngClass]="{'current' : page == 'products' }"> <a routerLink="/seller/products">Products</a></span></li>
-    <li><span>Filler</span></li>
-    <li><span>Filler</span></li>
+    <li><span [ngClass]="{ current: page === 'orders' }"> <a routerLink="/seller/orders">My Orders</a></span></li>
+    <li><span [ngClass]="{'current' : page === 'products' }"> <a routerLink="/seller/products">Products</a></span></li>
   </ul>
 </div>
