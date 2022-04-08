@@ -82,8 +82,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.forEach((sb) => sb.unsubscribe());
   }
-  reMyAccount() {
-    if (this.user.isSeller) this.router.navigateByUrl("/seller");
+
+  reMyAccount(){
+    this.user = this.authService.getUserFromStorage();
+    if(this.user?.isSeller) this.router.navigateByUrl("/seller");
     else this.router.navigateByUrl("/buyer");
   }
 }

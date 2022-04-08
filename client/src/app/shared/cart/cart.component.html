@@ -4,8 +4,8 @@
     <div class="steps-container">
       <p-steps [model]="items"></p-steps>
     </div>
-    <p *ngIf="products.length==0" class="text-center pt-5">Cart is empty</p>
-    <p-table [value]="products" *ngIf="!(products.length==0)">
+    <p *ngIf="products.length===0" class="text-center pt-5">Cart is empty</p>
+    <p-table [value]="products" *ngIf="!(products.length===0)">
       <ng-template pTemplate="header" class="t-header">
         <tr>
           <th>Item</th>
@@ -48,7 +48,7 @@
       </div>
       <div class="grid buttons">
         <button class="col yellow-btn" routerLink="/">continue shopping</button>
-        <button class="col black-btn" (click)="toCheckout()" *ngIf="products.length!=0">proceed to checkout</button>
+        <button class="col black-btn" (click)="toCheckout()" *ngIf="products.length!==0">proceed to checkout</button>
       </div>
     </div>
   </div>

@@ -3,7 +3,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { User } from '../auth.service';
 import { Router } from '@angular/router';
-import {Observable, throwError} from "rxjs";
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -54,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       user.token = res;
       this.authService.setUserToStorage(user);
       this.authService.isloginSubject.next(true);
-      this.authService.alertMessageSuccess(
+      this.authService.alertMessage(
         'Success!',
         'You are now logged in',
         'success'

@@ -112,20 +112,23 @@ router.get('/:id', async (req, res) => {
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
  *               images:
  *                 type: array
  *                 items:
- *                   type: string
+ *                   type: file
+ *                   format: binary
  *               name:
  *                 type: string
  *               description:
  *                 type: string
  *               category:
  *                 type: string
+ *               supply:
+ *                 type: number
  *               price:
  *                 type: number
  *               sale:
@@ -138,13 +141,16 @@ router.get('/:id', async (req, res) => {
  *             schema:
  *               $ref: '#/components/schemas/product'
  */
-router.post('/', auth, async (req, res) => {
+router.post('/', [auth, upload.array('images', 10)], async (req, res) => {
   try {
     let product = req.body;
     product.creator = {id: req.user._id, firstName: req.user.firstName, lastName: req.user.lastName};
-    const result = await productService.create(product);
+    const result = await productService.create(product, req.files);
     res.status(result.status).send(result.data);
   } catch (e) {
+    await Promise.all(req.files?.map(async f => {
+      await unlinkAsync(f.path);
+    }));
     res.status(500).send(e.message);
   }
 });
@@ -191,10 +197,11 @@ router.post('/', auth, async (req, res) => {
  *             schema:
  *               $ref: '#/components/schemas/product'
  */
-router.put('/:id',auth, async (req, res) => {
+router.put('/:id', [auth, upload.array('images', 10)], async (req, res) => {
   try {
     let product = req.body;
-    const result = await productService.edit(req.params.id, product);
+    product.creator = {id: req.user._id, firstName: req.user.firstName, lastName: req.user.lastName};
+    const result = await productService.edit(req.params.id, product, req.files);
     res.status(result.status).send(result.data);
   } catch (e) {
     res.status(500).send(e.message);
