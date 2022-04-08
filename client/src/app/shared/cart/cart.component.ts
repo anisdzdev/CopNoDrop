@@ -44,6 +44,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   updateTotal(): void{
     let total: number = 0;
+
     if(this.products.length==0){
       this.total = 0
     }else{
@@ -52,7 +53,6 @@ export class CartComponent implements OnInit, OnDestroy {
       this.total = total;
       this.sharedService.addProductsToCart(this.products);
     }
-    console.log(total);
 
   }
 
