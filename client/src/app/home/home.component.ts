@@ -14,12 +14,13 @@ export class HomeComponent implements OnInit {
   ];
 
   categories: any[] = [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
+    {"cate" : "Electronics",img: '/assets/computer.png', link: 'Electronics'},
+    {"cate" : "Gaming Accessories",img: '/assets/gamingmouse.png', link: 'Gaming'},
+    {"cate" : "Clothing",img: '/assets/shirt.png', link: 'Clothing'},
+    {"cate" : "Sports Gear",img: '/assets/sportshoes.png', link: 'Sports'},
+    {"cate" : "Home Appliances",img: '/assets/microwave.png', link: 'Home'},
+    {"cate" : "Travel Gear",img: '/assets/luggage.png', link: 'Travel'},
+    {"cate" : "Personal Care",img: '/assets/shampoo.png', link: 'Beauty'}
   ];
   constructor() {}
 
