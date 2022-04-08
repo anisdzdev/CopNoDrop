@@ -498,3 +498,14 @@ header{
 .red{
   color: red !important;
 }
+
+div{
+  position: relative;
+  width: 50px;
+  display: inline-block;
+  img{
+    position: absolute;
+    top: -30px;
+    width: 40px;
+  }
+}

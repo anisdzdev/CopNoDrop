@@ -90,6 +90,16 @@ export class AuthService {
     }, 100);
   }
 
+  alertMessageSuccess(title: string, message: string, type?) {
+    setTimeout(() => {
+    this.messageService.add({
+      severity: type || "success",
+      summary: title,
+      detail: message,
+    });
+    }, 100);
+  }
+
   private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
     return (error: Error): Observable<T> => {
       this.alertMessageError("Error!", "Please check credentials", "error")

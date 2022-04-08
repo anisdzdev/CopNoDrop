@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,9 @@ export class SharedService {
     return items;
   }
 
+  clearCartItem(){
+    localStorage.setItem("cart-items", JSON.stringify([]));
+  }
   alertMessage(title: string, message: string, type?) {
     setTimeout(() => {
       this.messageService.add({
